@@ -49,7 +49,7 @@
 - **（15:30 补充）明确显示 CC BY-NC-SA 4.0**：查证 GitHub 的 licensee 识别库（choosealicense，47 个许可）**不含 CC-BY-NC-SA-4.0**，侧栏标签在平台上无法获得；因此**不**用错误许可文本换取标签。根 `LICENSE` 改为「多许可总览 + CC 官方 `legalcode.txt` 全文（原文未改动）」，中英 README 首页顶部加醒目许可横幅并解释侧栏 `Other` 的成因；目录树与许可地图的说明同步。
 - **（15:40 补充）英文论文 HTML/PDF**：`paper/build_paper.py` 增加 `--lang en`，中文默认输出经 SHA256 验证**字节级不变**；新增 `riddle-paper-en.html`（14 节 / 21 表 / 4 图）与 `riddle-paper-en.pdf`，中文排版 HTML 也一并纳入发布包。中英 README 目录树与引用说明同步。
 - **（15:45 补充）站点合规公开版 + 论文联动**：论文中英两版 §7 与附录 A 的「站点不对外发布」改为「合规公开版发布于 GitHub Pages」；重生成中英 HTML/PDF、重跑 `verify_paper.py`（PASS）、重跑 `publish_site.py`、同步重生成「一图看懂」长图。新增 `build_pages.py` 导出 gh-pages 分支内容：下架 31 条 UGC 谜面文本 / 26 处网页 URL / 28 条游戏题，`data.json` 参考集 1,019 条、题库 1,541 条，残留扫描 0。本地研究树一条未删。
-- **（15:50 补充）Zenodo 归档准备**：新增 `.zenodo.json`（机构署名、CC-BY-NC-SA-4.0、上游关联标识、关键词）与 `docs/ZENODO.md`（归档与 DOI 回填步骤）。**DOI 尚未产生，不编造**；`CITATION.cff` 与中英 README 已预留回填位置。
+- **（15:50 补充）Zenodo 归档准备**：新增 `.zenodo.json`（机构署名、CC-BY-NC-SA-4.0、上游关联标识、关键词）与 `docs/ZENODO.md`（归档与 DOI 回填步骤）。**当时 DOI 尚未产生，未编造**；`CITATION.cff` 与中英 README 预留了回填位置（**该条为发布当日 15:50 的历史状态；归档已于当日完成，见上方 v0.1.1 节**）。
 - **（15:50 补充）v0.1.0 tag 与 GitHub Release**：整包 zip + 中英 PDF 作为附件；Release 与 About 描述、topics、Pages 通过 GitHub API 设置。
 - **（16:05 补充）README 首屏链接拆分**：此修复已作为 **v0.1.1 补丁**正式发布，详见本文件顶部 v0.1.1 节。
 

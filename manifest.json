@@ -61,7 +61,7 @@
     }
   },
   "n_files": 42,
-  "total_bytes": 10476180,
+  "total_bytes": 10476290,
   "files": [
     {
       "path": ".gitattributes",
@@ -80,8 +80,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 7804,
-      "sha256": "86f4f85f210f9087c308e407f49fa5fda1eed61270191877f0fe4d20635f513d"
+      "bytes": 7914,
+      "sha256": "dde488ba32f198e215683cdfb483cc6f16f29ed9ffd65057b12198d139382cf2"
     },
     {
       "path": "CITATION.cff",
