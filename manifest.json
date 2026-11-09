@@ -61,7 +61,7 @@
     }
   },
   "n_files": 42,
-  "total_bytes": 10468909,
+  "total_bytes": 10472706,
   "files": [
     {
       "path": ".gitattributes",
@@ -76,12 +76,12 @@
     {
       "path": ".zenodo.json",
       "bytes": 2307,
-      "sha256": "1f60d49b88db99a4073b67c84f26d60f11f5287470871f6276d6d1831e26b254"
+      "sha256": "b59a83a9dbd2e891dfabbfe777190263787771e1c49a1e46e655f3c0e658e792"
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 6590,
-      "sha256": "dad0a761977ded6cb3a246e139e0679baf53908166153fcfb7093cdb861ed87e"
+      "bytes": 7121,
+      "sha256": "14bb864c062618781731b5f2eecf1169513925741c1de374064c352d04cdbb74"
     },
     {
       "path": "CITATION.cff",
@@ -195,8 +195,8 @@
     },
     {
       "path": "docs/ZENODO.md",
-      "bytes": 2618,
-      "sha256": "d5983f48273e379e57b3bec3de4593e64a3ed934321a9d34a89697166816d1d1"
+      "bytes": 5884,
+      "sha256": "1a14d09c35a0e386f62769aab3c5d41121d9ee41c7c1647137dc6dbb587b0dbc"
     },
     {
       "path": "LICENSE",

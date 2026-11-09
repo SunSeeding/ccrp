@@ -7,6 +7,7 @@
 - 中英 README 首屏把「仓库」与「在线站点」两个裸 URL 从同一行拆为各自独立一行，改用 GFM 尖括号显式链接 `<https://…>`。此前渲染器会因全角空格 + `｜` 把两者粘连成一个超链；**URL 本身从未写错**。
 - 清理 Roadmap 中 4 条本版本已完成却仍列为「计划」的条目；ZENODO 指引补充「多个 Release 时以最新补丁版归档」的说明。
 - 与 `v0.1.0` 相比，仅 `README.md` / `README.en.md` / `CHANGELOG.md` / `docs/ZENODO.md` / `CITATION.cff` / `manifest.json` 发生变化，其余文件逐字节相同；完整性可用包内 `scripts/verify_release.py` 与 `manifest.json` 复算。
+- **（16:35 main 后续修订，未打新 tag）Zenodo 元数据与归档指引校正**：核实 Zenodo 新版（InvenioRDM）后，`.zenodo.json` 的 `license` 改为词汇表 id `cc-by-nc-sa-4.0`、关系标识改为 `isderivedfrom` / `issupplementto`；`docs/ZENODO.md` 重写为新版流程（Sync now 不归档、启用前的 Release 不回溯、自动集成立即发布无草稿），并补表单速查表。仅文档与元数据，数据 / 论文 / 脚本零改动；`v0.1.1` tag 与 Release 附件仍是发布时快照。
 
 ## v0.1 — 2026-11-09
 

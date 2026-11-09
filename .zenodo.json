@@ -2,7 +2,7 @@
   "title": "汉字字谜探针数据集 / Chinese Character Riddle Probes Dataset (CCRP DataSet) v0.1",
   "upload_type": "dataset",
   "access_right": "open",
-  "license": "CC-BY-NC-SA-4.0",
+  "license": "cc-by-nc-sa-4.0",
   "publication_date": "2026-11-09",
   "version": "0.1",
   "language": "zho",
@@ -28,17 +28,17 @@
   "related_identifiers": [
     {
       "identifier": "https://arxiv.org/abs/2206.13778",
-      "relation": "isDerivedFrom",
+      "relation": "isderivedfrom",
       "resource_type": "dataset"
     },
     {
       "identifier": "https://github.com/pku0xff/CC-Riddle",
-      "relation": "isDerivedFrom",
+      "relation": "isderivedfrom",
       "resource_type": "software"
     },
     {
       "identifier": "https://github.com/SunSeeding/ccrp",
-      "relation": "isSupplementTo",
+      "relation": "issupplementto",
       "resource_type": "software"
     }
   ],
