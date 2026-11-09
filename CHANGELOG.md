@@ -36,6 +36,7 @@
 - **GitHub 侧栏误标 MIT**：根目录 `LICENSE` 原为 MIT 全文，被 GitHub 自动识别为整个仓库的许可。现改为仓库级多许可总览（主体 CC BY-NC-SA 4.0），MIT 全文移至 `scripts/LICENSE`；`THIRD_PARTY.md` / `LICENSE-DATA` / `LICENSE-DOCS` 与中英 README 的引用已同步。
 - **`data/summary.json` 的 `scope` 字段**仍写「本地/受限访问，不对外发布」。导出器现在于导出时把该字段重写为公开发布口径，并附 `release_scope_note`；**本地研究用的 `04_generated/summary.json` 一条未改**。
 - `scripts/verify_release.py` 的必需文档清单补入 `scripts/LICENSE`。
+- **（15:30 补充）明确显示 CC BY-NC-SA 4.0**：查证 GitHub 的 licensee 识别库（choosealicense，47 个许可）**不含 CC-BY-NC-SA-4.0**，侧栏标签在平台上无法获得；因此**不**用错误许可文本换取标签。根 `LICENSE` 改为「多许可总览 + CC 官方 `legalcode.txt` 全文（原文未改动）」，中英 README 首页顶部加醒目许可横幅并解释侧栏 `Other` 的成因；目录树与许可地图的说明同步。
 
 ## 计划 / Roadmap (v0.2+)
 

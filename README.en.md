@@ -3,6 +3,8 @@
 **汉字字谜探针数据集** ｜ short name **CCRP DataSet** ｜ version **0.1** (2026-11-09)
 Publisher: **Spring Buds Data Source Inc. / 春芽数源** ｜ Repository: https://github.com/SunSeeding/ccrp
 
+> **Data license: `data/` is CC BY-NC-SA 4.0 (NonCommercial · Attribution · ShareAlike)**; `scripts/` is MIT, `paper/` and docs are CC BY 4.0. The GitHub sidebar shows `Other` because the platform's detector does not include CC-BY-NC-SA-4.0 (only CC-BY-4.0 / CC-BY-SA-4.0 / CC0-1.0). This does **not** mean the data is commercially usable, MIT, or public domain. See the root `LICENSE` (official CC legal code) and the §5 license map.
+
 > A research dataset for studying Chinese character riddles as a **behavioral
 > structural probe** for large language models: 100 high-frequency simplified
 > characters, reference clues with structure cards, model-authored riddles, a
@@ -96,7 +98,7 @@ public-corpus memorization contamination.
 ├── CHANGELOG.md                    v0.1 changes and known limitations
 ├── CITATION.cff                    citation metadata
 ├── THIRD_PARTY.md                  upstream attribution, modification notice, withheld material
-├── LICENSE                         repository-wide notice (data license: CC BY-NC-SA 4.0)
+├── LICENSE                         official CC BY-NC-SA 4.0 legal code + multi-license notice
 ├── LICENSE-DATA                    CC BY-NC-SA 4.0 (data/)
 ├── LICENSE-DOCS                    CC BY 4.0 (paper/, docs/, README)
 ├── manifest.json                   byte sizes + SHA256 + row-count conventions
@@ -140,10 +142,12 @@ public-corpus memorization contamination.
 - **Scope of ShareAlike.** §4(b) provides that incorporating all or a
   substantial part of a database's contents into a database of your own makes
   *that database* Adapted Material — "but not its individual contents".
-- **The GitHub sidebar license label is not authoritative.** It can show only
-  one license; the root `LICENSE` is a repository-wide notice whose primary
-  license is the CC BY-NC-SA 4.0 governing `data/`. Always consult the table
-  above and the per-directory license files.
+- **The GitHub sidebar `Other` label is not a licensing judgement.** Its
+  detector (choosealicense, 47 licenses) does not include CC-BY-NC-SA-4.0,
+  so no sidebar label is possible for this license. The root `LICENSE`
+  reproduces the official CC legal code verbatim. **Do not substitute a
+  different license text merely to obtain a label.** Always consult the
+  table above and the per-directory license files.
   `data/` therefore ships under BY-NC-SA; our original code and documents are
   not automatically covered and are licensed separately.
 - **CC BY-NC-SA 4.0 is not an OSI-approved open-source license.** Please say

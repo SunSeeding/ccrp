@@ -3,6 +3,8 @@
 **Chinese Character Riddle Probes Dataset** ｜ 简称 **CCRP DataSet** ｜ 版本 **0.1**（2026-11-09）
 发布机构：**春芽数源 / Spring Buds Data Source Inc.**　｜　仓库：https://github.com/SunSeeding/ccrp
 
+> **数据许可：`data/` 为 CC BY-NC-SA 4.0（非商业 · 署名 · 相同方式共享）**；`scripts/` 为 MIT，`paper/` 与文档为 CC BY 4.0。GitHub 侧栏显示 `Other`，是因平台识别库不含 CC-BY-NC-SA-4.0（仅有 CC-BY-4.0 / CC-BY-SA-4.0 / CC0-1.0），**不代表数据可商用、属 MIT 或公有领域**。以根 `LICENSE`（含 CC 官方完整法律文本）与 §4 许可地图为准。
+
 > 面向「汉字字谜作为大语言模型**行为层结构探针**」的研究数据集：100 个高频简化汉字、参考谜面与结构卡、模型创作谜面、生成–求解闭环、2×2 全因子分解与 ICL 控制任务的全部逐题记录。
 
 > ⚠️ **本数据集不是排行榜基准。** 配套论文已裁定：现有公开 100 题切片不具排名效度（仅 11 个谜底字、85/100 来自公开 train/valid、15 题全部答「旦」、四家推理预算不对等）。所有数值仅用于**同一批题、同一判分器下不同条件之间的配对比较**，不得用于跨模型能力排名。详见 `paper/riddle-paper.md` §6.2 与 §6.5。
@@ -53,7 +55,7 @@ python -c "import json,collections;print(collections.Counter((r['correct'] for r
 ├── CHANGELOG.md                    v0.1 变更与已知限制
 ├── CITATION.cff                    引用格式
 ├── THIRD_PARTY.md                  上游署名、修改声明、下架说明
-├── LICENSE                         仓库级许可总览（主体 CC BY-NC-SA 4.0）
+├── LICENSE                         CC BY-NC-SA 4.0 官方全文 + 多许可总览
 ├── LICENSE-DATA                    CC BY-NC-SA 4.0（data/）
 ├── LICENSE-DOCS                    CC BY 4.0（paper/、docs/、README）
 ├── manifest.json                   全文件字节数 + SHA256 + 行数口径
@@ -93,7 +95,7 @@ python -c "import json,collections;print(collections.Counter((r['correct'] for r
 - **发布本身不违反 NC**：CC BY-NC-SA 4.0 §1 把「非主要为商业利益或金钱报酬」定义为 NonCommercial，并明确无偿数字文件共享属 NonCommercial；NC 约束的是**下游商业使用**。
 - **SA 的边界**：§4(b) 规定把源库全部或实质部分纳入自有数据库时，**该库本身（but not its individual contents）**构成 Adapted Material。因此含 1,019 条 CC-Riddle 谜面的 `data/` 按 BY-NC-SA 发布；原创代码与文档不自动被传染，可分层许可。
 - **CC BY-NC-SA 4.0 不是 OSI 认证的开源许可**。请称「按 CC BY-NC-SA 4.0 公开发布」，不要称「开源数据集」。
-- **GitHub 侧栏只显示一个许可标签，不代表整仓许可**。根目录 `LICENSE` 是仓库级总览（主体为 `data/` 的 CC BY-NC-SA 4.0），实际适用一律以本表和各目录下的许可文件为准。
+- **GitHub 侧栏的 `Other` 不是许可判断**：其识别库（choosealicense，47 个许可）不含 CC-BY-NC-SA-4.0，平台无法给出该标签；根 `LICENSE` 已附 CC 官方完整法律文本。**不要为了换取侧栏标签而替换成别的许可文本**。实际适用一律以本表为准。
 
 ---
 
