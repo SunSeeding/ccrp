@@ -1,0 +1,38 @@
+CCRP DataSet — DOCUMENTATION LICENSE NOTICE
+===========================================
+
+Applies to: `README.md`, `README.en.md`, `CHANGELOG.md`, `CITATION.cff`,
+`data/README.md`, `data/WITHHELD.md`, `docs/`, and the two papers in
+`paper/` (Chinese original and English translation).
+
+License: Creative Commons Attribution 4.0 International (CC BY 4.0).
+
+  Human-readable summary : https://creativecommons.org/licenses/by/4.0/
+  Full legal code        : https://creativecommons.org/licenses/by/4.0/legalcode
+  SPDX identifier        : CC-BY-4.0
+
+You are free to share and adapt this documentation, even commercially,
+provided you give appropriate credit to:
+
+    春芽数源 / Spring Buds Data Source Inc.
+    汉字字谜探针数据集 / Chinese Character Riddle Probes Dataset
+    (CCRP DataSet), v0.1
+
+and link to this license and indicate any changes.
+
+SCOPE NOTE
+----------
+The papers quote a small number of short riddle texts as illustrative
+examples in the course of academic argument. Those quotations are not a
+redistribution of a substantial part of any database. The dataset files
+themselves, and any site build that embeds them, are governed by
+CC BY-NC-SA 4.0 — see LICENSE-DATA. If you redistribute the papers together
+with the data, the stricter data license continues to apply to the data.
+
+`THIRD_PARTY.md` is documentation and is licensed under CC BY 4.0, but the
+third-party notices it contains must be retained in any redistribution of
+the data, as required by CC BY-NC-SA 4.0 §3(a).
+
+Software in `scripts/` is licensed separately under MIT — see LICENSE.
+
+This notice is provided for information and is not legal advice.

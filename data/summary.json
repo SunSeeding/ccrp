@@ -1,0 +1,933 @@
+{
+  "generated_at": "2026-11-05T23:06:02+08:00",
+  "prompt_version": "riddle-gen-skill-v0.2-full100",
+  "scope": "本地/受限访问，不对外发布",
+  "license": "CC BY-NC-SA 4.0（仅非商业，需署名、相同方式共享）",
+  "n_chars": 100,
+  "chars": [
+    "一",
+    "丁",
+    "上",
+    "下",
+    "不",
+    "个",
+    "中",
+    "为",
+    "么",
+    "之",
+    "也",
+    "了",
+    "事",
+    "于",
+    "些",
+    "人",
+    "从",
+    "他",
+    "以",
+    "们",
+    "会",
+    "但",
+    "作",
+    "你",
+    "出",
+    "到",
+    "前",
+    "去",
+    "又",
+    "发",
+    "只",
+    "可",
+    "同",
+    "后",
+    "和",
+    "国",
+    "在",
+    "地",
+    "多",
+    "大",
+    "天",
+    "女",
+    "她",
+    "好",
+    "如",
+    "子",
+    "学",
+    "家",
+    "对",
+    "小",
+    "就",
+    "己",
+    "年",
+    "开",
+    "当",
+    "得",
+    "心",
+    "总",
+    "情",
+    "想",
+    "意",
+    "成",
+    "我",
+    "所",
+    "手",
+    "把",
+    "无",
+    "日",
+    "时",
+    "是",
+    "最",
+    "有",
+    "来",
+    "样",
+    "没",
+    "然",
+    "现",
+    "生",
+    "用",
+    "的",
+    "看",
+    "着",
+    "种",
+    "第",
+    "美",
+    "而",
+    "能",
+    "自",
+    "行",
+    "要",
+    "说",
+    "起",
+    "过",
+    "还",
+    "这",
+    "道",
+    "那",
+    "都",
+    "里",
+    "面"
+  ],
+  "reference": {
+    "total": 1050,
+    "ccriddle_human": 1019,
+    "web": 31,
+    "explanation_site_hint": 27,
+    "explanation_llm_generated": 1023,
+    "per_char": {
+      "一": 174,
+      "丁": 20,
+      "上": 4,
+      "下": 4,
+      "不": 12,
+      "个": 11,
+      "中": 7,
+      "为": 9,
+      "么": 9,
+      "之": 4,
+      "也": 14,
+      "了": 5,
+      "事": 3,
+      "于": 5,
+      "些": 9,
+      "人": 29,
+      "从": 13,
+      "他": 8,
+      "以": 5,
+      "们": 8,
+      "会": 21,
+      "但": 15,
+      "作": 4,
+      "你": 6,
+      "出": 16,
+      "到": 3,
+      "前": 5,
+      "去": 9,
+      "又": 7,
+      "发": 4,
+      "只": 12,
+      "可": 16,
+      "同": 6,
+      "后": 3,
+      "和": 12,
+      "国": 9,
+      "在": 7,
+      "地": 8,
+      "多": 10,
+      "大": 21,
+      "天": 9,
+      "女": 15,
+      "她": 4,
+      "好": 15,
+      "如": 7,
+      "子": 11,
+      "学": 14,
+      "家": 7,
+      "对": 10,
+      "小": 13,
+      "就": 4,
+      "己": 4,
+      "年": 5,
+      "开": 8,
+      "当": 4,
+      "得": 3,
+      "心": 23,
+      "总": 20,
+      "情": 4,
+      "想": 11,
+      "意": 5,
+      "成": 4,
+      "我": 4,
+      "所": 3,
+      "手": 3,
+      "把": 4,
+      "无": 3,
+      "日": 29,
+      "时": 6,
+      "是": 17,
+      "最": 5,
+      "有": 13,
+      "来": 11,
+      "样": 6,
+      "没": 4,
+      "然": 3,
+      "现": 13,
+      "生": 23,
+      "用": 18,
+      "的": 10,
+      "看": 3,
+      "着": 8,
+      "种": 5,
+      "第": 3,
+      "美": 12,
+      "而": 6,
+      "能": 10,
+      "自": 9,
+      "行": 7,
+      "要": 4,
+      "说": 8,
+      "起": 7,
+      "过": 6,
+      "还": 3,
+      "这": 7,
+      "道": 3,
+      "那": 4,
+      "都": 8,
+      "里": 7,
+      "面": 8
+    }
+  },
+  "generation": {
+    "total": 600,
+    "accepted": 597,
+    "rejected": 3,
+    "by_model": {
+      "kimi": 300,
+      "u2": 300
+    },
+    "by_technique": {
+      "拆形": 228,
+      "会意": 198,
+      "谐音": 173,
+      "拆形|会意": 1
+    },
+    "blind_tested": 597,
+    "blind_correct": 233,
+    "blind_rate": 0.3903,
+    "blind_rate_excl_format_bad": 0.3903
+  },
+  "analysis": {
+    "web_dedup": {
+      "raw": 43,
+      "added": 31,
+      "duplicate_with_ccriddle": 12
+    },
+    "explanation_confidence": {
+      "low": 602,
+      "high": 421
+    },
+    "explanation_low_confidence_ratio": 0.5885,
+    "explanation_technique": {
+      "会意": 594,
+      "拆形": 427,
+      "谐音": 2
+    },
+    "reject_reasons": {
+      "疑似改写参考谜面": 3,
+      "与参考/其它生成谜面完全相同": 1
+    },
+    "reject_by_model": {
+      "kimi": 2,
+      "u2": 1
+    },
+    "originality_jaccard_distribution": {
+      "min": 0.0,
+      "p50": 0.0,
+      "p90": 0.0,
+      "max": 1.0
+    },
+    "blind_by_maker": {
+      "kimi": {
+        "n": 298,
+        "correct": 109,
+        "rate": 0.3658,
+        "guesser": "u2"
+      },
+      "u2": {
+        "n": 299,
+        "correct": 124,
+        "rate": 0.4147,
+        "guesser": "kimi"
+      }
+    },
+    "blind_by_technique": {
+      "拆形": {
+        "n": 197,
+        "correct": 98,
+        "rate": 0.4975
+      },
+      "会意": {
+        "n": 200,
+        "correct": 70,
+        "rate": 0.35
+      },
+      "谐音": {
+        "n": 200,
+        "correct": 65,
+        "rate": 0.325
+      }
+    },
+    "blind_by_char": {
+      "一": {
+        "n": 6,
+        "correct": 2
+      },
+      "丁": {
+        "n": 6,
+        "correct": 3
+      },
+      "上": {
+        "n": 6,
+        "correct": 2
+      },
+      "下": {
+        "n": 6,
+        "correct": 3
+      },
+      "不": {
+        "n": 6,
+        "correct": 0
+      },
+      "个": {
+        "n": 6,
+        "correct": 4
+      },
+      "中": {
+        "n": 6,
+        "correct": 2
+      },
+      "为": {
+        "n": 6,
+        "correct": 0
+      },
+      "么": {
+        "n": 6,
+        "correct": 0
+      },
+      "之": {
+        "n": 6,
+        "correct": 1
+      },
+      "也": {
+        "n": 6,
+        "correct": 2
+      },
+      "了": {
+        "n": 6,
+        "correct": 1
+      },
+      "事": {
+        "n": 6,
+        "correct": 1
+      },
+      "于": {
+        "n": 6,
+        "correct": 2
+      },
+      "些": {
+        "n": 6,
+        "correct": 2
+      },
+      "人": {
+        "n": 6,
+        "correct": 3
+      },
+      "从": {
+        "n": 6,
+        "correct": 3
+      },
+      "他": {
+        "n": 6,
+        "correct": 2
+      },
+      "以": {
+        "n": 6,
+        "correct": 0
+      },
+      "们": {
+        "n": 6,
+        "correct": 1
+      },
+      "会": {
+        "n": 5,
+        "correct": 2
+      },
+      "但": {
+        "n": 6,
+        "correct": 4
+      },
+      "作": {
+        "n": 6,
+        "correct": 1
+      },
+      "你": {
+        "n": 6,
+        "correct": 4
+      },
+      "出": {
+        "n": 6,
+        "correct": 4
+      },
+      "到": {
+        "n": 6,
+        "correct": 2
+      },
+      "前": {
+        "n": 6,
+        "correct": 1
+      },
+      "去": {
+        "n": 6,
+        "correct": 2
+      },
+      "又": {
+        "n": 6,
+        "correct": 1
+      },
+      "发": {
+        "n": 6,
+        "correct": 1
+      },
+      "只": {
+        "n": 6,
+        "correct": 3
+      },
+      "可": {
+        "n": 6,
+        "correct": 1
+      },
+      "同": {
+        "n": 6,
+        "correct": 0
+      },
+      "后": {
+        "n": 6,
+        "correct": 0
+      },
+      "和": {
+        "n": 6,
+        "correct": 5
+      },
+      "国": {
+        "n": 6,
+        "correct": 6
+      },
+      "在": {
+        "n": 6,
+        "correct": 1
+      },
+      "地": {
+        "n": 6,
+        "correct": 3
+      },
+      "多": {
+        "n": 6,
+        "correct": 2
+      },
+      "大": {
+        "n": 6,
+        "correct": 3
+      },
+      "天": {
+        "n": 6,
+        "correct": 3
+      },
+      "女": {
+        "n": 6,
+        "correct": 2
+      },
+      "她": {
+        "n": 6,
+        "correct": 5
+      },
+      "好": {
+        "n": 6,
+        "correct": 5
+      },
+      "如": {
+        "n": 6,
+        "correct": 3
+      },
+      "子": {
+        "n": 6,
+        "correct": 3
+      },
+      "学": {
+        "n": 6,
+        "correct": 1
+      },
+      "家": {
+        "n": 6,
+        "correct": 5
+      },
+      "对": {
+        "n": 6,
+        "correct": 1
+      },
+      "小": {
+        "n": 6,
+        "correct": 1
+      },
+      "就": {
+        "n": 6,
+        "correct": 2
+      },
+      "己": {
+        "n": 6,
+        "correct": 1
+      },
+      "年": {
+        "n": 6,
+        "correct": 1
+      },
+      "开": {
+        "n": 6,
+        "correct": 2
+      },
+      "当": {
+        "n": 6,
+        "correct": 3
+      },
+      "得": {
+        "n": 6,
+        "correct": 2
+      },
+      "心": {
+        "n": 6,
+        "correct": 2
+      },
+      "总": {
+        "n": 6,
+        "correct": 0
+      },
+      "情": {
+        "n": 6,
+        "correct": 4
+      },
+      "想": {
+        "n": 6,
+        "correct": 5
+      },
+      "意": {
+        "n": 6,
+        "correct": 6
+      },
+      "成": {
+        "n": 6,
+        "correct": 2
+      },
+      "我": {
+        "n": 6,
+        "correct": 2
+      },
+      "所": {
+        "n": 6,
+        "correct": 3
+      },
+      "手": {
+        "n": 6,
+        "correct": 0
+      },
+      "把": {
+        "n": 5,
+        "correct": 4
+      },
+      "无": {
+        "n": 6,
+        "correct": 0
+      },
+      "日": {
+        "n": 6,
+        "correct": 2
+      },
+      "时": {
+        "n": 6,
+        "correct": 4
+      },
+      "是": {
+        "n": 6,
+        "correct": 2
+      },
+      "最": {
+        "n": 6,
+        "correct": 0
+      },
+      "有": {
+        "n": 6,
+        "correct": 1
+      },
+      "来": {
+        "n": 6,
+        "correct": 0
+      },
+      "样": {
+        "n": 6,
+        "correct": 6
+      },
+      "没": {
+        "n": 6,
+        "correct": 1
+      },
+      "然": {
+        "n": 6,
+        "correct": 4
+      },
+      "现": {
+        "n": 6,
+        "correct": 4
+      },
+      "生": {
+        "n": 5,
+        "correct": 2
+      },
+      "用": {
+        "n": 6,
+        "correct": 0
+      },
+      "的": {
+        "n": 6,
+        "correct": 5
+      },
+      "看": {
+        "n": 6,
+        "correct": 6
+      },
+      "着": {
+        "n": 6,
+        "correct": 3
+      },
+      "种": {
+        "n": 6,
+        "correct": 2
+      },
+      "第": {
+        "n": 6,
+        "correct": 5
+      },
+      "美": {
+        "n": 6,
+        "correct": 5
+      },
+      "而": {
+        "n": 6,
+        "correct": 1
+      },
+      "能": {
+        "n": 6,
+        "correct": 3
+      },
+      "自": {
+        "n": 6,
+        "correct": 2
+      },
+      "行": {
+        "n": 6,
+        "correct": 1
+      },
+      "要": {
+        "n": 6,
+        "correct": 6
+      },
+      "说": {
+        "n": 6,
+        "correct": 3
+      },
+      "起": {
+        "n": 6,
+        "correct": 1
+      },
+      "过": {
+        "n": 6,
+        "correct": 2
+      },
+      "还": {
+        "n": 6,
+        "correct": 4
+      },
+      "这": {
+        "n": 6,
+        "correct": 2
+      },
+      "道": {
+        "n": 6,
+        "correct": 1
+      },
+      "那": {
+        "n": 6,
+        "correct": 0
+      },
+      "都": {
+        "n": 6,
+        "correct": 1
+      },
+      "里": {
+        "n": 6,
+        "correct": 4
+      },
+      "面": {
+        "n": 6,
+        "correct": 2
+      }
+    },
+    "format_bad": 0,
+    "selftest_by_maker": {
+      "kimi": {
+        "n": 298,
+        "cross": {
+          "n": 298,
+          "correct": 109,
+          "rate": 0.3658,
+          "wilson95": [
+            0.3131,
+            0.4218
+          ]
+        },
+        "self": {
+          "n": 298,
+          "correct": 173,
+          "rate": 0.5805,
+          "wilson95": [
+            0.5238,
+            0.6352
+          ]
+        },
+        "delta": 0.2147,
+        "paired": {
+          "n": 298,
+          "both_correct": 102,
+          "cross_only": 7,
+          "self_only": 71,
+          "both_wrong": 118,
+          "agreement": 0.7383,
+          "mcnemar": {
+            "b_cross_only": 7,
+            "c_self_only": 71,
+            "p_two_sided_exact": 0.0,
+            "significant_at_0_05": true,
+            "method": "exact binomial on discordant pairs (双侧)"
+          }
+        }
+      },
+      "u2": {
+        "n": 299,
+        "cross": {
+          "n": 299,
+          "correct": 124,
+          "rate": 0.4147,
+          "wilson95": [
+            0.3603,
+            0.4713
+          ]
+        },
+        "self": {
+          "n": 299,
+          "correct": 91,
+          "rate": 0.3043,
+          "wilson95": [
+            0.2549,
+            0.3587
+          ]
+        },
+        "delta": -0.1104,
+        "paired": {
+          "n": 299,
+          "both_correct": 71,
+          "cross_only": 53,
+          "self_only": 20,
+          "both_wrong": 155,
+          "agreement": 0.7559,
+          "mcnemar": {
+            "b_cross_only": 53,
+            "c_self_only": 20,
+            "p_two_sided_exact": 0.000142,
+            "significant_at_0_05": true,
+            "method": "exact binomial on discordant pairs (双侧)"
+          }
+        }
+      }
+    },
+    "selftest_by_technique": {
+      "会意": {
+        "n": 200,
+        "cross": {
+          "n": 200,
+          "correct": 70,
+          "rate": 0.35,
+          "wilson95": [
+            0.2873,
+            0.4184
+          ]
+        },
+        "self": {
+          "n": 200,
+          "correct": 74,
+          "rate": 0.37,
+          "wilson95": [
+            0.3061,
+            0.4388
+          ]
+        },
+        "delta": 0.02,
+        "paired": {
+          "n": 200,
+          "both_correct": 48,
+          "cross_only": 22,
+          "self_only": 26,
+          "both_wrong": 104,
+          "agreement": 0.76,
+          "mcnemar": {
+            "b_cross_only": 22,
+            "c_self_only": 26,
+            "p_two_sided_exact": 0.665466,
+            "significant_at_0_05": false,
+            "method": "exact binomial on discordant pairs (双侧)"
+          }
+        }
+      },
+      "拆形": {
+        "n": 197,
+        "cross": {
+          "n": 197,
+          "correct": 98,
+          "rate": 0.4975,
+          "wilson95": [
+            0.4284,
+            0.5667
+          ]
+        },
+        "self": {
+          "n": 197,
+          "correct": 119,
+          "rate": 0.6041,
+          "wilson95": [
+            0.5344,
+            0.6697
+          ]
+        },
+        "delta": 0.1066,
+        "paired": {
+          "n": 197,
+          "both_correct": 75,
+          "cross_only": 23,
+          "self_only": 44,
+          "both_wrong": 55,
+          "agreement": 0.6599,
+          "mcnemar": {
+            "b_cross_only": 23,
+            "c_self_only": 44,
+            "p_two_sided_exact": 0.013934,
+            "significant_at_0_05": true,
+            "method": "exact binomial on discordant pairs (双侧)"
+          }
+        }
+      },
+      "谐音": {
+        "n": 200,
+        "cross": {
+          "n": 200,
+          "correct": 65,
+          "rate": 0.325,
+          "wilson95": [
+            0.2639,
+            0.3927
+          ]
+        },
+        "self": {
+          "n": 200,
+          "correct": 71,
+          "rate": 0.355,
+          "wilson95": [
+            0.292,
+            0.4235
+          ]
+        },
+        "delta": 0.03,
+        "paired": {
+          "n": 200,
+          "both_correct": 50,
+          "cross_only": 15,
+          "self_only": 21,
+          "both_wrong": 114,
+          "agreement": 0.82,
+          "mcnemar": {
+            "b_cross_only": 15,
+            "c_self_only": 21,
+            "p_two_sided_exact": 0.405032,
+            "significant_at_0_05": false,
+            "method": "exact binomial on discordant pairs (双侧)"
+          }
+        }
+      }
+    },
+    "selftest_paired": {
+      "n": 597,
+      "both_correct": 173,
+      "cross_only": 60,
+      "self_only": 91,
+      "both_wrong": 273,
+      "agreement": 0.7471,
+      "mcnemar": {
+        "b_cross_only": 60,
+        "c_self_only": 91,
+        "p_two_sided_exact": 0.01436,
+        "significant_at_0_05": true,
+        "method": "exact binomial on discordant pairs (双侧)"
+      }
+    }
+  },
+  "provenance_files": [
+    "provenance.jsonl（参考集，含谜面/解析/字理凭证）",
+    "04_generated/provenance.jsonl（模型创作凭证）"
+  ],
+  "no_fabricated_urls": true,
+  "limitations": [
+    "字义字段未补（用户 2026-11-05 决定），会意手法受限",
+    "网络素材按字定向补缺，未泛爬整站（实测 84% 与 CC-Riddle 转载链重合）",
+    "原创性 3-gram 阈值 0.35 由 10 字试点 60 条分位数标定（p90=0 / max=0.167），仍需人工抽检",
+    "解释均为事后合理化或站点现成提示，非权威字理；1023 条 LLM 解释中 602 条自评 low（58.9%）",
+    "CC-Riddle 谜面只能给出论文 / 仓库链接（数据集不含逐条 URL）；模型生成内容无出处链接",
+    "解释分两批生成（riddle-gen-skill-v0.1-pilot10 / riddle-gen-skill-v0.2-full100），每条凭证记录其实际 prompt 版本",
+    "盲测为开放式单字作答，存在地板效应，猜中率不等于谜题质量分",
+    "11-06 同题自测：换全新单轮对话由制谜方本人作答，提示词/判分/题集与 11-05 交叉盲测一致；权重层面的自我熟悉度无法完全排除，两次调用相隔一天",
+    "11-06 自测为单次采样，McNemar 检验针对配对不一致格，分层后小样本需谨慎解读"
+  ],
+  "selftest": {
+    "date": "2026-11-06",
+    "mode": "fresh_single_turn_self_answer",
+    "n_pairs": 597,
+    "cross_rate": 0.3903,
+    "self_rate": 0.4422,
+    "delta": 0.0519,
+    "mcnemar_p": 0.01436,
+    "analysis_file": "04_generated/selftest-analysis.json",
+    "result_file": "04_generated/blind-self.jsonl"
+  }
+}

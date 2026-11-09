@@ -1,0 +1,21 @@
+# Keep text diffs readable and line endings deterministic. The exporter writes
+# every text file as LF before computing manifest.json SHA256, so the bytes in
+# the working tree, in the git blob and after `git clone` are all identical.
+# Do NOT change eol= without re-running build_release.py.
+.gitattributes text eol=lf
+.gitignore    text eol=lf
+*.md       text eol=lf
+*.jsonl    text eol=lf -diff
+*.json     text eol=lf
+*.csv      text eol=lf
+*.cff      text eol=lf
+*.py       text eol=lf
+LICENSE*   text eol=lf
+
+# Binary assets. v0.1 ships only one small PDF (about 1.2 MB), so Git LFS is
+# not required yet. Enable LFS before adding the infographic PNG (4.5 MB) or
+# the offline site (about 15 MB):
+#   *.png filter=lfs diff=lfs merge=lfs -text
+#   *.pdf filter=lfs diff=lfs merge=lfs -text
+*.pdf binary
+*.png binary

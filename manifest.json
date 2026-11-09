@@ -1,0 +1,247 @@
+{
+  "dataset": {
+    "name_zh": "汉字字谜探针数据集",
+    "name_en": "Chinese Character Riddle Probes Dataset",
+    "short_name": "CCRP DataSet",
+    "version": "0.1",
+    "release_date": "2026-11-09",
+    "publisher_zh": "春芽数源",
+    "publisher_en": "Spring Buds Data Source Inc.",
+    "license_data": "CC BY-NC-SA 4.0",
+    "license_code": "MIT",
+    "license_docs": "CC BY 4.0"
+  },
+  "build": {
+    "release_date": "2026-11-09",
+    "exporter": "scripts/build_release.py",
+    "scheme": "C-withhold",
+    "prompt_version": "riddle-gen-skill-v0.2-full100",
+    "source_reference_rows": 1050,
+    "source_file_sha256": "2cd2286ee3e37e9ba48cfa6cc744192bdb73517fed59dca23bb11dfe2423d2e9",
+    "note": "Local research artifacts are unmodified; this package is a filtered export."
+  },
+  "withheld": {
+    "n_web_ugc_clues": 31,
+    "n_answer_characters_affected": 14,
+    "answer_characters": [
+      "不",
+      "之",
+      "事",
+      "他",
+      "到",
+      "后",
+      "在",
+      "她",
+      "己",
+      "所",
+      "把",
+      "然",
+      "的",
+      "第"
+    ],
+    "n_site_explanations": 27,
+    "fingerprint_file": "data/WITHHELD.md",
+    "clue_text_or_url_in_package": false
+  },
+  "row_counts": {
+    "data/reference-slice.jsonl": {
+      "source_rows": 1050,
+      "published_rows": 1019,
+      "withheld_rows": 31
+    },
+    "data/provenance-reference.jsonl": {
+      "source_rows": 1050,
+      "published_rows": 1019,
+      "withheld_rows": 31
+    },
+    "data/explanations-llm.jsonl": {
+      "source_rows": 1023,
+      "published_rows": 1019,
+      "withheld_rows": 4
+    }
+  },
+  "n_files": 36,
+  "total_bytes": 8955458,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 820,
+      "sha256": "870304f70656740a43ff49dc390cc51d4173e97aff262a7250bebcfb43c12d0a"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 311,
+      "sha256": "0c68c799d23d249061c4f06e187274aab92a5ee1068376775f97dbf5227bddef"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 2814,
+      "sha256": "c52df6a8a855a42b04028d7c9e4f581f978c828ef7308d9ba6292b719c2a682b"
+    },
+    {
+      "path": "CITATION.cff",
+      "bytes": 1670,
+      "sha256": "fb90905ac670b84adb45f32cee3aa02d92179391d9a3f31b05d2fe9633ec1396"
+    },
+    {
+      "path": "data/blind-self.jsonl",
+      "bytes": 941847,
+      "sha256": "4118bf187afaa6d75ed822871b2dc21e5662c70af6cafe6c6f3e9784f5a2de0b"
+    },
+    {
+      "path": "data/blind.jsonl",
+      "bytes": 722837,
+      "sha256": "0e444ca76faa9ade3da685fb23f67eda69a40aced4b88a49323cdf79b620daa0"
+    },
+    {
+      "path": "data/explanations-llm.jsonl",
+      "bytes": 730209,
+      "sha256": "0bb9c0f44722af709364dfacf7299c1fdf896254632a3476f371bb8433d580c2"
+    },
+    {
+      "path": "data/generated-kimi.jsonl",
+      "bytes": 327772,
+      "sha256": "1b41b9376f209c58d9d77d1e62dc071abad1ae6cc64ae37c6b9597e43949372d"
+    },
+    {
+      "path": "data/generated-u2.jsonl",
+      "bytes": 343563,
+      "sha256": "cae987f7b7130ac64180ca5f070ecc2a059a30ae143aeb91bc4c3d3cf85371ad"
+    },
+    {
+      "path": "data/hanzi_index-top100.csv",
+      "bytes": 5459,
+      "sha256": "fc1bad0b8b49ecb46cfb05742598d779fa638ca0c47eeb6d8a9c1db34038e620"
+    },
+    {
+      "path": "data/icl-probe-analysis.json",
+      "bytes": 13970,
+      "sha256": "2b5e64ff6787055b3a6962e768ca935e3dfd186d9bc533c0a4acb5d603c4b20f"
+    },
+    {
+      "path": "data/icl-probe-examples.json",
+      "bytes": 5897,
+      "sha256": "32ea136dc936b518e950a4cb9d461bdf4c01ac9932c918b08a9f82b46398c341"
+    },
+    {
+      "path": "data/icl-probe-items.jsonl",
+      "bytes": 3324,
+      "sha256": "b16111d96d4609ae43d3d59824196342ae31178654aff366224e88597af8537f"
+    },
+    {
+      "path": "data/icl-probe.jsonl",
+      "bytes": 185153,
+      "sha256": "59c1d6b0435adfe67c841ec14267f2ddec3fab140478147f127c3a74aec467d6"
+    },
+    {
+      "path": "data/pipeline_meta.json",
+      "bytes": 1474,
+      "sha256": "52cffda6be169d92f0f53faa04930ee19b0f859692c25f2d7db975ff3fb04380"
+    },
+    {
+      "path": "data/provenance-generated.jsonl",
+      "bytes": 510813,
+      "sha256": "7a2608bdca08348846f8556c809fd67ea4c24df2fb1cb5997ff9d1b8af96da23"
+    },
+    {
+      "path": "data/provenance-reference.jsonl",
+      "bytes": 1050194,
+      "sha256": "397e57b52b1efcb5dca026248f5aad075256e483aa87f360053134df08f84ea8"
+    },
+    {
+      "path": "data/quality.jsonl",
+      "bytes": 543512,
+      "sha256": "718954100dd7ab4cc6dbb401d134b5eb03f19140f29c48fd6384e4a1e43b48e6"
+    },
+    {
+      "path": "data/README.md",
+      "bytes": 7138,
+      "sha256": "d322b8e5504d3130fab686fdf9f06423eb81348ab3606122967e288c6ffaa2a5"
+    },
+    {
+      "path": "data/reference-slice.jsonl",
+      "bytes": 1598282,
+      "sha256": "0dd7d9920750eb07f0eb533456f566d2ba4cc9641d386671e9ae754711e12d65"
+    },
+    {
+      "path": "data/selftest-analysis.json",
+      "bytes": 89999,
+      "sha256": "47371df91746e9a937f9314daafe29767430ad56ce3e7279044f087059538d13"
+    },
+    {
+      "path": "data/selftest-provenance.jsonl",
+      "bytes": 356638,
+      "sha256": "8d8256199f327721c367ff2a578732515bd9bfa651ebd9afa4bd66612c681725"
+    },
+    {
+      "path": "data/summary.json",
+      "bytes": 17330,
+      "sha256": "3c9b6ed0b3cef863eedd56c386b175bdeaee5134b9e356cf6fde086044f16a9e"
+    },
+    {
+      "path": "data/WITHHELD.md",
+      "bytes": 4921,
+      "sha256": "ddbf6f906acb9170c4e2eea4258fb9989d58a0201cbb0a4df7ceb4b6018ad741"
+    },
+    {
+      "path": "docs/DATASHEET.md",
+      "bytes": 10429,
+      "sha256": "45bd7c0e1cd64cfed2ed2c5d3358542fe0d710be35f261a874104208cb9bfd6d"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1085,
+      "sha256": "cf81d958d9a683ace4e96990ca8fa0338e3fd84b9dff69c0a645d4d2f660fb5a"
+    },
+    {
+      "path": "LICENSE-DATA",
+      "bytes": 3288,
+      "sha256": "859c01484c6f451ea0ede82cf3c2c03916f9c91abe75ffb284997ef2e99d6ec1"
+    },
+    {
+      "path": "LICENSE-DOCS",
+      "bytes": 1652,
+      "sha256": "026b763515bc94fa910fc02658fd89c19959ed1f4b642d2d617fc9eaaf55fd82"
+    },
+    {
+      "path": "paper/riddle-paper-en.md",
+      "bytes": 81615,
+      "sha256": "e8959cb80325aecda19b900f37c80b0870ed0cb9b7403f909d618c1d650e5200"
+    },
+    {
+      "path": "paper/riddle-paper.md",
+      "bytes": 64628,
+      "sha256": "d3a9160dc3630c852a25bdf4546cd94f77abfadd8f0642095986bcf9ee83e494"
+    },
+    {
+      "path": "paper/riddle-paper.pdf",
+      "bytes": 1278654,
+      "sha256": "5a187bd7d6c1d42a84fb24af56f984cfc1ace8d04bf0a3c375894deef21167c2"
+    },
+    {
+      "path": "README.en.md",
+      "bytes": 11740,
+      "sha256": "adbae9c8bd175705706fb012c260ae29df451567ae722b89b0950ac39373d144"
+    },
+    {
+      "path": "README.md",
+      "bytes": 9697,
+      "sha256": "34ff594ffedf5bdbd6917da3a9572159240c7d3211c4f4e20bd147fe9682a141"
+    },
+    {
+      "path": "scripts/build_release.py",
+      "bytes": 15125,
+      "sha256": "18ac922ef5cb0094a26bcf997f0e03a38621b3a62c7a47f7826da1ea00325508"
+    },
+    {
+      "path": "scripts/verify_release.py",
+      "bytes": 6012,
+      "sha256": "5a5159966e2a06d9edcacbbfcd09634a76f876b665e47a12b41f42285f1d8a13"
+    },
+    {
+      "path": "THIRD_PARTY.md",
+      "bytes": 5586,
+      "sha256": "b9d7ee0e29b7c83c60d09d41dcf8da4183c1c3810b59aa25bdd870943d968de4"
+    }
+  ]
+}

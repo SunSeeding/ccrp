@@ -1,0 +1,23 @@
+# Credentials: never commit, even if a local copy appears during development
+api_providers.json
+*.key
+*.pem
+.env
+.env.*
+*_credentials*
+Kimi.txt
+DeepSeek-*.txt
+hy4.py
+u2-flash.py
+
+# Python / browser / editor temporaries
+__pycache__/
+*.pyc
+.chrome-*-profile/
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+*.swp
+.idea/
+.vscode/

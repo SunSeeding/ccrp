@@ -1,0 +1,145 @@
+# 汉字字谜探针数据集 · CCRP DataSet v0.1
+
+**Chinese Character Riddle Probes Dataset** ｜ 简称 **CCRP DataSet** ｜ 版本 **0.1**（2026-11-09）
+发布机构：**春芽数源 / Spring Buds Data Source Inc.**　｜　仓库：https://github.com/SunSeeding/ccrp
+
+> 面向「汉字字谜作为大语言模型**行为层结构探针**」的研究数据集：100 个高频简化汉字、参考谜面与结构卡、模型创作谜面、生成–求解闭环、2×2 全因子分解与 ICL 控制任务的全部逐题记录。
+
+> ⚠️ **本数据集不是排行榜基准。** 配套论文已裁定：现有公开 100 题切片不具排名效度（仅 11 个谜底字、85/100 来自公开 train/valid、15 题全部答「旦」、四家推理预算不对等）。所有数值仅用于**同一批题、同一判分器下不同条件之间的配对比较**，不得用于跨模型能力排名。详见 `paper/riddle-paper.md` §6.2 与 §6.5。
+
+---
+
+## 1. 一句话概览
+
+| 项目 | 数量 | 说明 |
+|---|---|---|
+| 目标汉字 | 100 | 现代汉语高频简化字，按频率序 |
+| 参考谜面（发布） | 1,019 | 全部来自 CC-Riddle 人工谜面，按谜底字重排并补结构卡 |
+| 参考谜面（下架） | 31 | 网络 UGC，采集时标注「仅本地/受限研究使用」，见 `data/WITHHELD.md` |
+| 模型创作谜面 | 600 | kimi 300 / u2 300；拆形 200 / 会意 200 / 谐音 200 |
+| 质检通过 | 597 | 交叉盲测与同题自测共用这 597 题 |
+| 闭环答题记录 | 1,194 | 交叉盲测 597 + 同题自测 597，逐题配对 |
+| ICL 控制任务 | 192 次 | 24 题 × 4 条件 × 2 模型，冻结种子 `20261106` |
+| 论文 | 中 / 英 2 版 | 中文原稿 + 英文全译 + 中文 PDF |
+
+**核心结论**（引用请照抄，勿重新估算）：交叉盲测 39.03%（233/597）→ 同题自测 44.22%（264/597），逐题配对 McNemar 精确 *p*=0.0144；2×2 全因子分解给出猜题能力差 *β*=+16.26 pp、题源难度差 *α*=+11.36 pp、自我熟悉净效应 *γ*=+5.22 pp。按制谜方分层看到的方向相反（+21.48 pp / −11.04 pp）是 *β* 翻转符号所致，不是「只有一个模型有自我偏好」。
+
+---
+
+## 2. 快速开始
+
+```bash
+# 校验发布包完整性（Python 3 标准库，零依赖，不联网）
+python scripts/verify_release.py .
+
+# 读取参考谜面
+python -c "import json;print(next(json.loads(l) for l in open('data/reference-slice.jsonl',encoding='utf-8')))"
+
+# 复算配对 McNemar 所需的四格数
+python -c "import json,collections;print(collections.Counter((r['correct'] for r in map(json.loads,open('data/blind.jsonl',encoding='utf-8')))))"
+```
+
+字段字典见 [`data/README.md`](data/README.md)，数据卡片见 [`docs/DATASHEET.md`](docs/DATASHEET.md)，全文件哈希见 `manifest.json`，采集与下架说明见 [`data/WITHHELD.md`](data/WITHHELD.md)。
+
+**判分口径**：答案去空白后与单一汉字**精确匹配**；`correct` 异常记 0（分母不变），另留 `format_bad / error / timed_out` 标记。整合数据里 `split` 统一为 `test`，原公开集划分保留在 `source_split`，**不可删除**（公开集记忆污染诊断的关键协变量）。
+
+---
+
+## 3. 目录结构
+
+```
+.
+├── README.md / README.en.md        中英说明（本文件与英文版）
+├── CHANGELOG.md                    v0.1 变更与已知限制
+├── CITATION.cff                    引用格式
+├── THIRD_PARTY.md                  上游署名、修改声明、下架说明
+├── LICENSE                         MIT（仅 scripts/）
+├── LICENSE-DATA                    CC BY-NC-SA 4.0（data/）
+├── LICENSE-DOCS                    CC BY 4.0（paper/、docs/、README）
+├── manifest.json                   全文件字节数 + SHA256 + 行数口径
+├── data/                           数据集本体（CC BY-NC-SA 4.0）
+│   ├── README.md                   字段字典
+│   ├── WITHHELD.md                 31 条下架记录的指纹清单
+│   ├── hanzi_index-top100.csv      100 字表与结构卡
+│   ├── pipeline_meta.json          prompt_version 等项目版本真源
+│   ├── reference-slice.jsonl       1,019 条参考谜面
+│   ├── explanations-llm.jsonl      对应的 LLM 解释
+│   ├── provenance-reference.jsonl  参考谜面逐条溯源
+│   ├── generated-*.jsonl           600 条模型创作
+│   ├── quality.jsonl               600 条质检判定
+│   ├── blind*.jsonl                交叉盲测 / 同题自测
+│   ├── provenance-generated.jsonl  创作题溯源（含 input_snapshot_sha256）
+│   ├── selftest-*.json*            配对统计、2×2 分解、对话指纹
+│   ├── icl-probe-*                 ICL 冻结题集 / 示例 / 192 次调用 / 分析
+│   └── summary.json                流水线汇总与限制声明
+├── paper/                          中英论文（CC BY 4.0）
+├── docs/DATASHEET.md               数据卡片
+└── scripts/                        MIT
+    ├── build_release.py             从本地研究树导出本发布包
+    └── verify_release.py            独立完整性自检
+```
+
+---
+
+## 4. 许可地图（分层，按目录生效）
+
+| 路径 | 许可 | 说明 |
+|---|---|---|
+| `data/` | **CC BY-NC-SA 4.0** | 含 CC-Riddle 派生内容；再分发须同许可 + 署名 + 标修改 |
+| `scripts/` | **MIT** | 我们原创的工具代码 |
+| `paper/`、`docs/`、`README*.md`、`THIRD_PARTY.md`、`CHANGELOG.md` | **CC BY 4.0** | 文档与论文；论文只短引谜面作例证 |
+| 第三方材料 | 见 `THIRD_PARTY.md` | 上游署名与 31 条下架记录 |
+
+- **发布本身不违反 NC**：CC BY-NC-SA 4.0 §1 把「非主要为商业利益或金钱报酬」定义为 NonCommercial，并明确无偿数字文件共享属 NonCommercial；NC 约束的是**下游商业使用**。
+- **SA 的边界**：§4(b) 规定把源库全部或实质部分纳入自有数据库时，**该库本身（but not its individual contents）**构成 Adapted Material。因此含 1,019 条 CC-Riddle 谜面的 `data/` 按 BY-NC-SA 发布；原创代码与文档不自动被传染，可分层许可。
+- **CC BY-NC-SA 4.0 不是 OSI 认证的开源许可**。请称「按 CC BY-NC-SA 4.0 公开发布」，不要称「开源数据集」。
+
+---
+
+## 5. 溯源规则与方案 C 下架
+
+| 谜面来源 | 给出的出处 |
+|---|---|
+| CC-Riddle | 论文 arXiv:2206.13778 + 上游仓库 + 行 id + 源文件 SHA256 + 许可（上游数据集**没有逐条 URL**） |
+| 网络页面 | 原网页 URL / 标题 / 抓取时间 / 片段哈希 —— **v0.1 全部下架** |
+| 模型生成 | `no_url`，只记模型 / prompt 版本 / 时间戳 / 输入快照哈希 |
+
+**绝不伪造 URL**。参考谜面来自 CC-Riddle 时给论文链接而非逐条网页链接；模型生成的解释与创作谜面没有出处链接。
+
+v0.1 采用**方案 C：导出时下架，本地研究与既有产物一条不改**。31 条网络 UGC 在采集时全部带有「未取得明确授权；仅本地/受限研究使用」标记，公开仓库不是受限环境，因此不随包发布；与之绑定的 27 条站点解析、4 条 LLM 解释、58 处网页 URL、28 条游戏题、87 处 prompt 快照域名痕迹一并留在本地。发布包改保留 `question_sha256`、`input_snapshot_sha256` 与条数口径，使溯源在**指纹层面**仍然闭合（论文判据 C6）。离线站点 / 小游戏 / 原始抓取 / API 流水线不在 v0.1 范围内。
+
+---
+
+## 6. 引用
+
+```bibtex
+@dataset{ccrp2026,
+  title  = {Chinese Character Riddle Probes Dataset (CCRP DataSet)},
+  author = {{Spring Buds Data Source Inc.}},
+  year   = {2026},
+  note   = {Version 0.1. Upstream corpus: CC-Riddle, arXiv:2206.13778,
+            licensed CC BY-NC-SA 4.0. Selected, reorganized and augmented.},
+  url    = {https://github.com/SunSeeding/ccrp}
+}
+```
+
+上游必署：Fan Xu, Yunxiang Zhang, Xiaojun Wan（北京大学王选计算机研究所文本挖掘与语言计算组），*CC-Riddle: A Question Answering Dataset of Chinese Character Riddles*, arXiv:2206.13778，CC BY-NC-SA 4.0。**本数据集对其做了选取、重排与补充说明**，完整署名与修改声明见 `THIRD_PARTY.md`（§3(a) 要求，再分发请保留）。
+
+机器可读引用见 `CITATION.cff`，其中 `repository-code` / `url` 已回填为本仓库地址。
+
+---
+
+## 7. 已知限制（对外使用必读）
+
+1. **解释不是权威字理**：1,023 条解释是在「给定谜面 + 谜底」条件下生成的**事后合理化**，58.9% 被模型自评 `low`；自动手法分类也明显偏向会意（594:427:2）。不宜直接当 CoT 监督信号。
+2. **质量闸门未经人工验证**：原创性 3-gram Jaccard 阈值 0.35 由 60 条试点分位数标定；谜面质量、谜底唯一性均**未做人工评审**。
+3. **ICL 只是方向性信号**：n=24/格，所有 McNemar *p* ≥ 0.125，不构成训练有效性结论。
+4. **无训练实验**：论文与数据均为 API 调用层面的零权重修改实验；关于「训练该补什么」的全部表述均为可证伪假设 H1–H3。
+5. **模型覆盖有限**：闭环实验仅两个中文商用 API；hy4 / deepseek-v4-pro 因额度耗尽未参与；无开源权重模型、无人类基线、无重复采样。
+6. **字义字段不补**：项目决定不引入第三方字典释义，语义类手法受此约束。
+
+完整限制清单见 `paper/riddle-paper.md` §7 与 `docs/DATASHEET.md`。
+
+---
+
+本文件与 `README.en.md` 按 CC BY 4.0 发布。第三方材料与许可细节见 `THIRD_PARTY.md`；该文件不是法律意见。

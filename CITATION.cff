@@ -1,0 +1,45 @@
+cff-version: 1.2.0
+message: "If you use CCRP DataSet, please cite this dataset and the accompanying paper."
+title: "Chinese Character Riddle Probes Dataset (CCRP DataSet)"
+type: dataset
+version: "0.1"
+date-released: "2026-11-09"
+license:
+  - CC-BY-NC-SA-4.0
+  - MIT
+  - CC-BY-4.0
+authors:
+  - name: "Spring Buds Data Source Inc."
+    alias: "春芽数源"
+    country: CN
+abstract: >-
+  A 100-character Chinese character riddle dataset for behavioral structural
+  probing of large language models. Contains 1,019 CC-Riddle-derived reference
+  riddles with character structure cards, 600 model-authored riddles with
+  quality-control verdicts, a 597-item generation-solving closed loop with
+  cross-model blind test and same-item self-test, and a 24-item ICL control
+  task (192 API calls). Released under CC BY-NC-SA 4.0 for the data, MIT for
+  the scripts, CC BY 4.0 for the documentation. This is a diagnostic probe,
+  not a ranking benchmark.
+keywords:
+  - Chinese character riddles
+  - structural probe
+  - large language models
+  - behavioral probe
+  - control task
+  - generation-solving closed loop
+  - in-context learning
+  - dataset
+repository-code: "https://github.com/SunSeeding/ccrp"
+url: "https://github.com/SunSeeding/ccrp"
+preferred-citation:
+  type: article
+  title: "汉字字谜能否成为大语言模型的结构探针？"
+  authors:
+    - name: "Spring Buds Data Source Inc."
+      alias: "春芽数源"
+  year: 2026
+  note: >-
+    English translation: "Can Chinese Character Riddles Serve as Structural
+    Probes for Large Language Models?". Both editions are included in this
+    repository as paper/riddle-paper.md and paper/riddle-paper-en.md.

@@ -1,0 +1,570 @@
+{
+  "generated_at": "2026-11-06T15:42:59+08:00",
+  "design": {
+    "question": "不训练模型，上下文里给不同质量的解谜示例，能激活什么能力？",
+    "conditions": {
+      "zero": "无示例，同批基线",
+      "answer": "k=4，仅 (谜面→谜底)，控消息结构与长度",
+      "program": "k=4，同谜面 + 人工可执行拆解步骤",
+      "self": "k=4，同谜面 + 该模型给定谜底后自己写的事后解释"
+    },
+    "same_example_questions": "answer / program / self 共用完全相同的 4 条谜面，唯一变量是 assistant.reasoning 的内容",
+    "isolation": {
+      "example_chars": [
+        "但",
+        "和",
+        "学",
+        "对"
+      ],
+      "test_chars": [
+        "丁",
+        "为",
+        "么",
+        "人",
+        "会",
+        "前",
+        "去",
+        "只",
+        "同",
+        "后",
+        "多",
+        "女",
+        "家",
+        "总",
+        "情",
+        "所",
+        "手",
+        "是",
+        "着",
+        "第",
+        "能",
+        "说",
+        "还",
+        "里"
+      ],
+      "disjoint": true,
+      "items_sha256": "b16111d96d4609ae43d3d59824196342ae31178654aff366224e88597af8537f",
+      "seed": 20261106
+    },
+    "n_items": 24,
+    "n_conditions": 4,
+    "models": {
+      "kimi": "kimi-k3.1-pro",
+      "u2": "u2-flash"
+    },
+    "prompt": "复用 riddle_eval_hy4 的 SYSTEM_PROMPT / USER_TEMPLATE / parse_response / normalize_gold"
+  },
+  "predictions": {
+    "P1_program_gain_concentrated_on_拆形": "program−answer 增益应集中在拆形，会意/谐音不明显",
+    "P2_self_not_better_than_program": "模型事后解释不应优于人工可执行拆解；若甚至低于 answer，支持「解释不可作监督」",
+    "P3_zero_drift": "zero 与 11-06 自测应有可观不一致率，量化单次采样噪声"
+  },
+  "complete": true,
+  "main": {
+    "kimi": {
+      "zero": {
+        "n": 24,
+        "correct": 10,
+        "rate": 0.4167,
+        "wilson95": [
+          0.2447,
+          0.6117
+        ],
+        "vs_zero": null
+      },
+      "answer": {
+        "n": 24,
+        "correct": 10,
+        "rate": 0.4167,
+        "wilson95": [
+          0.2447,
+          0.6117
+        ],
+        "vs_zero": {
+          "delta": 0.0,
+          "paired": {
+            "n": 24,
+            "both": 9,
+            "a_only": 1,
+            "b_only": 1,
+            "neither": 13,
+            "p_mcnemar": 1.0
+          }
+        }
+      },
+      "program": {
+        "n": 24,
+        "correct": 11,
+        "rate": 0.4583,
+        "wilson95": [
+          0.2789,
+          0.6493
+        ],
+        "vs_zero": {
+          "delta": 0.0416,
+          "paired": {
+            "n": 24,
+            "both": 10,
+            "a_only": 1,
+            "b_only": 0,
+            "neither": 13,
+            "p_mcnemar": 1.0
+          }
+        }
+      },
+      "self": {
+        "n": 24,
+        "correct": 11,
+        "rate": 0.4583,
+        "wilson95": [
+          0.2789,
+          0.6493
+        ],
+        "vs_zero": {
+          "delta": 0.0416,
+          "paired": {
+            "n": 24,
+            "both": 9,
+            "a_only": 2,
+            "b_only": 1,
+            "neither": 12,
+            "p_mcnemar": 1.0
+          }
+        }
+      }
+    },
+    "u2": {
+      "zero": {
+        "n": 24,
+        "correct": 9,
+        "rate": 0.375,
+        "wilson95": [
+          0.2116,
+          0.5729
+        ],
+        "vs_zero": null
+      },
+      "answer": {
+        "n": 24,
+        "correct": 7,
+        "rate": 0.2917,
+        "wilson95": [
+          0.1491,
+          0.4917
+        ],
+        "vs_zero": {
+          "delta": -0.0833,
+          "paired": {
+            "n": 24,
+            "both": 5,
+            "a_only": 2,
+            "b_only": 4,
+            "neither": 13,
+            "p_mcnemar": 0.6875
+          }
+        }
+      },
+      "program": {
+        "n": 24,
+        "correct": 9,
+        "rate": 0.375,
+        "wilson95": [
+          0.2116,
+          0.5729
+        ],
+        "vs_zero": {
+          "delta": 0.0,
+          "paired": {
+            "n": 24,
+            "both": 7,
+            "a_only": 2,
+            "b_only": 2,
+            "neither": 13,
+            "p_mcnemar": 1.0
+          }
+        }
+      },
+      "self": {
+        "n": 24,
+        "correct": 5,
+        "rate": 0.2083,
+        "wilson95": [
+          0.0924,
+          0.4047
+        ],
+        "vs_zero": {
+          "delta": -0.1667,
+          "paired": {
+            "n": 24,
+            "both": 4,
+            "a_only": 1,
+            "b_only": 5,
+            "neither": 14,
+            "p_mcnemar": 0.21875
+          }
+        }
+      }
+    }
+  },
+  "by_technique": {
+    "kimi|拆形": {
+      "zero": {
+        "n": 8,
+        "correct": 5,
+        "rate": 0.625,
+        "wilson95": [
+          0.3057,
+          0.8632
+        ]
+      },
+      "answer": {
+        "n": 8,
+        "correct": 6,
+        "rate": 0.75,
+        "wilson95": [
+          0.4093,
+          0.9285
+        ]
+      },
+      "program": {
+        "n": 8,
+        "correct": 6,
+        "rate": 0.75,
+        "wilson95": [
+          0.4093,
+          0.9285
+        ]
+      },
+      "self": {
+        "n": 8,
+        "correct": 6,
+        "rate": 0.75,
+        "wilson95": [
+          0.4093,
+          0.9285
+        ]
+      }
+    },
+    "kimi|会意": {
+      "zero": {
+        "n": 8,
+        "correct": 2,
+        "rate": 0.25,
+        "wilson95": [
+          0.0715,
+          0.5907
+        ]
+      },
+      "answer": {
+        "n": 8,
+        "correct": 2,
+        "rate": 0.25,
+        "wilson95": [
+          0.0715,
+          0.5907
+        ]
+      },
+      "program": {
+        "n": 8,
+        "correct": 2,
+        "rate": 0.25,
+        "wilson95": [
+          0.0715,
+          0.5907
+        ]
+      },
+      "self": {
+        "n": 8,
+        "correct": 3,
+        "rate": 0.375,
+        "wilson95": [
+          0.1368,
+          0.6943
+        ]
+      }
+    },
+    "kimi|谐音": {
+      "zero": {
+        "n": 8,
+        "correct": 3,
+        "rate": 0.375,
+        "wilson95": [
+          0.1368,
+          0.6943
+        ]
+      },
+      "answer": {
+        "n": 8,
+        "correct": 2,
+        "rate": 0.25,
+        "wilson95": [
+          0.0715,
+          0.5907
+        ]
+      },
+      "program": {
+        "n": 8,
+        "correct": 3,
+        "rate": 0.375,
+        "wilson95": [
+          0.1368,
+          0.6943
+        ]
+      },
+      "self": {
+        "n": 8,
+        "correct": 2,
+        "rate": 0.25,
+        "wilson95": [
+          0.0715,
+          0.5907
+        ]
+      }
+    },
+    "u2|拆形": {
+      "zero": {
+        "n": 8,
+        "correct": 6,
+        "rate": 0.75,
+        "wilson95": [
+          0.4093,
+          0.9285
+        ]
+      },
+      "answer": {
+        "n": 8,
+        "correct": 4,
+        "rate": 0.5,
+        "wilson95": [
+          0.2152,
+          0.7848
+        ]
+      },
+      "program": {
+        "n": 8,
+        "correct": 5,
+        "rate": 0.625,
+        "wilson95": [
+          0.3057,
+          0.8632
+        ]
+      },
+      "self": {
+        "n": 8,
+        "correct": 3,
+        "rate": 0.375,
+        "wilson95": [
+          0.1368,
+          0.6943
+        ]
+      }
+    },
+    "u2|会意": {
+      "zero": {
+        "n": 8,
+        "correct": 1,
+        "rate": 0.125,
+        "wilson95": [
+          0.0224,
+          0.4709
+        ]
+      },
+      "answer": {
+        "n": 8,
+        "correct": 2,
+        "rate": 0.25,
+        "wilson95": [
+          0.0715,
+          0.5907
+        ]
+      },
+      "program": {
+        "n": 8,
+        "correct": 2,
+        "rate": 0.25,
+        "wilson95": [
+          0.0715,
+          0.5907
+        ]
+      },
+      "self": {
+        "n": 8,
+        "correct": 1,
+        "rate": 0.125,
+        "wilson95": [
+          0.0224,
+          0.4709
+        ]
+      }
+    },
+    "u2|谐音": {
+      "zero": {
+        "n": 8,
+        "correct": 2,
+        "rate": 0.25,
+        "wilson95": [
+          0.0715,
+          0.5907
+        ]
+      },
+      "answer": {
+        "n": 8,
+        "correct": 1,
+        "rate": 0.125,
+        "wilson95": [
+          0.0224,
+          0.4709
+        ]
+      },
+      "program": {
+        "n": 8,
+        "correct": 2,
+        "rate": 0.25,
+        "wilson95": [
+          0.0715,
+          0.5907
+        ]
+      },
+      "self": {
+        "n": 8,
+        "correct": 1,
+        "rate": 0.125,
+        "wilson95": [
+          0.0224,
+          0.4709
+        ]
+      }
+    }
+  },
+  "program_minus_answer_by_technique": {
+    "kimi|拆形": 0.0,
+    "kimi|会意": 0.0,
+    "kimi|谐音": 0.125,
+    "u2|拆形": 0.125,
+    "u2|会意": 0.0,
+    "u2|谐音": 0.125
+  },
+  "key_contrasts": {
+    "kimi": {
+      "program_vs_answer": {
+        "n": 24,
+        "both": 10,
+        "a_only": 1,
+        "b_only": 0,
+        "neither": 13,
+        "p_mcnemar": 1.0
+      },
+      "program_vs_self": {
+        "n": 24,
+        "both": 10,
+        "a_only": 1,
+        "b_only": 1,
+        "neither": 12,
+        "p_mcnemar": 1.0
+      },
+      "self_vs_answer": {
+        "n": 24,
+        "both": 9,
+        "a_only": 2,
+        "b_only": 1,
+        "neither": 12,
+        "p_mcnemar": 1.0
+      }
+    },
+    "u2": {
+      "program_vs_answer": {
+        "n": 24,
+        "both": 5,
+        "a_only": 4,
+        "b_only": 2,
+        "neither": 13,
+        "p_mcnemar": 0.6875
+      },
+      "program_vs_self": {
+        "n": 24,
+        "both": 5,
+        "a_only": 4,
+        "b_only": 0,
+        "neither": 15,
+        "p_mcnemar": 0.125
+      },
+      "self_vs_answer": {
+        "n": 24,
+        "both": 5,
+        "a_only": 0,
+        "b_only": 2,
+        "neither": 17,
+        "p_mcnemar": 0.5
+      }
+    }
+  },
+  "zero_vs_selftest_1106": {
+    "kimi": {
+      "n": 12,
+      "same_verdict": 12,
+      "agreement": 1.0,
+      "zero_rate": 0.3333,
+      "self_1106_rate": 0.3333,
+      "note": "仅取 11-06 中 maker==guesser==该模型 的题，才构成同模型同题隔一天重测；其余题在 11-06 是由另一模型作答，不可比"
+    },
+    "u2": {
+      "n": 12,
+      "same_verdict": 9,
+      "agreement": 0.75,
+      "zero_rate": 0.3333,
+      "self_1106_rate": 0.25,
+      "note": "仅取 11-06 中 maker==guesser==该模型 的题，才构成同模型同题隔一天重测；其余题在 11-06 是由另一模型作答，不可比"
+    }
+  },
+  "example_reasonings": {
+    "program": [
+      "先执行删减：把「叉」字中间那一点去掉，剩下「又」。再取「一寸」中的「寸」。最后按左右并置组合：又 + 寸 = 对。",
+      "「旭日初升」给出日与地平线一横，上下叠成「旦」。「人独立」取单人旁「亻」。把亻放在旦的左侧，左右并置得「但」。",
+      "两句分别收敛语义：「干戈止息」指没有战争，即和平；「邻里相亲」指相处融洽，即和睦。两个义项的交集是「和」，故谜底为和。",
+      "「瑞雪」取「雪」的拼音 xuě（第三声）。「降一调」即把声调由三声改读二声，得 xué。在同音字中取「学」。"
+    ],
+    "self": {
+      "kimi": [
+        "“叉”字去掉中间的一点，剩下“又”；再按谜面添上一个“寸”字，“又”与“寸”左右组合，便成谜底“对”。",
+        "“旭日初升”会意为“旦”，即太阳从地平线上升起；“人独立”提示单立人“亻”。将“亻”与“旦”左右组合，便成谜底“但”。",
+        "两句均取会意。“干戈”代指战争，干戈止息即停止争战、归于太平，扣“和平”；“邻里相亲”形容彼此亲近融洽，扣“和睦”。两义同指向“和”，故谜底为“和”。",
+        "“瑞雪”取“雪”字，“雪”读xuě，为第三声；将读音降一调，即由三声变为二声，读作xué，正对应谜底“学”。"
+      ],
+      "u2": [
+        "“叉”字去掉一点（捺点），变为“又”；“添上一寸”即加“寸”字，组合为“又”+“寸”=“对”。谜面通过字形减笔与增补，自然合成谜底。",
+        "谜面‘旭日初升’取‘旭’字去掉‘日’（初升的太阳），剩‘九’；‘人独立’表示‘人’字独立站立，可变形为‘亻’。‘九’与‘亻’组合，即为‘但’字。",
+        "谜面“干戈止息”意为战争停止，即“和平”；“邻里相亲”表示关系和睦，也指向“和”。二字合义为“和平”，取关键词“和”作为谜底。",
+        "谜面意为“瑞雪”一词中“雪”字的读音降低一个声调。“雪”读xuě，为第三声（上声），降一调变为第二声（阳平），即xué，谐音“学”，因此谜底为“学”。"
+      ]
+    }
+  },
+  "quality": {
+    "format_bad": 0,
+    "api_error": 0,
+    "elapsed_s": 1983.1,
+    "completion_tokens": 61720,
+    "prompt_tokens": 108912
+  },
+  "avg_prompt_tokens_by_condition": {
+    "zero": {
+      "avg_prompt_tokens": 279.0
+    },
+    "answer": {
+      "avg_prompt_tokens": 538.0
+    },
+    "program": {
+      "avg_prompt_tokens": 712.5
+    },
+    "self": {
+      "avg_prompt_tokens": 739.5
+    }
+  },
+  "limitations": [
+    "最小探针仅 24 题 / 2 模型 / 单次采样，分层后每格仅 8 题，只用于看信号方向，不能下结论",
+    "zero 与 few-shot 的 messages 轮数不同，这是 ICL 的固有差异；answer 条件只部分控制长度效应",
+    "4 条示例谜面来自 kimi 创作的 accepted 题，可能对 kimi 有风格优势；示例字已与测试字严格隔离",
+    "program 的拆解由人工编写，仅 4 条，未做示例数量 k 的梯度",
+    "示例谜面是模型创作而非公开集，排除了记忆污染，但也无人工质量标注",
+    "hy4 / deepseek-v4-pro 仍 402 未纳入；无开源模型、无人类基线"
+  ]
+}

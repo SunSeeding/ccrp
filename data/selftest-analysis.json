@@ -1,0 +1,4261 @@
+{
+  "generated_at": "2026-11-06T14:26:54+08:00",
+  "experiment": {
+    "question": "模型自己出的谜，换到全新对话后自己答，会不会比别的模型答得更好？",
+    "cross_blind_20261105": "kimi 制谜 → u2 猜；u2 制谜 → kimi 猜",
+    "self_test_20261106": "kimi 制谜 → kimi 猜；u2 制谜 → u2 猜",
+    "same_items": "同一批 597 条 accepted 谜题，按 gid 逐条配对",
+    "same_prompt_and_scorer": "reuse-riddle_eval_hy4-SYSTEM_PROMPT-v2-json-no-thinking",
+    "same_request_options": {
+      "kimi": {
+        "reasoning_effort": "low"
+      },
+      "u2": {
+        "thinking": {
+          "type": "disabled"
+        }
+      }
+    },
+    "conversation": {
+      "mode": "fresh_single_turn",
+      "turns": 2,
+      "history_messages": 0,
+      "carries_maker_context": false,
+      "maker_session_date": "2026-11-05",
+      "guesser_session_date": "2026-11-06",
+      "note": "每条谜题一次独立调用；出题与答题分属不同进程、不同日期的独立会话"
+    },
+    "only_variable": "猜题方模型身份（是否与制谜方相同）",
+    "data_files": [
+      "04_generated/blind.jsonl（11-05 交叉盲测，不改）",
+      "04_generated/blind-self.jsonl（11-06 同题自测，新建）"
+    ]
+  },
+  "n_pairs": 597,
+  "n_complete_pairs": 597,
+  "overall": {
+    "cross": {
+      "n": 597,
+      "correct": 233,
+      "rate": 0.3903,
+      "wilson95": [
+        0.352,
+        0.43
+      ]
+    },
+    "self": {
+      "n": 597,
+      "correct": 264,
+      "rate": 0.4422,
+      "wilson95": [
+        0.4029,
+        0.4823
+      ]
+    },
+    "delta_self_minus_cross": 0.0519,
+    "delta_percentage_points": 5.19,
+    "relative_change": 0.133
+  },
+  "paired": {
+    "n": 597,
+    "both_correct": 173,
+    "cross_only": 60,
+    "self_only": 91,
+    "both_wrong": 273,
+    "agreement": 0.7471,
+    "mcnemar": {
+      "b_cross_only": 60,
+      "c_self_only": 91,
+      "p_two_sided_exact": 0.01436,
+      "significant_at_0_05": true,
+      "method": "exact binomial on discordant pairs (双侧)"
+    }
+  },
+  "answer_agreement": {
+    "n": 597,
+    "same_predicted_char": 217,
+    "rate": 0.3635,
+    "note": "两次作答给出同一个字的比例（含都答错的同一错字）"
+  },
+  "conditional": {
+    "cross_correct": {
+      "n": 233,
+      "self_correct": 173,
+      "self_rate": 0.7425
+    },
+    "cross_wrong": {
+      "n": 364,
+      "self_correct": 91,
+      "self_rate": 0.25
+    }
+  },
+  "by_maker": {
+    "kimi": {
+      "n": 298,
+      "cross": {
+        "n": 298,
+        "correct": 109,
+        "rate": 0.3658,
+        "wilson95": [
+          0.3131,
+          0.4218
+        ]
+      },
+      "self": {
+        "n": 298,
+        "correct": 173,
+        "rate": 0.5805,
+        "wilson95": [
+          0.5238,
+          0.6352
+        ]
+      },
+      "delta": 0.2147,
+      "paired": {
+        "n": 298,
+        "both_correct": 102,
+        "cross_only": 7,
+        "self_only": 71,
+        "both_wrong": 118,
+        "agreement": 0.7383,
+        "mcnemar": {
+          "b_cross_only": 7,
+          "c_self_only": 71,
+          "p_two_sided_exact": 0.0,
+          "significant_at_0_05": true,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "u2": {
+      "n": 299,
+      "cross": {
+        "n": 299,
+        "correct": 124,
+        "rate": 0.4147,
+        "wilson95": [
+          0.3603,
+          0.4713
+        ]
+      },
+      "self": {
+        "n": 299,
+        "correct": 91,
+        "rate": 0.3043,
+        "wilson95": [
+          0.2549,
+          0.3587
+        ]
+      },
+      "delta": -0.1104,
+      "paired": {
+        "n": 299,
+        "both_correct": 71,
+        "cross_only": 53,
+        "self_only": 20,
+        "both_wrong": 155,
+        "agreement": 0.7559,
+        "mcnemar": {
+          "b_cross_only": 53,
+          "c_self_only": 20,
+          "p_two_sided_exact": 0.000142,
+          "significant_at_0_05": true,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    }
+  },
+  "by_technique": {
+    "会意": {
+      "n": 200,
+      "cross": {
+        "n": 200,
+        "correct": 70,
+        "rate": 0.35,
+        "wilson95": [
+          0.2873,
+          0.4184
+        ]
+      },
+      "self": {
+        "n": 200,
+        "correct": 74,
+        "rate": 0.37,
+        "wilson95": [
+          0.3061,
+          0.4388
+        ]
+      },
+      "delta": 0.02,
+      "paired": {
+        "n": 200,
+        "both_correct": 48,
+        "cross_only": 22,
+        "self_only": 26,
+        "both_wrong": 104,
+        "agreement": 0.76,
+        "mcnemar": {
+          "b_cross_only": 22,
+          "c_self_only": 26,
+          "p_two_sided_exact": 0.665466,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "拆形": {
+      "n": 197,
+      "cross": {
+        "n": 197,
+        "correct": 98,
+        "rate": 0.4975,
+        "wilson95": [
+          0.4284,
+          0.5667
+        ]
+      },
+      "self": {
+        "n": 197,
+        "correct": 119,
+        "rate": 0.6041,
+        "wilson95": [
+          0.5344,
+          0.6697
+        ]
+      },
+      "delta": 0.1066,
+      "paired": {
+        "n": 197,
+        "both_correct": 75,
+        "cross_only": 23,
+        "self_only": 44,
+        "both_wrong": 55,
+        "agreement": 0.6599,
+        "mcnemar": {
+          "b_cross_only": 23,
+          "c_self_only": 44,
+          "p_two_sided_exact": 0.013934,
+          "significant_at_0_05": true,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "谐音": {
+      "n": 200,
+      "cross": {
+        "n": 200,
+        "correct": 65,
+        "rate": 0.325,
+        "wilson95": [
+          0.2639,
+          0.3927
+        ]
+      },
+      "self": {
+        "n": 200,
+        "correct": 71,
+        "rate": 0.355,
+        "wilson95": [
+          0.292,
+          0.4235
+        ]
+      },
+      "delta": 0.03,
+      "paired": {
+        "n": 200,
+        "both_correct": 50,
+        "cross_only": 15,
+        "self_only": 21,
+        "both_wrong": 114,
+        "agreement": 0.82,
+        "mcnemar": {
+          "b_cross_only": 15,
+          "c_self_only": 21,
+          "p_two_sided_exact": 0.405032,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    }
+  },
+  "by_maker_x_technique": {
+    "kimi × 会意": {
+      "n": 100,
+      "cross": {
+        "n": 100,
+        "correct": 26,
+        "rate": 0.26,
+        "wilson95": [
+          0.184,
+          0.3537
+        ]
+      },
+      "self": {
+        "n": 100,
+        "correct": 44,
+        "rate": 0.44,
+        "wilson95": [
+          0.3467,
+          0.5377
+        ]
+      },
+      "delta": 0.18,
+      "paired": {
+        "n": 100,
+        "both_correct": 23,
+        "cross_only": 3,
+        "self_only": 21,
+        "both_wrong": 53,
+        "agreement": 0.76,
+        "mcnemar": {
+          "b_cross_only": 3,
+          "c_self_only": 21,
+          "p_two_sided_exact": 0.000277,
+          "significant_at_0_05": true,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "kimi × 拆形": {
+      "n": 98,
+      "cross": {
+        "n": 98,
+        "correct": 48,
+        "rate": 0.4898,
+        "wilson95": [
+          0.3931,
+          0.5873
+        ]
+      },
+      "self": {
+        "n": 98,
+        "correct": 83,
+        "rate": 0.8469,
+        "wilson95": [
+          0.7627,
+          0.905
+        ]
+      },
+      "delta": 0.3571,
+      "paired": {
+        "n": 98,
+        "both_correct": 46,
+        "cross_only": 2,
+        "self_only": 37,
+        "both_wrong": 13,
+        "agreement": 0.602,
+        "mcnemar": {
+          "b_cross_only": 2,
+          "c_self_only": 37,
+          "p_two_sided_exact": 0.0,
+          "significant_at_0_05": true,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "kimi × 谐音": {
+      "n": 100,
+      "cross": {
+        "n": 100,
+        "correct": 35,
+        "rate": 0.35,
+        "wilson95": [
+          0.2636,
+          0.4475
+        ]
+      },
+      "self": {
+        "n": 100,
+        "correct": 46,
+        "rate": 0.46,
+        "wilson95": [
+          0.3656,
+          0.5574
+        ]
+      },
+      "delta": 0.11,
+      "paired": {
+        "n": 100,
+        "both_correct": 33,
+        "cross_only": 2,
+        "self_only": 13,
+        "both_wrong": 52,
+        "agreement": 0.85,
+        "mcnemar": {
+          "b_cross_only": 2,
+          "c_self_only": 13,
+          "p_two_sided_exact": 0.007385,
+          "significant_at_0_05": true,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "u2 × 会意": {
+      "n": 100,
+      "cross": {
+        "n": 100,
+        "correct": 44,
+        "rate": 0.44,
+        "wilson95": [
+          0.3467,
+          0.5377
+        ]
+      },
+      "self": {
+        "n": 100,
+        "correct": 30,
+        "rate": 0.3,
+        "wilson95": [
+          0.2189,
+          0.3958
+        ]
+      },
+      "delta": -0.14,
+      "paired": {
+        "n": 100,
+        "both_correct": 25,
+        "cross_only": 19,
+        "self_only": 5,
+        "both_wrong": 51,
+        "agreement": 0.76,
+        "mcnemar": {
+          "b_cross_only": 19,
+          "c_self_only": 5,
+          "p_two_sided_exact": 0.006611,
+          "significant_at_0_05": true,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "u2 × 拆形": {
+      "n": 99,
+      "cross": {
+        "n": 99,
+        "correct": 50,
+        "rate": 0.5051,
+        "wilson95": [
+          0.4082,
+          0.6015
+        ]
+      },
+      "self": {
+        "n": 99,
+        "correct": 36,
+        "rate": 0.3636,
+        "wilson95": [
+          0.2756,
+          0.4618
+        ]
+      },
+      "delta": -0.1415,
+      "paired": {
+        "n": 99,
+        "both_correct": 29,
+        "cross_only": 21,
+        "self_only": 7,
+        "both_wrong": 42,
+        "agreement": 0.7172,
+        "mcnemar": {
+          "b_cross_only": 21,
+          "c_self_only": 7,
+          "p_two_sided_exact": 0.012541,
+          "significant_at_0_05": true,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "u2 × 谐音": {
+      "n": 100,
+      "cross": {
+        "n": 100,
+        "correct": 30,
+        "rate": 0.3,
+        "wilson95": [
+          0.2189,
+          0.3958
+        ]
+      },
+      "self": {
+        "n": 100,
+        "correct": 25,
+        "rate": 0.25,
+        "wilson95": [
+          0.1755,
+          0.343
+        ]
+      },
+      "delta": -0.05,
+      "paired": {
+        "n": 100,
+        "both_correct": 17,
+        "cross_only": 13,
+        "self_only": 8,
+        "both_wrong": 62,
+        "agreement": 0.79,
+        "mcnemar": {
+          "b_cross_only": 13,
+          "c_self_only": 8,
+          "p_two_sided_exact": 0.38331,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    }
+  },
+  "by_char": {
+    "一": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": 0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 1,
+        "self_only": 2,
+        "both_wrong": 2,
+        "agreement": 0.5,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 2,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "丁": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 2,
+        "cross_only": 1,
+        "self_only": 1,
+        "both_wrong": 2,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "上": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": 0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 2,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 3,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "下": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": -0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 2,
+        "self_only": 1,
+        "both_wrong": 2,
+        "agreement": 0.5,
+        "mcnemar": {
+          "b_cross_only": 2,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "不": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.3903
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "delta": 0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 5,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "个": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 4,
+        "rate": 0.6667,
+        "wilson95": [
+          0.3,
+          0.9032
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": -0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 3,
+        "cross_only": 1,
+        "self_only": 0,
+        "both_wrong": 2,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "中": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 4,
+        "rate": 0.6667,
+        "wilson95": [
+          0.3,
+          0.9032
+        ]
+      },
+      "delta": 0.3334,
+      "paired": {
+        "n": 6,
+        "both_correct": 2,
+        "cross_only": 0,
+        "self_only": 2,
+        "both_wrong": 2,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 2,
+          "p_two_sided_exact": 0.5,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "为": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.3903
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.3903
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 0,
+        "self_only": 0,
+        "both_wrong": 6,
+        "agreement": 1.0,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "么": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.3903
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": 0.3333,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 0,
+        "self_only": 2,
+        "both_wrong": 4,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 2,
+          "p_two_sided_exact": 0.5,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "之": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 0,
+        "self_only": 0,
+        "both_wrong": 5,
+        "agreement": 1.0,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "也": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 4,
+        "rate": 0.6667,
+        "wilson95": [
+          0.3,
+          0.9032
+        ]
+      },
+      "delta": 0.3334,
+      "paired": {
+        "n": 6,
+        "both_correct": 2,
+        "cross_only": 0,
+        "self_only": 2,
+        "both_wrong": 2,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 2,
+          "p_two_sided_exact": 0.5,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "了": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": 0.3333,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 0,
+        "self_only": 2,
+        "both_wrong": 3,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 2,
+          "p_two_sided_exact": 0.5,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "事": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 1,
+        "self_only": 1,
+        "both_wrong": 4,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "于": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "delta": -0.1666,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 1,
+        "self_only": 0,
+        "both_wrong": 4,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "些": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": 0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 2,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 3,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "人": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 4,
+        "rate": 0.6667,
+        "wilson95": [
+          0.3,
+          0.9032
+        ]
+      },
+      "delta": 0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 3,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 2,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "从": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "delta": 0.3333,
+      "paired": {
+        "n": 6,
+        "both_correct": 3,
+        "cross_only": 0,
+        "self_only": 2,
+        "both_wrong": 1,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 2,
+          "p_two_sided_exact": 0.5,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "他": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": 0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 1,
+        "self_only": 2,
+        "both_wrong": 2,
+        "agreement": 0.5,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 2,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "以": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.3903
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "delta": 0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 5,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "们": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 4,
+        "rate": 0.6667,
+        "wilson95": [
+          0.3,
+          0.9032
+        ]
+      },
+      "delta": 0.5,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 0,
+        "self_only": 3,
+        "both_wrong": 2,
+        "agreement": 0.5,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 3,
+          "p_two_sided_exact": 0.25,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "会": {
+      "n": 5,
+      "cross": {
+        "n": 5,
+        "correct": 2,
+        "rate": 0.4,
+        "wilson95": [
+          0.1176,
+          0.7693
+        ]
+      },
+      "self": {
+        "n": 5,
+        "correct": 3,
+        "rate": 0.6,
+        "wilson95": [
+          0.2307,
+          0.8824
+        ]
+      },
+      "delta": 0.2,
+      "paired": {
+        "n": 5,
+        "both_correct": 2,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 2,
+        "agreement": 0.8,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "但": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 4,
+        "rate": 0.6667,
+        "wilson95": [
+          0.3,
+          0.9032
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "delta": -0.5,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 3,
+        "self_only": 0,
+        "both_wrong": 2,
+        "agreement": 0.5,
+        "mcnemar": {
+          "b_cross_only": 3,
+          "c_self_only": 0,
+          "p_two_sided_exact": 0.25,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "作": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": 0.3333,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 0,
+        "self_only": 2,
+        "both_wrong": 3,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 2,
+          "p_two_sided_exact": 0.5,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "你": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 4,
+        "rate": 0.6667,
+        "wilson95": [
+          0.3,
+          0.9032
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": -0.3334,
+      "paired": {
+        "n": 6,
+        "both_correct": 2,
+        "cross_only": 2,
+        "self_only": 0,
+        "both_wrong": 2,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 2,
+          "c_self_only": 0,
+          "p_two_sided_exact": 0.5,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "出": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 4,
+        "rate": 0.6667,
+        "wilson95": [
+          0.3,
+          0.9032
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 4,
+        "rate": 0.6667,
+        "wilson95": [
+          0.3,
+          0.9032
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 4,
+        "cross_only": 0,
+        "self_only": 0,
+        "both_wrong": 2,
+        "agreement": 1.0,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "到": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "delta": -0.1666,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 1,
+        "self_only": 0,
+        "both_wrong": 4,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "前": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.3903
+        ]
+      },
+      "delta": -0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 1,
+        "self_only": 0,
+        "both_wrong": 5,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "去": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": 0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 2,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 3,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "又": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 0,
+        "self_only": 0,
+        "both_wrong": 5,
+        "agreement": 1.0,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "发": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": 0.3333,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 0,
+        "self_only": 2,
+        "both_wrong": 3,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 2,
+          "p_two_sided_exact": 0.5,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "只": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "delta": -0.3333,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 2,
+        "self_only": 0,
+        "both_wrong": 3,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 2,
+          "c_self_only": 0,
+          "p_two_sided_exact": 0.5,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "可": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 1,
+        "self_only": 1,
+        "both_wrong": 4,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "同": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.3903
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 4,
+        "rate": 0.6667,
+        "wilson95": [
+          0.3,
+          0.9032
+        ]
+      },
+      "delta": 0.6667,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 0,
+        "self_only": 4,
+        "both_wrong": 2,
+        "agreement": 0.3333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 4,
+          "p_two_sided_exact": 0.125,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "后": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.3903
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "delta": 0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 5,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "和": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 5,
+        "cross_only": 0,
+        "self_only": 0,
+        "both_wrong": 1,
+        "agreement": 1.0,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "国": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 6,
+        "rate": 1.0,
+        "wilson95": [
+          0.6097,
+          1.0
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "delta": -0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 5,
+        "cross_only": 1,
+        "self_only": 0,
+        "both_wrong": 0,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "在": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 1,
+        "self_only": 1,
+        "both_wrong": 4,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "地": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "delta": 0.3333,
+      "paired": {
+        "n": 6,
+        "both_correct": 3,
+        "cross_only": 0,
+        "self_only": 2,
+        "both_wrong": 1,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 2,
+          "p_two_sided_exact": 0.5,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "多": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 1,
+        "self_only": 1,
+        "both_wrong": 3,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "大": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "delta": 0.3333,
+      "paired": {
+        "n": 6,
+        "both_correct": 3,
+        "cross_only": 0,
+        "self_only": 2,
+        "both_wrong": 1,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 2,
+          "p_two_sided_exact": 0.5,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "天": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 3,
+        "cross_only": 0,
+        "self_only": 0,
+        "both_wrong": 3,
+        "agreement": 1.0,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "女": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": 0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 2,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 3,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "她": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 4,
+        "cross_only": 1,
+        "self_only": 1,
+        "both_wrong": 0,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "好": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 4,
+        "rate": 0.6667,
+        "wilson95": [
+          0.3,
+          0.9032
+        ]
+      },
+      "delta": -0.1666,
+      "paired": {
+        "n": 6,
+        "both_correct": 4,
+        "cross_only": 1,
+        "self_only": 0,
+        "both_wrong": 1,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "如": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "delta": 0.3333,
+      "paired": {
+        "n": 6,
+        "both_correct": 3,
+        "cross_only": 0,
+        "self_only": 2,
+        "both_wrong": 1,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 2,
+          "p_two_sided_exact": 0.5,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "子": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 3,
+        "cross_only": 0,
+        "self_only": 0,
+        "both_wrong": 3,
+        "agreement": 1.0,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "学": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": 0.3333,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 1,
+        "self_only": 3,
+        "both_wrong": 2,
+        "agreement": 0.3333,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 3,
+          "p_two_sided_exact": 0.625,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "家": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 4,
+        "cross_only": 1,
+        "self_only": 1,
+        "both_wrong": 0,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "对": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": 0.1666,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 1,
+        "self_only": 2,
+        "both_wrong": 3,
+        "agreement": 0.5,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 2,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "小": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.3903
+        ]
+      },
+      "delta": -0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 1,
+        "self_only": 0,
+        "both_wrong": 5,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "就": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": 0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 2,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 3,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "己": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": 0.1666,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 4,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "年": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 1,
+        "self_only": 1,
+        "both_wrong": 4,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "开": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "delta": -0.1666,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 1,
+        "self_only": 0,
+        "both_wrong": 4,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "当": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "delta": -0.3333,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 3,
+        "self_only": 1,
+        "both_wrong": 2,
+        "agreement": 0.3333,
+        "mcnemar": {
+          "b_cross_only": 3,
+          "c_self_only": 1,
+          "p_two_sided_exact": 0.625,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "得": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 2,
+        "cross_only": 0,
+        "self_only": 0,
+        "both_wrong": 4,
+        "agreement": 1.0,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "心": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 1,
+        "self_only": 1,
+        "both_wrong": 3,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "总": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.3903
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "delta": 0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 5,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "情": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 4,
+        "rate": 0.6667,
+        "wilson95": [
+          0.3,
+          0.9032
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "delta": 0.1666,
+      "paired": {
+        "n": 6,
+        "both_correct": 4,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 1,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "想": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 5,
+        "cross_only": 0,
+        "self_only": 0,
+        "both_wrong": 1,
+        "agreement": 1.0,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "意": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 6,
+        "rate": 1.0,
+        "wilson95": [
+          0.6097,
+          1.0
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 6,
+        "rate": 1.0,
+        "wilson95": [
+          0.6097,
+          1.0
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 6,
+        "cross_only": 0,
+        "self_only": 0,
+        "both_wrong": 0,
+        "agreement": 1.0,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "成": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 1,
+        "self_only": 1,
+        "both_wrong": 3,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "我": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": 0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 2,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 3,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "所": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 2,
+        "cross_only": 1,
+        "self_only": 1,
+        "both_wrong": 2,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "手": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.3903
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": 0.3333,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 0,
+        "self_only": 2,
+        "both_wrong": 4,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 2,
+          "p_two_sided_exact": 0.5,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "把": {
+      "n": 5,
+      "cross": {
+        "n": 5,
+        "correct": 4,
+        "rate": 0.8,
+        "wilson95": [
+          0.3755,
+          0.9638
+        ]
+      },
+      "self": {
+        "n": 5,
+        "correct": 2,
+        "rate": 0.4,
+        "wilson95": [
+          0.1176,
+          0.7693
+        ]
+      },
+      "delta": -0.4,
+      "paired": {
+        "n": 5,
+        "both_correct": 2,
+        "cross_only": 2,
+        "self_only": 0,
+        "both_wrong": 1,
+        "agreement": 0.6,
+        "mcnemar": {
+          "b_cross_only": 2,
+          "c_self_only": 0,
+          "p_two_sided_exact": 0.5,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "无": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.3903
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": 0.3333,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 0,
+        "self_only": 2,
+        "both_wrong": 4,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 2,
+          "p_two_sided_exact": 0.5,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "日": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 1,
+        "self_only": 1,
+        "both_wrong": 3,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "时": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 4,
+        "rate": 0.6667,
+        "wilson95": [
+          0.3,
+          0.9032
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 4,
+        "rate": 0.6667,
+        "wilson95": [
+          0.3,
+          0.9032
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 4,
+        "cross_only": 0,
+        "self_only": 0,
+        "both_wrong": 2,
+        "agreement": 1.0,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "是": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": 0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 2,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 3,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "最": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.3903
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "delta": 0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 5,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "有": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": 0.1666,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 4,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "来": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.3903
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": 0.3333,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 0,
+        "self_only": 2,
+        "both_wrong": 4,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 2,
+          "p_two_sided_exact": 0.5,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "样": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 6,
+        "rate": 1.0,
+        "wilson95": [
+          0.6097,
+          1.0
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "delta": -0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 5,
+        "cross_only": 1,
+        "self_only": 0,
+        "both_wrong": 0,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "没": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": 0.1666,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 4,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "然": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 4,
+        "rate": 0.6667,
+        "wilson95": [
+          0.3,
+          0.9032
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": -0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 3,
+        "cross_only": 1,
+        "self_only": 0,
+        "both_wrong": 2,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "现": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 4,
+        "rate": 0.6667,
+        "wilson95": [
+          0.3,
+          0.9032
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": -0.3334,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 3,
+        "self_only": 1,
+        "both_wrong": 1,
+        "agreement": 0.3333,
+        "mcnemar": {
+          "b_cross_only": 3,
+          "c_self_only": 1,
+          "p_two_sided_exact": 0.625,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "生": {
+      "n": 5,
+      "cross": {
+        "n": 5,
+        "correct": 2,
+        "rate": 0.4,
+        "wilson95": [
+          0.1176,
+          0.7693
+        ]
+      },
+      "self": {
+        "n": 5,
+        "correct": 2,
+        "rate": 0.4,
+        "wilson95": [
+          0.1176,
+          0.7693
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 5,
+        "both_correct": 2,
+        "cross_only": 0,
+        "self_only": 0,
+        "both_wrong": 3,
+        "agreement": 1.0,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "用": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.3903
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "delta": 0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 5,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "的": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 5,
+        "cross_only": 0,
+        "self_only": 0,
+        "both_wrong": 1,
+        "agreement": 1.0,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "看": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 6,
+        "rate": 1.0,
+        "wilson95": [
+          0.6097,
+          1.0
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "delta": -0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 5,
+        "cross_only": 1,
+        "self_only": 0,
+        "both_wrong": 0,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "着": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": -0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 2,
+        "cross_only": 1,
+        "self_only": 0,
+        "both_wrong": 3,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "种": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 4,
+        "rate": 0.6667,
+        "wilson95": [
+          0.3,
+          0.9032
+        ]
+      },
+      "delta": 0.3334,
+      "paired": {
+        "n": 6,
+        "both_correct": 2,
+        "cross_only": 0,
+        "self_only": 2,
+        "both_wrong": 2,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 2,
+          "p_two_sided_exact": 0.5,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "第": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 4,
+        "rate": 0.6667,
+        "wilson95": [
+          0.3,
+          0.9032
+        ]
+      },
+      "delta": -0.1666,
+      "paired": {
+        "n": 6,
+        "both_correct": 4,
+        "cross_only": 1,
+        "self_only": 0,
+        "both_wrong": 1,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "美": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 4,
+        "rate": 0.6667,
+        "wilson95": [
+          0.3,
+          0.9032
+        ]
+      },
+      "delta": -0.1666,
+      "paired": {
+        "n": 6,
+        "both_correct": 4,
+        "cross_only": 1,
+        "self_only": 0,
+        "both_wrong": 1,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "而": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.3903
+        ]
+      },
+      "delta": -0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 1,
+        "self_only": 0,
+        "both_wrong": 5,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "能": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": -0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 2,
+        "self_only": 1,
+        "both_wrong": 2,
+        "agreement": 0.5,
+        "mcnemar": {
+          "b_cross_only": 2,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "自": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 1,
+        "self_only": 1,
+        "both_wrong": 3,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "行": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": 0.3333,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 0,
+        "self_only": 2,
+        "both_wrong": 3,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 2,
+          "p_two_sided_exact": 0.5,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "要": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 6,
+        "rate": 1.0,
+        "wilson95": [
+          0.6097,
+          1.0
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 5,
+        "rate": 0.8333,
+        "wilson95": [
+          0.4365,
+          0.9699
+        ]
+      },
+      "delta": -0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 5,
+        "cross_only": 1,
+        "self_only": 0,
+        "both_wrong": 0,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "说": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": -0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 2,
+        "cross_only": 1,
+        "self_only": 0,
+        "both_wrong": 3,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "起": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": 0.3333,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 1,
+        "self_only": 3,
+        "both_wrong": 2,
+        "agreement": 0.3333,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 3,
+          "p_two_sided_exact": 0.625,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "过": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": 0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 2,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 3,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "还": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 4,
+        "rate": 0.6667,
+        "wilson95": [
+          0.3,
+          0.9032
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "delta": -0.5,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 3,
+        "self_only": 0,
+        "both_wrong": 2,
+        "agreement": 0.5,
+        "mcnemar": {
+          "b_cross_only": 3,
+          "c_self_only": 0,
+          "p_two_sided_exact": 0.25,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "这": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": 0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 2,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 3,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "道": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": 0.1666,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 4,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "那": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 0,
+        "rate": 0.0,
+        "wilson95": [
+          0.0,
+          0.3903
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "delta": 0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 0,
+        "self_only": 1,
+        "both_wrong": 5,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 0,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "都": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 1,
+        "rate": 0.1667,
+        "wilson95": [
+          0.0301,
+          0.5635
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 0,
+        "cross_only": 1,
+        "self_only": 1,
+        "both_wrong": 4,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "里": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 4,
+        "rate": 0.6667,
+        "wilson95": [
+          0.3,
+          0.9032
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 3,
+        "rate": 0.5,
+        "wilson95": [
+          0.1876,
+          0.8124
+        ]
+      },
+      "delta": -0.1667,
+      "paired": {
+        "n": 6,
+        "both_correct": 3,
+        "cross_only": 1,
+        "self_only": 0,
+        "both_wrong": 2,
+        "agreement": 0.8333,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 0,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    },
+    "面": {
+      "n": 6,
+      "cross": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "self": {
+        "n": 6,
+        "correct": 2,
+        "rate": 0.3333,
+        "wilson95": [
+          0.0968,
+          0.7
+        ]
+      },
+      "delta": 0.0,
+      "paired": {
+        "n": 6,
+        "both_correct": 1,
+        "cross_only": 1,
+        "self_only": 1,
+        "both_wrong": 3,
+        "agreement": 0.6667,
+        "mcnemar": {
+          "b_cross_only": 1,
+          "c_self_only": 1,
+          "p_two_sided_exact": 1.0,
+          "significant_at_0_05": false,
+          "method": "exact binomial on discordant pairs (双侧)"
+        }
+      }
+    }
+  },
+  "factorial_2x2": {
+    "model": "rate = mu + alpha*[题源=kimi] + beta*[猜题方=kimi] + gamma*[制谜方==猜题方]",
+    "cells": {
+      "kimi出题__kimi猜": {
+        "n": 298,
+        "rate": 0.5805,
+        "mode": "自测"
+      },
+      "kimi出题__u2猜": {
+        "n": 298,
+        "rate": 0.3658,
+        "mode": "交叉"
+      },
+      "u2出题__kimi猜": {
+        "n": 299,
+        "rate": 0.4147,
+        "mode": "交叉"
+      },
+      "u2出题__u2猜": {
+        "n": 299,
+        "rate": 0.3043,
+        "mode": "自测"
+      }
+    },
+    "effects": {
+      "baseline_mu": 0.25215,
+      "alpha_题源_kimi更易猜": 0.11365,
+      "beta_猜题能力_kimi减u2": 0.16255,
+      "gamma_自我熟悉净效应": 0.05215
+    },
+    "check": {
+      "gamma_equals_overall_delta": true,
+      "note": "总体「自测−交叉」差值在平衡设计下恒等于 gamma，因此 +5.21 pp 就是扣除两个主效应后的自我熟悉净优势"
+    },
+    "interpretation": "按制谜方分层时方向相反，不是「kimi 有自我偏好、u2 没有」，而是每次分层比较都同时把猜题方从 kimi 换成 u2：kimi 出题时自测=强猜手、交叉=弱猜手，差值 = +beta + gamma；u2 出题时自测=弱猜手、交叉=强猜手，差值 = -beta + gamma。两家其实共享同一个 gamma≈+5.2 pp 的自我优势，符号被 ±beta≈+16.3 pp 的猜题能力差翻转。",
+    "caveat": "描述性可加分解，两组题源不同（kimi 298 条 / u2 299 条）非严格配对；依赖「效应可加、无高阶交互」假设，未做回归或置信区间估计"
+  },
+  "quality": {
+    "self_format_bad": 0,
+    "self_api_error": 0,
+    "cross_format_bad": 0,
+    "cross_api_error": 0,
+    "self_elapsed_s": 5164.1,
+    "cross_elapsed_s": 6204.9,
+    "self_completion_tokens": 254037,
+    "cross_completion_tokens": 252355
+  },
+  "limitations": [
+    "同一模型在 11-05 出过这批谜，虽答题在全新进程/全新单轮对话、不携带出题上下文，但模型权重中可能残留同类训练语料或风格偏好，无法完全排除「非上下文的自我熟悉度」",
+    "两次调用相隔一天，服务端模型版本/负载可能微调；未固定 temperature/top_p（K3 不支持传入）",
+    "开放式单字作答存在地板效应，猜中率不等于谜题质量分",
+    "McNemar 检验只针对配对的不一致格，样本为 597 条，分层后单格数量较小需谨慎解读",
+    "自测与交叉盲测均为单次采样，未做多次重复以估计随机波动"
+  ]
+}
