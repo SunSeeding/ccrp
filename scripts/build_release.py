@@ -83,7 +83,10 @@ COPY_FILES = {
     "project-resourse/riddle-gen/04_generated/summary.json": "data/summary.json",
     "paper/riddle-paper.md": "paper/riddle-paper.md",
     "paper/riddle-paper-en.md": "paper/riddle-paper-en.md",
+    "paper/riddle-paper.html": "paper/riddle-paper.html",
+    "paper/riddle-paper-en.html": "paper/riddle-paper-en.html",
     "paper/riddle-paper.pdf": "paper/riddle-paper.pdf",
+    "paper/riddle-paper-en.pdf": "paper/riddle-paper-en.pdf",
     "build_release.py": "scripts/build_release.py",
     "verify_release.py": "scripts/verify_release.py",
 }

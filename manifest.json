@@ -60,8 +60,8 @@
       "withheld_rows": 4
     }
   },
-  "n_files": 37,
-  "total_bytes": 8982645,
+  "n_files": 42,
+  "total_bytes": 10467289,
   "files": [
     {
       "path": ".gitattributes",
@@ -74,14 +74,19 @@
       "sha256": "0c68c799d23d249061c4f06e187274aab92a5ee1068376775f97dbf5227bddef"
     },
     {
+      "path": ".zenodo.json",
+      "bytes": 2307,
+      "sha256": "1f60d49b88db99a4073b67c84f26d60f11f5287470871f6276d6d1831e26b254"
+    },
+    {
       "path": "CHANGELOG.md",
-      "bytes": 4131,
-      "sha256": "49763f3f1d220d38c18d82fc762334e3097b93d8bdde2230bddf89d335915fdb"
+      "bytes": 5446,
+      "sha256": "64bafc665eb200529ff740e7e4843041ce7d72d789ab096ec5cc2fa3712454de"
     },
     {
       "path": "CITATION.cff",
-      "bytes": 1670,
-      "sha256": "fb90905ac670b84adb45f32cee3aa02d92179391d9a3f31b05d2fe9633ec1396"
+      "bytes": 1895,
+      "sha256": "bc9fda5fd5803517e17ed0b58af5a2206470ef048da27c0cf4d5081216fc0ca4"
     },
     {
       "path": "data/blind-self.jsonl",
@@ -189,6 +194,11 @@
       "sha256": "45bd7c0e1cd64cfed2ed2c5d3358542fe0d710be35f261a874104208cb9bfd6d"
     },
     {
+      "path": "docs/ZENODO.md",
+      "bytes": 2281,
+      "sha256": "b95c42ff648dfad28e480ec8e0b4d09e7155cc30c7958ec2a801a34178d1c9fc"
+    },
+    {
       "path": "LICENSE",
       "bytes": 23075,
       "sha256": "47e1342d7edb1313064da41f0612debe720c14198f9a6c5ff18c006a86d80367"
@@ -204,34 +214,49 @@
       "sha256": "198cb2d2077d397e8ed6b5bb081f38fcd163b14dfe041933e3e69cc177c87da9"
     },
     {
+      "path": "paper/riddle-paper-en.html",
+      "bytes": 116596,
+      "sha256": "0a6d55a2d8f99eb4d8b85139a656b7eaa8e31263caf4f0977875a00f08c92f98"
+    },
+    {
       "path": "paper/riddle-paper-en.md",
-      "bytes": 81615,
-      "sha256": "e8959cb80325aecda19b900f37c80b0870ed0cb9b7403f909d618c1d650e5200"
+      "bytes": 81905,
+      "sha256": "cac0c63fb2425699952f7e5b31e7fc6b1431493a09e4a4f2b8d5c842b4521ba9"
+    },
+    {
+      "path": "paper/riddle-paper-en.pdf",
+      "bytes": 1261284,
+      "sha256": "ec5f227e9638a541c4241e729f29b38df7b44434ce7a1433cc2a47779c17863a"
+    },
+    {
+      "path": "paper/riddle-paper.html",
+      "bytes": 98312,
+      "sha256": "2fb003c7c0408d43a70741c60dbc04d92299bb724acb00e2fe24ffeb4f45ecba"
     },
     {
       "path": "paper/riddle-paper.md",
-      "bytes": 64628,
-      "sha256": "d3a9160dc3630c852a25bdf4546cd94f77abfadd8f0642095986bcf9ee83e494"
+      "bytes": 64838,
+      "sha256": "65a2e7e3d744df2cb095c2b4ed4de340360a0da358fb75b04fde560d5cdc3c40"
     },
     {
       "path": "paper/riddle-paper.pdf",
-      "bytes": 1278654,
-      "sha256": "5a187bd7d6c1d42a84fb24af56f984cfc1ace8d04bf0a3c375894deef21167c2"
+      "bytes": 1279122,
+      "sha256": "380aa3c8996b0405884d32b30a439e5039978e27f65ad6933cf04f80cddd75da"
     },
     {
       "path": "README.en.md",
-      "bytes": 12663,
-      "sha256": "2b003fb32d2950d9288fb2df391a92417dbd91d65081ca9f56288b16f8d8fe7d"
+      "bytes": 13276,
+      "sha256": "4f6625c8a2aed4180735262f77e9d79ca115cfa39fae0d1f9237601c06367fb7"
     },
     {
       "path": "README.md",
-      "bytes": 10481,
-      "sha256": "25d20e18d0bca5e17146dc3afe32f0a61c89f267dfacc00120b58e5093e81e8f"
+      "bytes": 11040,
+      "sha256": "af26d3fca6b54674a11ff18a9f57c547981f423bfeeb32ec6d08bc9616496dd6"
     },
     {
       "path": "scripts/build_release.py",
-      "bytes": 15975,
-      "sha256": "16afeb4f510f56d16b494a0d4300e8aa05f4281154b4068673a6fb59a3e550dc"
+      "bytes": 16159,
+      "sha256": "a40811680a8e2c883518ecac7b04ceaadcf4f0ff59bcaa22273f122c88ccc1cb"
     },
     {
       "path": "scripts/LICENSE",

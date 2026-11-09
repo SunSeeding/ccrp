@@ -468,7 +468,7 @@ K 隔一天完全复现，U 有三题翻转。这说明本实验的采样波动�
 
 **术语与外推边界。** 本文的「结构探针」是行为层探针，不提供内部表征层面的证据；C1–C6 判据是为汉字结构化操作任务定制的，是否适用于其他语言或任务需另行检验。
 
-**数据与伦理。** 本文配套数据集以「**汉字字谜探针数据集 / Chinese Character Riddle Probes Dataset（CCRP DataSet）v0.1**」于 2026-11-09 公开发布，发布者春芽数源（Spring Buds Data Source Inc.）。按目录分层许可：`data/` 为 **CC BY-NC-SA 4.0**（非商业、署名、相同方式共享，继承上游 CC-Riddle 的许可；§4(b) 数据库权使含其实质内容的数据库构成 Adapted Material），`scripts/` 为 MIT，`paper/` 与文档为 CC BY 4.0；上游三位作者的完整署名、许可链接、原库 URI 与「已做选取、重排、补解释」的修改声明见仓库 `THIRD_PARTY.md`。CC BY-NC-SA 4.0 **不是** OSI 认证的开源许可；免费公开仓库本身属 §1 定义的非商业行为，NC 约束的是下游商业使用。构建期参考集中的 31 条网络 UGC 谜面自带「仅本地/受限研究使用」标记，按方案 C 未随包发布，仅保留 SHA256 指纹（`data/WITHHELD.md`）；**本地研究产物一条未删**，离线站点与小游戏仍为本地/受限访问、不对外发布。全部公开产物经扫描不含明文凭据、不含本机绝对路径、不含第三方网页链接。本文未使用人类被试数据。
+**数据与伦理。** 本文配套数据集以「**汉字字谜探针数据集 / Chinese Character Riddle Probes Dataset（CCRP DataSet）v0.1**」于 2026-11-09 公开发布，发布者春芽数源（Spring Buds Data Source Inc.）。按目录分层许可：`data/` 为 **CC BY-NC-SA 4.0**（非商业、署名、相同方式共享，继承上游 CC-Riddle 的许可；§4(b) 数据库权使含其实质内容的数据库构成 Adapted Material），`scripts/` 为 MIT，`paper/` 与文档为 CC BY 4.0；上游三位作者的完整署名、许可链接、原库 URI 与「已做选取、重排、补解释」的修改声明见仓库 `THIRD_PARTY.md`。CC BY-NC-SA 4.0 **不是** OSI 认证的开源许可；免费公开仓库本身属 §1 定义的非商业行为，NC 约束的是下游商业使用。构建期参考集中的 31 条网络 UGC 谜面自带「仅本地/受限研究使用」标记，按方案 C 未随包发布，仅保留 SHA256 指纹（`data/WITHHELD.md`）；**本地研究产物一条未删**；离线站点与小游戏的**合规公开版**随 v0.1 发布于 GitHub Pages，其中 31 条网络 UGC 谜面、27 条站点解析、58 处网页链接与 28 条游戏题已按方案 C 下架；本地研究树仍保留完整构建期内容。全部公开产物经扫描不含明文凭据、不含本机绝对路径、不含第三方网页链接。本文未使用人类被试数据。
 
 ---
 
@@ -522,7 +522,7 @@ K 隔一天完全复现，U 有三题翻转。这说明本实验的采样波动�
 | `data/{provenance-generated,selftest-provenance}.jsonl` | 创作题与自测的溯源凭证（`no_url` 标记、输入快照哈希） |
 | `data/summary.json` | 流水线汇总与局限声明 |
 
-> §3.3 使用的 100 题四模型综合结果、120 题最高档标定与 27,517 条全量切片审计，属**评测集有效性审计的本地中间产物**，未随 CCRP DataSet v0.1 发布；其数字可依 §3.3 所述口径从上游公开语料 CC-Riddle 复算。构建期 `03_prompt/` 快照与离线站点同理，留在本地受限研究环境。发布包的 `input_snapshot_sha256` 保证创作条件仍可校验。
+> §3.3 使用的 100 题四模型综合结果、120 题最高档标定与 27,517 条全量切片审计，属**评测集有效性审计的本地中间产物**，未随 CCRP DataSet v0.1 发布；其数字可依 §3.3 所述口径从上游公开语料 CC-Riddle 复算。构建期 `03_prompt/` 快照留在本地受限研究环境；离线站点的合规过滤公开版发布于 GitHub Pages。发布包的 `input_snapshot_sha256` 保证创作条件仍可校验。
 
 **可复现性要点**：题集 seed 20261106、SHA256 `b16111d96d4609ae43d3d59824196342ae31178654aff366224e88597af8537f`；制谜 prompt 版本 `riddle-gen-skill-v0.2-full100`；全量源文件 SHA256 `3654d163f026e75702d7fccfe52afa21ee2bbb28019c8420720b02a991abbacd`；所有 LLM 生成内容记录模型 / prompt 版本 / 时间戳 / 输入快照哈希。驱动脚本：`riddle_gen_run.py`（制谜与交叉盲测）、`riddle_gen_selftest.py`（自测、配对分析、站点渲染）、`riddle_gen_icl_probe.py`（ICL 探针），三者互不覆盖、旧产物零改动。**重渲染站点请用 `riddle_gen_selftest.py --stage site`**，仅运行旧脚本的 `--stage site` 会回退到不含自测的版本。
 

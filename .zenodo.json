@@ -1,0 +1,46 @@
+{
+  "title": "汉字字谜探针数据集 / Chinese Character Riddle Probes Dataset (CCRP DataSet) v0.1",
+  "upload_type": "dataset",
+  "access_right": "open",
+  "license": "CC-BY-NC-SA-4.0",
+  "publication_date": "2026-11-09",
+  "version": "0.1",
+  "language": "zho",
+  "creators": [
+    {
+      "name": "Spring Buds Data Source Inc.",
+      "affiliation": "春芽数源"
+    }
+  ],
+  "description": "A 100-character Chinese character riddle dataset for behavioural structural probing of large language models. Contains 1,019 CC-Riddle-derived reference riddles with character-structure cards, 600 model-authored riddles with quality-control verdicts, a 597-item generation-solving closed loop (cross-model blind test and same-item self-test), a 2x2 factorial decomposition, and a 24-item ICL control task (192 API calls). Includes the accompanying paper in Chinese and English. This is a diagnostic probe, NOT a ranking benchmark: the off-the-shelf 100-item public slice has no ranking validity. 31 web-sourced clues of unspecified license are withheld from this public package (fingerprint-only ledger). Data: CC BY-NC-SA 4.0; scripts: MIT; paper and docs: CC BY 4.0.",
+  "keywords": [
+    "Chinese character riddles",
+    "structural probe",
+    "large language models",
+    "behavioural probe",
+    "control task",
+    "generation-solving closed loop",
+    "in-context learning",
+    "dataset",
+    "CC-Riddle",
+    "字谜"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://arxiv.org/abs/2206.13778",
+      "relation": "isDerivedFrom",
+      "resource_type": "dataset"
+    },
+    {
+      "identifier": "https://github.com/pku0xff/CC-Riddle",
+      "relation": "isDerivedFrom",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "https://github.com/SunSeeding/ccrp",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    }
+  ],
+  "notes": "Upstream corpus: Fan Xu, Yunxiang Zhang, Xiaojun Wan, CC-Riddle: A Question Answering Dataset of Chinese Character Riddles, arXiv:2206.13778, CC BY-NC-SA 4.0. We selected, reorganized and augmented it (attribution and modification notice: THIRD_PARTY.md). 31 web UGC clues are withheld under Scheme C; see data/WITHHELD.md. This is a diagnostic probe and must not be used for cross-model ability rankings."
+}

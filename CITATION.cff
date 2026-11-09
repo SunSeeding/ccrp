@@ -32,6 +32,10 @@ keywords:
   - dataset
 repository-code: "https://github.com/SunSeeding/ccrp"
 url: "https://github.com/SunSeeding/ccrp"
+# Zenodo DOI is intentionally omitted until the deposition is published.
+# After Zenodo assigns 10.5281/zenodo.<id>, uncomment and fill:
+# doi: "10.5281/zenodo.<id>"
+# See docs/ZENODO.md for the archiving and backfill procedure.
 preferred-citation:
   type: article
   title: "汉字字谜能否成为大语言模型的结构探针？"
@@ -41,5 +45,5 @@ preferred-citation:
   year: 2026
   note: >-
     English translation: "Can Chinese Character Riddles Serve as Structural
-    Probes for Large Language Models?". Both editions are included in this
-    repository as paper/riddle-paper.md and paper/riddle-paper-en.md.
+    Probes for Large Language Models?". Both editions are included as
+    paper/riddle-paper{,-en}.md, with typeset .html and .pdf editions.

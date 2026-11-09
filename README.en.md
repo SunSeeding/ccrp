@@ -1,7 +1,7 @@
 # Chinese Character Riddle Probes Dataset (CCRP DataSet) v0.1
 
 **汉字字谜探针数据集** ｜ short name **CCRP DataSet** ｜ version **0.1** (2026-11-09)
-Publisher: **Spring Buds Data Source Inc. / 春芽数源** ｜ Repository: https://github.com/SunSeeding/ccrp
+Publisher: **Spring Buds Data Source Inc. / 春芽数源** ｜ Repository: https://github.com/SunSeeding/ccrp ｜ Live site: https://sunseeding.github.io/ccrp/
 
 > **Data license: `data/` is CC BY-NC-SA 4.0 (NonCommercial · Attribution · ShareAlike)**; `scripts/` is MIT, `paper/` and docs are CC BY 4.0. The GitHub sidebar shows `Other` because the platform's detector does not include CC-BY-NC-SA-4.0 (only CC-BY-4.0 / CC-BY-SA-4.0 / CC0-1.0). This does **not** mean the data is commercially usable, MIT, or public domain. See the root `LICENSE` (official CC legal code) and the §5 license map.
 
@@ -118,6 +118,12 @@ public-corpus memorization contamination.
 │   ├── icl-probe-*                 frozen items / exemplars / 192 calls / analysis
 │   └── summary.json                pipeline summary and limitations
 ├── paper/                          Chinese + English papers (CC BY 4.0)
+│   ├── riddle-paper.md             Chinese original
+│   ├── riddle-paper.html           typeset Chinese HTML (4 figures)
+│   ├── riddle-paper.pdf            Chinese PDF
+│   ├── riddle-paper-en.md          full English translation
+│   ├── riddle-paper-en.html        typeset English HTML
+│   └── riddle-paper-en.pdf         English PDF
 ├── docs/DATASHEET.md               datasheet
 └── scripts/                        MIT
     ├── build_release.py             export this package from the local research tree
@@ -203,7 +209,9 @@ modification notice is in `THIRD_PARTY.md`; retain it when redistributing
 (CC BY-NC-SA 4.0 §3(a)).
 
 Machine-readable citation: `CITATION.cff`; its `repository-code` / `url`
-fields point to this repository.
+fields point to this repository. A **Zenodo DOI will be backfilled after the
+deposition is published** (metadata pre-filled in `.zenodo.json`; procedure in
+`docs/ZENODO.md`). No DOI is invented before it exists.
 
 ---
 

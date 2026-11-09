@@ -1,7 +1,7 @@
 # 汉字字谜探针数据集 · CCRP DataSet v0.1
 
 **Chinese Character Riddle Probes Dataset** ｜ 简称 **CCRP DataSet** ｜ 版本 **0.1**（2026-11-09）
-发布机构：**春芽数源 / Spring Buds Data Source Inc.**　｜　仓库：https://github.com/SunSeeding/ccrp
+发布机构：**春芽数源 / Spring Buds Data Source Inc.**　｜　仓库：https://github.com/SunSeeding/ccrp　｜　在线站点：https://sunseeding.github.io/ccrp/
 
 > **数据许可：`data/` 为 CC BY-NC-SA 4.0（非商业 · 署名 · 相同方式共享）**；`scripts/` 为 MIT，`paper/` 与文档为 CC BY 4.0。GitHub 侧栏显示 `Other`，是因平台识别库不含 CC-BY-NC-SA-4.0（仅有 CC-BY-4.0 / CC-BY-SA-4.0 / CC0-1.0），**不代表数据可商用、属 MIT 或公有领域**。以根 `LICENSE`（含 CC 官方完整法律文本）与 §4 许可地图为准。
 
@@ -75,6 +75,12 @@ python -c "import json,collections;print(collections.Counter((r['correct'] for r
 │   ├── icl-probe-*                 ICL 冻结题集 / 示例 / 192 次调用 / 分析
 │   └── summary.json                流水线汇总与限制声明
 ├── paper/                          中英论文（CC BY 4.0）
+│   ├── riddle-paper.md             中文原稿
+│   ├── riddle-paper.html           中文排版 HTML（4 幅示意图）
+│   ├── riddle-paper.pdf            中文 PDF
+│   ├── riddle-paper-en.md          英文全译
+│   ├── riddle-paper-en.html        英文排版 HTML
+│   └── riddle-paper-en.pdf         英文 PDF
 ├── docs/DATASHEET.md               数据卡片
 └── scripts/                        MIT
     ├── build_release.py             从本地研究树导出本发布包
@@ -128,7 +134,7 @@ v0.1 采用**方案 C：导出时下架，本地研究与既有产物一条不�
 
 上游必署：Fan Xu, Yunxiang Zhang, Xiaojun Wan（北京大学王选计算机研究所文本挖掘与语言计算组），*CC-Riddle: A Question Answering Dataset of Chinese Character Riddles*, arXiv:2206.13778，CC BY-NC-SA 4.0。**本数据集对其做了选取、重排与补充说明**，完整署名与修改声明见 `THIRD_PARTY.md`（§3(a) 要求，再分发请保留）。
 
-机器可读引用见 `CITATION.cff`，其中 `repository-code` / `url` 已回填为本仓库地址。
+机器可读引用见 `CITATION.cff`，其中 `repository-code` / `url` 已回填为本仓库地址。**Zenodo 归档 DOI 待发布后回填**（`.zenodo.json` 已预置元数据，步骤见 `docs/ZENODO.md`；当前不编造 DOI）。
 
 ---
 
