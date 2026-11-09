@@ -1,5 +1,13 @@
 # Changelog / 更新记录
 
+## v0.1.1 — 2026-11-09（文档补丁 / documentation patch）
+
+**数据集内容与 v0.1.0 完全一致**：所有 `data/` 文件、论文、脚本、实验数字零改动。数据集版本号仍为 **0.1**；`v0.1.1` 只是本仓库的补丁发布号（tag / GitHub Release），符合「已发布版本不改写、修复走新版本」的语义化版本惯例。
+
+- 中英 README 首屏把「仓库」与「在线站点」两个裸 URL 从同一行拆为各自独立一行，改用 GFM 尖括号显式链接 `<https://…>`。此前渲染器会因全角空格 + `｜` 把两者粘连成一个超链；**URL 本身从未写错**。
+- 清理 Roadmap 中 4 条本版本已完成却仍列为「计划」的条目；ZENODO 指引补充「多个 Release 时以最新补丁版归档」的说明。
+- 与 `v0.1.0` 相比，仅 `README.md` / `README.en.md` / `CHANGELOG.md` / `docs/ZENODO.md` / `CITATION.cff` / `manifest.json` 发生变化，其余文件逐字节相同；完整性可用包内 `scripts/verify_release.py` 与 `manifest.json` 复算。
+
 ## v0.1 — 2026-11-09
 
 首次公开发布（First public release）。
@@ -29,9 +37,9 @@
 - ICL 探针 n=24/格，所有 McNemar *p* ≥ 0.125，仅作方向性信号。
 - hy4 / deepseek-v4-pro 因 HTTP 402 未参与闭环实验；本仓库不含任何训练实验。
 
-## v0.1 发布后修订 — 2026-11-09（版本号不变）
+## v0.1.0 发布当日修订（数据内容不变）
 
-公开后体检发现两处会误导读者的问题，已在本版本中修正，数据内容与全部实验数字**未改动**：
+公开后体检发现两处会误导读者的问题，已修正，数据内容与全部实验数字**未改动**：
 
 - **GitHub 侧栏误标 MIT**：根目录 `LICENSE` 原为 MIT 全文，被 GitHub 自动识别为整个仓库的许可。现改为仓库级多许可总览（主体 CC BY-NC-SA 4.0），MIT 全文移至 `scripts/LICENSE`；`THIRD_PARTY.md` / `LICENSE-DATA` / `LICENSE-DOCS` 与中英 README 的引用已同步。
 - **`data/summary.json` 的 `scope` 字段**仍写「本地/受限访问，不对外发布」。导出器现在于导出时把该字段重写为公开发布口径，并附 `release_scope_note`；**本地研究用的 `04_generated/summary.json` 一条未改**。
@@ -41,7 +49,7 @@
 - **（15:45 补充）站点合规公开版 + 论文联动**：论文中英两版 §7 与附录 A 的「站点不对外发布」改为「合规公开版发布于 GitHub Pages」；重生成中英 HTML/PDF、重跑 `verify_paper.py`（PASS）、重跑 `publish_site.py`、同步重生成「一图看懂」长图。新增 `build_pages.py` 导出 gh-pages 分支内容：下架 31 条 UGC 谜面文本 / 26 处网页 URL / 28 条游戏题，`data.json` 参考集 1,019 条、题库 1,541 条，残留扫描 0。本地研究树一条未删。
 - **（15:50 补充）Zenodo 归档准备**：新增 `.zenodo.json`（机构署名、CC-BY-NC-SA-4.0、上游关联标识、关键词）与 `docs/ZENODO.md`（归档与 DOI 回填步骤）。**DOI 尚未产生，不编造**；`CITATION.cff` 与中英 README 已预留回填位置。
 - **（15:50 补充）v0.1.0 tag 与 GitHub Release**：整包 zip + 中英 PDF 作为附件；Release 与 About 描述、topics、Pages 通过 GitHub API 设置。
-- **（16:05 补充）README 首屏链接拆分**：中英 README 原把「仓库」与「在线站点」两个裸 URL 写在同一行、以全角空格和 `｜` 分隔，渲染器的自动链接会把两者粘连成一个超链。现改为各自独立一行，并使用 GFM 尖括号显式链接 `<https://…>`；两处 URL 本身均未变更。顺带清理 Roadmap 中已于本版本完成的条目。
+- **（16:05 补充）README 首屏链接拆分**：此修复已作为 **v0.1.1 补丁**正式发布，详见本文件顶部 v0.1.1 节。
 
 ## 计划 / Roadmap (v0.2+)
 

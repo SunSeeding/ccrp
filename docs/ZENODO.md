@@ -8,7 +8,7 @@
 
 1. 用 GitHub 账号登录 <https://zenodo.org>（如无 Zenodo 账号，先完成 OAuth 授权）。
 2. 打开 <https://zenodo.org/account/settings/github/>，在仓库列表里启用 **`SunSeeding/ccrp`**。
-3. 在 GitHub 发布一个 Release（本版本已打 `v0.1.0` tag 并创建 Release）。启用集成后，Zenodo 会自动为该 Release 创建一个 deposition；也可以手动点 **Deposit new upload → Import from GitHub**。
+3. 在 GitHub 发布一个 Release（本仓库已有 `v0.1.0` 首次发布与 `v0.1.1` 文档补丁两个 Release）。启用集成后，Zenodo 会自动为 Release 创建 deposition；**建议只归档最新的 `v0.1.1`**，它与 `v0.1.0` 的数据内容完全相同、但文档更正确。若两个 deposition 都已生成，请在 Zenodo 侧把其中一个作为另一个的新版本（New version）或直接删去多余的草稿，避免产生两个独立 concept DOI；也可以手动点 **Deposit new upload → Import from GitHub** 并显式选择 `v0.1.1`。
 4. 检查 deposition 表单：标题、机构署名、许可 `CC BY-NC-SA-4.0`、关键词、上游 CC-Riddle 关联标识应从 `.zenodo.json` 自动载入。**确认许可字段正确**（多许可仓库以数据主体许可为准）。
 5. 点 **Publish**。发布后 Zenodo 分配 DOI，形如 `10.5281/zenodo.<数字>`。
 6. 把 DOI 交给维护者（或在本仓库提 issue），执行回填。

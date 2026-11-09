@@ -2,6 +2,8 @@ cff-version: 1.2.0
 message: "If you use CCRP DataSet, please cite this dataset and the accompanying paper."
 title: "Chinese Character Riddle Probes Dataset (CCRP DataSet)"
 type: dataset
+# The dataset content version is 0.1 and does not change between patch
+# releases. v0.1.1 is a documentation-only repository patch (see CHANGELOG.md).
 version: "0.1"
 date-released: "2026-11-09"
 license:
