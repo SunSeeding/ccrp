@@ -61,7 +61,7 @@
     }
   },
   "n_files": 42,
-  "total_bytes": 10472706,
+  "total_bytes": 10476180,
   "files": [
     {
       "path": ".gitattributes",
@@ -80,13 +80,13 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 7121,
-      "sha256": "14bb864c062618781731b5f2eecf1169513925741c1de374064c352d04cdbb74"
+      "bytes": 7804,
+      "sha256": "86f4f85f210f9087c308e407f49fa5fda1eed61270191877f0fe4d20635f513d"
     },
     {
       "path": "CITATION.cff",
-      "bytes": 2046,
-      "sha256": "eb21e9047ef315e660e3cae44c49f5702ee8206616dd853b1d56c2642a49f309"
+      "bytes": 2050,
+      "sha256": "bd60b536f508c0b0ecf33630d177cd3d6ee614320ee0219f65714d2cb1340522"
     },
     {
       "path": "data/blind-self.jsonl",
@@ -190,13 +190,13 @@
     },
     {
       "path": "docs/DATASHEET.md",
-      "bytes": 10429,
-      "sha256": "45bd7c0e1cd64cfed2ed2c5d3358542fe0d710be35f261a874104208cb9bfd6d"
+      "bytes": 10640,
+      "sha256": "62e30dd55fad012189f8eb8fb43ffe8e1da1e71b6ab4c6c7a6b8b32ea994fd81"
     },
     {
       "path": "docs/ZENODO.md",
-      "bytes": 5884,
-      "sha256": "1a14d09c35a0e386f62769aab3c5d41121d9ee41c7c1647137dc6dbb587b0dbc"
+      "bytes": 7420,
+      "sha256": "c75e9c0a1f6963524275c6f0f0d537a39ed71e0f1f304544493fb248b843afda"
     },
     {
       "path": "LICENSE",
@@ -245,13 +245,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 13274,
-      "sha256": "bd72face95b42821d76280350f09085637e7d2d3293007008cae82dbdce32389"
+      "bytes": 13808,
+      "sha256": "a1290881c4e22ee523f83799a2e182380632db721ba6edb053d6ddd26c506c60"
     },
     {
       "path": "README.md",
-      "bytes": 11030,
-      "sha256": "95b8b56bc1dd30c1aedadf443d6e6fe67c4f7ef01242a15bbd1b2b5b170cfeac"
+      "bytes": 11536,
+      "sha256": "e4aeebda5c46cbd21fcc2d62a033446d97a7c7ddd46824ec4eba413b38ec49b5"
     },
     {
       "path": "scripts/build_release.py",

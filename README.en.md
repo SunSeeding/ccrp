@@ -7,6 +7,8 @@ Repository: <https://github.com/SunSeeding/ccrp>
 
 Live site: <https://sunseeding.github.io/ccrp/>
 
+Zenodo archive DOI: <https://doi.org/10.5281/zenodo.24077793>
+
 > **Data license: `data/` is CC BY-NC-SA 4.0 (NonCommercial · Attribution · ShareAlike)**; `scripts/` is MIT, `paper/` and docs are CC BY 4.0. The GitHub sidebar shows `Other` because the platform's detector does not include CC-BY-NC-SA-4.0 (only CC-BY-4.0 / CC-BY-SA-4.0 / CC0-1.0). This does **not** mean the data is commercially usable, MIT, or public domain. See the root `LICENSE` (official CC legal code) and the §5 license map.
 
 > A research dataset for studying Chinese character riddles as a **behavioral
@@ -198,9 +200,10 @@ scope for v0.1.
   title  = {Chinese Character Riddle Probes Dataset (CCRP DataSet)},
   author = {{Spring Buds Data Source Inc.}},
   year   = {2026},
+  doi    = {10.5281/zenodo.24077793},
   note   = {Version 0.1. Upstream corpus: CC-Riddle, arXiv:2206.13778,
             licensed CC BY-NC-SA 4.0. Selected, reorganized and augmented.},
-  url    = {https://github.com/SunSeeding/ccrp}
+  url    = {https://doi.org/10.5281/zenodo.24077793}
 }
 ```
 
@@ -212,10 +215,17 @@ reorganized and augmented their corpus. The full attribution and
 modification notice is in `THIRD_PARTY.md`; retain it when redistributing
 (CC BY-NC-SA 4.0 §3(a)).
 
-Machine-readable citation: `CITATION.cff`; its `repository-code` / `url`
-fields point to this repository. A **Zenodo DOI will be backfilled after the
-deposition is published** (metadata pre-filled in `.zenodo.json`; procedure in
-`docs/ZENODO.md`). No DOI is invented before it exists.
+Machine-readable citation: `CITATION.cff`. **Long-term archiving is complete**:
+the version DOI [`10.5281/zenodo.24077793`](https://doi.org/10.5281/zenodo.24077793)
+resolves permanently to this v0.1 deposit, while the concept DOI
+[`10.5281/zenodo.24077792`](https://doi.org/10.5281/zenodo.24077792) resolves
+to all versions of the record. **Cite a specific version using the version DOI.**
+
+The deposited object is `CCRP-DataSet-v0.1.1.zip` (MD5
+`8f367d19cc2560cfbe13f2ab1c80cb05`, byte-identical to the GitHub `v0.1.1`
+Release asset); this repository and the live site are distribution copies of
+the same version. Per-file SHA256: `manifest.json`. Deposit procedure and a
+metadata cross-check: `docs/ZENODO.md`.
 
 ---
 

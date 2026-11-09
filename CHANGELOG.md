@@ -8,6 +8,7 @@
 - 清理 Roadmap 中 4 条本版本已完成却仍列为「计划」的条目；ZENODO 指引补充「多个 Release 时以最新补丁版归档」的说明。
 - 与 `v0.1.0` 相比，仅 `README.md` / `README.en.md` / `CHANGELOG.md` / `docs/ZENODO.md` / `CITATION.cff` / `manifest.json` 发生变化，其余文件逐字节相同；完整性可用包内 `scripts/verify_release.py` 与 `manifest.json` 复算。
 - **（16:35 main 后续修订，未打新 tag）Zenodo 元数据与归档指引校正**：核实 Zenodo 新版（InvenioRDM）后，`.zenodo.json` 的 `license` 改为词汇表 id `cc-by-nc-sa-4.0`、关系标识改为 `isderivedfrom` / `issupplementto`；`docs/ZENODO.md` 重写为新版流程（Sync now 不归档、启用前的 Release 不回溯、自动集成立即发布无草稿），并补表单速查表。仅文档与元数据，数据 / 论文 / 脚本零改动；`v0.1.1` tag 与 Release 附件仍是发布时快照。
+- **（v0.1.1 发布后 main 后续修订，未打新 tag）Zenodo 归档完成与 DOI 回填**：手动上传 `CCRP-DataSet-v0.1.1.zip` 为 **Dataset** 记录，`status=published`；版本 DOI **`10.5281/zenodo.24077793`**，概念 DOI `10.5281/zenodo.24077792`。`CITATION.cff`、中英 README 首屏与引用段、本文件、`docs/ZENODO.md`、`docs/DATASHEET.md` 与 GitHub `v0.1.0` / `v0.1.1` Release 正文已回填；`.zenodo.json` **故意不写 `doi` 字段**（GitHub 自动集成会读该文件，写入已存在的 DOI 会与新归档冲突）。归档包与 `v0.1.1` Release 附件逐字节相同（3,035,750 B / MD5 `8f367d19cc2560cfbe13f2ab1c80cb05`），**未改写已发布 tag、未替换 Release 附件**；数据 / 论文 / 脚本零改动，仅文档与 `manifest.json` 变化。
 
 ## v0.1 — 2026-11-09
 
@@ -56,4 +57,3 @@
 
 - 重建 1,000 条按谜底字分层、SHA256 冻结的 test 集；补人工谜面质量与谜底唯一性评审。
 - 一图看懂长图与站点界面的英文化。
-- Zenodo 归档发布：元数据已备，等待账号授权后取得 DOI 并回填 `CITATION.cff` 与中英 README。

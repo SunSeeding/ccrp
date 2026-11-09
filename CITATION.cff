@@ -33,11 +33,11 @@ keywords:
   - in-context learning
   - dataset
 repository-code: "https://github.com/SunSeeding/ccrp"
-url: "https://github.com/SunSeeding/ccrp"
-# Zenodo DOI is intentionally omitted until the deposition is published.
-# After Zenodo assigns 10.5281/zenodo.<id>, uncomment and fill:
-# doi: "10.5281/zenodo.<id>"
-# See docs/ZENODO.md for the archiving and backfill procedure.
+url: "https://doi.org/10.5281/zenodo.24077793"
+# Zenodo version DOI for the published v0.1 deposit (2026-11-09).
+# The concept DOI 10.5281/zenodo.24077792 resolves to all versions of this record.
+# Citation and archiving notes: docs/ZENODO.md.
+doi: "10.5281/zenodo.24077793"
 preferred-citation:
   type: article
   title: "汉字字谜能否成为大语言模型的结构探针？"

@@ -7,6 +7,8 @@
 
 在线站点：<https://sunseeding.github.io/ccrp/>
 
+Zenodo 归档 DOI：<https://doi.org/10.5281/zenodo.24077793>
+
 > **数据许可：`data/` 为 CC BY-NC-SA 4.0（非商业 · 署名 · 相同方式共享）**；`scripts/` 为 MIT，`paper/` 与文档为 CC BY 4.0。GitHub 侧栏显示 `Other`，是因平台识别库不含 CC-BY-NC-SA-4.0（仅有 CC-BY-4.0 / CC-BY-SA-4.0 / CC0-1.0），**不代表数据可商用、属 MIT 或公有领域**。以根 `LICENSE`（含 CC 官方完整法律文本）与 §4 许可地图为准。
 
 > 面向「汉字字谜作为大语言模型**行为层结构探针**」的研究数据集：100 个高频简化汉字、参考谜面与结构卡、模型创作谜面、生成–求解闭环、2×2 全因子分解与 ICL 控制任务的全部逐题记录。
@@ -130,15 +132,18 @@ v0.1 采用**方案 C：导出时下架，本地研究与既有产物一条不�
   title  = {Chinese Character Riddle Probes Dataset (CCRP DataSet)},
   author = {{Spring Buds Data Source Inc.}},
   year   = {2026},
+  doi    = {10.5281/zenodo.24077793},
   note   = {Version 0.1. Upstream corpus: CC-Riddle, arXiv:2206.13778,
             licensed CC BY-NC-SA 4.0. Selected, reorganized and augmented.},
-  url    = {https://github.com/SunSeeding/ccrp}
+  url    = {https://doi.org/10.5281/zenodo.24077793}
 }
 ```
 
 上游必署：Fan Xu, Yunxiang Zhang, Xiaojun Wan（北京大学王选计算机研究所文本挖掘与语言计算组），*CC-Riddle: A Question Answering Dataset of Chinese Character Riddles*, arXiv:2206.13778，CC BY-NC-SA 4.0。**本数据集对其做了选取、重排与补充说明**，完整署名与修改声明见 `THIRD_PARTY.md`（§3(a) 要求，再分发请保留）。
 
-机器可读引用见 `CITATION.cff`，其中 `repository-code` / `url` 已回填为本仓库地址。**Zenodo 归档 DOI 待发布后回填**（`.zenodo.json` 已预置元数据，步骤见 `docs/ZENODO.md`；当前不编造 DOI）。
+机器可读引用见 `CITATION.cff`。**长期归档已完成**：版本 DOI [`10.5281/zenodo.24077793`](https://doi.org/10.5281/zenodo.24077793) 固定指向本次 v0.1 归档；概念 DOI [`10.5281/zenodo.24077792`](https://doi.org/10.5281/zenodo.24077792) 指向该记录的所有版本。**引用具体版本请用版本 DOI**。
+
+归档对象为 `CCRP-DataSet-v0.1.1.zip`（MD5 `8f367d19cc2560cfbe13f2ab1c80cb05`，与 GitHub `v0.1.1` Release 附件逐字节相同）；GitHub 仓库与在线站点是同一版本的分发副本。逐文件 SHA256 见 `manifest.json`，归档步骤与记录元数据核对见 `docs/ZENODO.md`。
 
 ---
 

@@ -115,7 +115,8 @@
 - 维护者：春芽数源 / Spring Buds Data Source Inc.；问题与下架请求通过仓库 issue 提交。
 - 版本策略：数据内容只增不改；若必须修正，发新版本并在 `CHANGELOG.md` 记录，`manifest.json` 全量重算。
 - 衍生版本须沿用 CC BY-NC-SA 4.0（§4(b) 数据库权 / §3(b) ShareAlike）。
-- v0.2 计划见 `CHANGELOG.md`（分层冻结的 1,000 条 test 集、人工质量评审、英文 HTML/PDF、合规站点版、Zenodo DOI）。
+- 长期归档：v0.1 已发布 Zenodo Dataset 记录，版本 DOI `10.5281/zenodo.24077793`、概念 DOI `10.5281/zenodo.24077792`；引用口径与后续版本流程见 `docs/ZENODO.md`。
+- v0.2 计划见 `CHANGELOG.md`（分层冻结的 1,000 条 test 集、人工谜面质量与谜底唯一性评审、一图看懂长图与站点界面英文化）。
 
 ---
 

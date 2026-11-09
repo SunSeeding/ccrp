@@ -1,73 +1,83 @@
-# Zenodo 归档与 DOI（v0.1）
+# Zenodo 归档与 DOI（v0.1）— 已归档
 
-本文件说明如何为 CCRP DataSet v0.1 取得长期归档 DOI。**DOI 目前尚不存在，仓库中任何位置都没有编造 DOI**；拿到真实 DOI 后再回填 `CITATION.cff` 与 README。
+> **状态：已发布（2026-11-09）。** 下列 DOI、记录 ID 与校验值均来自 Zenodo API 实时查询，**没有编造任何 DOI 或 URL**。
 
-元数据已预置在仓库根目录 `.zenodo.json`；若走 GitHub 集成，Zenodo 只使用该文件（`CITATION.cff` 会被忽略）。本文件按 **Zenodo 新版（InvenioRDM）** 行为编写，2026-11-09 核实。
+| 项目 | 值 |
+|---|---|
+| 记录页 | <https://zenodo.org/records/24077793> |
+| **版本 DOI**（引用具体版本用这个） | [`10.5281/zenodo.24077793`](https://doi.org/10.5281/zenodo.24077793) |
+| 概念 DOI（指向该记录的全部版本） | [`10.5281/zenodo.24077792`](https://doi.org/10.5281/zenodo.24077792) |
+| 记录 ID / 概念记录 ID | `24077793` / `24077792` |
+| 资源类型 / 访问权 | `Dataset` / `open` |
+| 状态 | `status=published`、`state=done`（非草稿） |
+| 发布日期 | 2026-11-09 |
+| 归档文件 | `CCRP-DataSet-v0.1.1.zip`（记录中唯一文件） |
+| 归档文件体积 / 指纹 | 3,035,750 B；MD5 `8f367d19cc2560cfbe13f2ab1c80cb05`（与 Zenodo API `files[].checksum` 一致） |
 
-## 关键事实：启用集成 ≠ 已归档
+## 1. 归档对象与一致性
+
+- 归档 ZIP 就是 GitHub `v0.1.1` Release 的首个附件，**逐字节相同**；内含 **43 个文件**、解压后 10,477,142 B，逐文件 SHA256 见包内 `manifest.json`。
+- 离线复算：`cd CCRP-DataSet-v0.1.1 && python scripts/verify_release.py .`（零依赖、不联网）；ZIP 指纹可用 `md5sum CCRP-DataSet-v0.1.1.zip` 核对。
+- Zenodo **已发布记录的文件不可修改**（换文件必须 New version，会产生新的版本 DOI）。因此 DOI 回填**只改仓库文档与 Release 正文**：不重建 ZIP、不替换 Release 附件、不改写已发布 tag。`main` 上的文档是后续补丁，`v0.1.1` tag / Release 附件 / Zenodo 记录三者仍是同一份字节快照。
+
+## 2. 引用口径
+
+- 版本 DOI `10.5281/zenodo.24077793` 固定指向本次 v0.1 归档；论文、BibTeX、`CITATION.cff` **一律用它**。
+- 概念 DOI `10.5281/zenodo.24077792` 解析到该记录的最新版本，只适合「引用这个数据集、不限版本」的场合。
+- GitHub 仓库、Release 附件与在线站点是**同一版本的分发副本**，不是第二个归档对象；引用中不要并列两个 DOI。
+
+## 3. 回填清单（已完成）
+
+| 文件 / 位置 | 改动 |
+|---|---|
+| `CITATION.cff` | 顶层 `doi: "10.5281/zenodo.24077793"`，`url` 改为 DOI 解析页，`repository-code` 仍指仓库；注释记录概念 DOI |
+| `README.md` / `README.en.md` | 首屏新增归档 DOI 行；BibTeX 加 `doi` 并改用 DOI `url`；引用章节说明版本 DOI / 概念 DOI 与归档 ZIP 指纹 |
+| `CHANGELOG.md` | `v0.1.1` 节补记归档与回填（main 后续修订、未打新 tag），Roadmap 删除已完成的 Zenodo 待办 |
+| `docs/DATASHEET.md` | 维护章节写入两个 DOI，v0.2 计划移除已完成的英文 HTML/PDF、合规站点版、Zenodo DOI |
+| `docs/ZENODO.md` | 本文件：由「待归档指引」改写为「已归档事实 + 元数据核对 + 后续版本流程」 |
+| GitHub `v0.1.0` / `v0.1.1` Release 正文 | 追加 DOI 徽章与链接、更正「待回填」措辞；**tag 与 4 个附件零改动** |
+| `.zenodo.json` | **故意不写 `doi` 字段**：该文件仅供 GitHub 自动集成读取，写入已存在的 DOI 会与未来自动归档冲突；本次走手动上传，不读它 |
+
+回填后执行 `python -u build_release.py`（统一 LF 后重算 `manifest.json`）与 `python scripts/verify_release.py .`；提交只推 `main`。
+
+## 4. 记录元数据核对 —— 维护者待修正
+
+Zenodo API 返回的记录只带最小元数据，与仓库口径有偏差：
+
+| 字段 | 记录现值 | 应有值 / 依据 | 影响 |
+|---|---|---|---|
+| `title` | `CCRP-DataSet-v0.1.1`（上传文件名） | `.zenodo.json` 的正式中英标题 | 引用展示不佳 |
+| `creators` | `Spring Buds Data Source` | `Spring Buds Data Source Inc.`（机构署名，affiliation 可填「春芽数源」） | 署名不一致 |
+| **`license`** | **`cc-by-4.0`** | **`cc-by-nc-sa-4.0`**（`data/`）；`scripts/` MIT、论文/文档 CC BY 4.0 写进 Description / Notes | **实质冲突**：记录页会显示可商用的 CC BY 4.0，与包内许可相反 |
+| `description` / `notes` / `keywords` / `related_identifiers` / `version` / `language` | 缺失 | 直接复制 `.zenodo.json` 对应字段 | 可发现性、上游署名、分层许可说明缺失 |
+| `resource_type` / `access_right` | `Dataset` / `open` ✅ | 保持不变 | 正确 |
+
+**修正方式**（Zenodo 官方 Help《Manage records》《About records》）：已发布记录的**元数据可随时编辑**，在记录页点 **Edit** → 改完点 Publish 即可，**DOI 不变、不需要新版本、附件不动**；只有**文件与 DOI 不可改**。因此这里不需要重新上传 ZIP、也不应发 `v0.1.2`。修正前，任何许可判断**一律以包内根 `LICENSE`（CC 官方完整法律文本）、`LICENSE-DATA` 与 README 许可地图为准**；Zenodo 页面上的 `CC BY 4.0` 是建表时的默认选项，不是授权声明。
+
+> 早前本文件写的「发布后元数据不可改，只能发新版本」并不准确（该说法只适用于文件）。已按官方说明更正，特此留痕。
+
+## 5. 为什么走手动上传（历史决策，供复查）
 
 | 事实 | 依据 / 实测 |
 |---|---|
-| 仓库打开 `On` 只是**安装 webhook** | 实测 `SunSeeding/ccrp` 的 hook 指向 `zenodo.org/api/hooks/receivers/github/events/`，`active=true`；最近投递只有 1 次 `ping`（202），**无任何 `release` 事件** |
-| **Sync now 只刷新仓库列表**，不产生归档 | Zenodo 官方《Enable a repository》：Sync now 是「找到要启用的仓库」这一步 |
-| **不会回溯**启用前已发布的 Release | Zenodo 官方 FAQ：「Only the repositories which were enabled before a release was made will be archived automatically」；本仓库 `v0.1.0` / `v0.1.1` 均在启用前发布，因此不会被归档 |
-| 自动集成**立即发布记录并分配 DOI，没有草稿可审** | 官方《Archive a release from GitHub》：等 release 处理完即可「click the record DOI」；发布后元数据不可改，只能发新版本 |
-| 集成创建的是 **Software 记录**（送往 Software Heritage） | 官方该节标题明确为「create a **Software** record」；`.zenodo.json` 的 `upload_type: dataset` 可能被覆盖 |
-| 已发布记录检索 | 实测 Zenodo 精确标题检索返回 0 条，配合 webhook 只有 ping，确认尚无归档记录 |
+| `Sync now` 只刷新仓库列表，不产生归档 | Zenodo 官方《Enable a repository》 |
+| 启用集成**前**已发布的 Release 不回溯 | 官方 FAQ；本仓库 `v0.1.0` / `v0.1.1` 均在打开 On 之前发布 |
+| 自动集成立即发布、无草稿可审，且记录多为 **Software** | 官方《Archive a release from GitHub》；送往 Software Heritage |
+| webhook `active=true`，最近投递只有 1 次 `ping`（202），无 `release` 事件 | GitHub API 实测 |
+| 手动上传可选 **Dataset**、可先 Save draft 逐项核对 | 本次采用，归档 `v0.1.1` 整包 |
 
-Zenodo 官方对「启用集成前的旧 Release」给出的办法是：**下载该 Release 的 ZIP，通过网页手动上传为常规记录**。
+若当初改走自动集成，需 publish 一个新的 `v0.1.2` Release 才会触发；代价是无草稿、记录类型很可能是 Software、多出一个内容零变化的版本号。`.zenodo.json` 已按新版词汇表校正（`license: cc-by-nc-sa-4.0`、`isderivedfrom` / `issupplementto`），但该路径**未执行**。
 
-## 推荐路径：手动上传 `v0.1.1` 整包
+## 6. 后续版本与 GitHub 集成风险
 
-理由：不制造内容零变化的新版本号；能选 **Dataset**（而非 Software）资源类型；能先 **Save draft** 逐项核对再 Publish，避免不可撤回的元数据错误。
+- GitHub 集成目前仍是 **On**。今后只要 publish 新 Release，Zenodo 会**自动另建一条记录**（多为 Software）并铸新 DOI，它**不会**成为本记录的 v2，从而出现两套互不关联的 DOI。二选一：
+  - **继续手动归档（推荐保持现状）**：在 Zenodo 的 GitHub 设置里把 `ccrp` 的 On 关掉；以后在记录页点 **New version** 上传新 ZIP（概念 DOI 不变、生成新版本 DOI），再回填 `CITATION.cff` / 中英 README / `CHANGELOG.md`。
+  - **改用自动集成**：接受无草稿与 Software 类型，并在文档中说明两条记录链的关系。
+- 纯文档修订（不打新 tag）：只提交 `main`，不替换 Release 附件、不动 Zenodo 记录文件，如本次 DOI 回填。
 
-1. 登录 <https://zenodo.org> → `+` → **New upload**。
-2. 上传 `CCRP-DataSet-v0.1.1.zip`（文件位置：工作区根目录，也是 GitHub `v0.1.1` Release 的首个附件；43 文件 / 2.90 MB，逐文件 SHA256 见包内 `manifest.json`）。记录里**只放这一个 ZIP**。
-3. **Resource type 选 `Dataset`**（不要选 Software）。
-4. 按下方速查表填元数据 → **Save draft** → 逐项核对 → **Publish**。
-5. 复制 DOI `10.5281/zenodo.<数字>`，交给维护者执行回填。
+## 7. 注意事项
 
-### 表单速查表
-
-| 字段 | 值 |
-|---|---|
-| Title | 汉字字谜探针数据集 / Chinese Character Riddle Probes Dataset (CCRP DataSet) v0.1 |
-| Resource type | **Dataset** |
-| Version | `0.1`（数据版本；仓库补丁号 `v0.1.1` 不作数据版本） |
-| Publication date | 2026-11-09 |
-| Creators | `Spring Buds Data Source Inc.`（机构署名；affiliation 可填「春芽数源」） |
-| License | `CC BY-NC-SA 4.0`（界面标识符 `cc-by-nc-sa-4.0`）；在 Description / Notes 中说明 `scripts/` MIT、论文与文档 CC BY 4.0 |
-| Language | Chinese / `zho`（界面若无中文选项可选 English） |
-| Access right | Open |
-| Keywords | Chinese character riddles; structural probe; large language models; behavioural probe; control task; generation-solving closed loop; in-context learning; dataset; CC-Riddle; 字谜 |
-| Description / Notes | 直接复制 `.zenodo.json` 的 `description` 与 `notes` 字段（含「不是排行榜基准」「31 条 UGC 下架」「上游 CC-Riddle 署名与修改声明」） |
-| Related identifiers | `https://arxiv.org/abs/2206.13778` → Is derived from / Dataset；`https://github.com/pku0xff/CC-Riddle` → Is derived from / Software；`https://github.com/SunSeeding/ccrp` → Is supplement to / Software |
-
-## 备选路径：发 `v0.1.2` 触发自动集成
-
-只在希望「以后每次 GitHub Release 都自动归档」时选。启用集成后**必须 publish 一个新的 Release** 才会触发 webhook；`v0.1.2` 内容可与 `v0.1.1` 完全相同。代价：
-
-- 无草稿、立即铸 DOI，元数据若错只能再发新版本修正；
-- 记录类型很可能是 Software 而非 Dataset；
-- 多出一个内容零变化的版本号。
-
-若走此路，`.zenodo.json` 已按新版词汇表校正：`license: cc-by-nc-sa-4.0`、`relation: isderivedfrom / issupplementto`（旧值 `CC-BY-NC-SA-4.0`、`isDerivedFrom`、`isSupplementTo` 不在新版词汇表中）。发布后到 Zenodo 的 GitHub 页面查看该 Release 的处理状态；若失败，展开条目看 **Errors**，修元数据后重新 Release。
-
-## 回填清单（拿到 DOI 后）
-
-| 文件 | 改动 |
-|---|---|
-| `CITATION.cff` | 取消注释并填 `doi: "10.5281/zenodo.<数字>"` |
-| `README.md` / `README.en.md` | 引用段把「Zenodo DOI 待归档」替换为 DOI 链接 `https://doi.org/10.5281/zenodo.<数字>` |
-| `CHANGELOG.md` | 记一行归档日期与 DOI |
-| `.zenodo.json` | 可加 `doi` 字段（Zenodo 也支持 `prereserve_doi`） |
-| GitHub Release 正文 | 追加 DOI 徽章或链接 |
-
-回填后需重跑 `python -u build_release.py` 与 `python -u scripts/verify_release.py .`，再提交并推送；**不改写已发布 tag**，把 DOI 作为后续补丁提交即可。
-
-## 注意事项
-
-- **不要编造 DOI 或 URL**。这是本项目溯源约定的硬规则。
-- `cc-by-nc-sa-4.0` 不是 OSI 开源许可；README 中不要称本数据集为「开源数据集」。
-- Zenodo 归档的是**长期快照**；GitHub Release 附件是同一版本的分发副本，两者 SHA256 可通过 `manifest.json` 核对。
-- 手动上传产生的记录与 GitHub 集成不自动联动：以后若有新版本，需在 Zenodo 记录上点 **New version** 手动上传，或改用自动集成路径。
+- **不编造 DOI 或 URL**；本项目溯源约定的硬规则。
+- `cc-by-nc-sa-4.0` 不是 OSI 认证的开源许可；README 中不称本数据集为「开源数据集」。
+- Zenodo 归档是**长期快照**；GitHub Release 附件是同一版本的分发副本，两者可用 `manifest.json` 逐文件核对。
+- 记录元数据修正不需要通知下游引用者（DOI 不变）；若更换归档文件则必然产生新版本 DOI，需重新走回填。
