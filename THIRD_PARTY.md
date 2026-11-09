@@ -104,7 +104,7 @@ Link policy used throughout the project:
 | Path | License |
 |---|---|
 | `data/` | CC BY-NC-SA 4.0 — `LICENSE-DATA` |
-| `scripts/` | MIT — `LICENSE` |
+| `scripts/` | MIT — `scripts/LICENSE` |
 | `paper/`, `docs/`, `README*.md`, this file | CC BY 4.0 — `LICENSE-DOCS` |
 
 CC BY-NC-SA 4.0 is not an OSI-approved open-source license. Publishing this

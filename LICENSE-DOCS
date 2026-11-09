@@ -33,6 +33,6 @@ with the data, the stricter data license continues to apply to the data.
 third-party notices it contains must be retained in any redistribution of
 the data, as required by CC BY-NC-SA 4.0 §3(a).
 
-Software in `scripts/` is licensed separately under MIT — see LICENSE.
+Software in `scripts/` is licensed separately under MIT — see scripts/LICENSE.
 
 This notice is provided for information and is not legal advice.

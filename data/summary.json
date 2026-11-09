@@ -1,7 +1,7 @@
 {
   "generated_at": "2026-11-05T23:06:02+08:00",
   "prompt_version": "riddle-gen-skill-v0.2-full100",
-  "scope": "本地/受限访问，不对外发布",
+  "scope": "公开发布 / publicly released: CC BY-NC-SA 4.0 (data/), MIT (scripts/), CC BY 4.0 (paper/ and docs/)",
   "license": "CC BY-NC-SA 4.0（仅非商业，需署名、相同方式共享）",
   "n_chars": 100,
   "chars": [
@@ -929,5 +929,6 @@
     "mcnemar_p": 0.01436,
     "analysis_file": "04_generated/selftest-analysis.json",
     "result_file": "04_generated/blind-self.jsonl"
-  }
+  },
+  "release_scope_note": "scope rewritten at export time; local research 04_generated/summary.json is unchanged"
 }

@@ -29,6 +29,14 @@
 - ICL 探针 n=24/格，所有 McNemar *p* ≥ 0.125，仅作方向性信号。
 - hy4 / deepseek-v4-pro 因 HTTP 402 未参与闭环实验；本仓库不含任何训练实验。
 
+## v0.1 发布后修订 — 2026-11-09（版本号不变）
+
+公开后体检发现两处会误导读者的问题，已在本版本中修正，数据内容与全部实验数字**未改动**：
+
+- **GitHub 侧栏误标 MIT**：根目录 `LICENSE` 原为 MIT 全文，被 GitHub 自动识别为整个仓库的许可。现改为仓库级多许可总览（主体 CC BY-NC-SA 4.0），MIT 全文移至 `scripts/LICENSE`；`THIRD_PARTY.md` / `LICENSE-DATA` / `LICENSE-DOCS` 与中英 README 的引用已同步。
+- **`data/summary.json` 的 `scope` 字段**仍写「本地/受限访问，不对外发布」。导出器现在于导出时把该字段重写为公开发布口径，并附 `release_scope_note`；**本地研究用的 `04_generated/summary.json` 一条未改**。
+- `scripts/verify_release.py` 的必需文档清单补入 `scripts/LICENSE`。
+
 ## 计划 / Roadmap (v0.2+)
 
 - 重建 1,000 条按谜底字分层、SHA256 冻结的 test 集；补人工谜面质量与谜底唯一性评审。

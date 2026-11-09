@@ -128,7 +128,8 @@ def main(root: Path) -> int:
 
     # 7. required documents
     for rel in ("README.md", "README.en.md", "LICENSE", "LICENSE-DATA", "LICENSE-DOCS",
-                "THIRD_PARTY.md", "CITATION.cff", "data/README.md", "docs/DATASHEET.md"):
+                "scripts/LICENSE", "THIRD_PARTY.md", "CITATION.cff",
+                "data/README.md", "docs/DATASHEET.md"):
         if not (root / rel).exists():
             problems.append("missing required document: " + rel)
 

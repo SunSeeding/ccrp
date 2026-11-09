@@ -1,21 +1,42 @@
-MIT License
+CCRP DataSet v0.1 — REPOSITORY LICENSE NOTICE
+==============================================
 
-Copyright (c) 2026 Spring Buds Data Source Inc.
+This repository is NOT released under a single license. The license governing
+the majority of its contents, including every dataset file, is:
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+  Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+  CC BY-NC-SA 4.0  |  SPDX: CC-BY-NC-SA-4.0
+  Human-readable summary : https://creativecommons.org/licenses/by-nc-sa/4.0/
+  Full legal code        : https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+  Full data notice       : LICENSE-DATA
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+GitHub shows a single license label in the sidebar. That label reflects the
+DATA license above; it is NOT authoritative for the whole repository.
+Licenses apply per directory:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+  data/                             CC BY-NC-SA 4.0   -> LICENSE-DATA
+                                    (also applies to any site build that
+                                     embeds a substantial part of the data)
+  scripts/                          MIT               -> scripts/LICENSE
+  paper/, docs/, README*.md,
+  THIRD_PARTY.md, CHANGELOG.md,
+  CITATION.cff                      CC BY 4.0         -> LICENSE-DOCS
+  third-party material              see THIRD_PARTY.md
+
+WHY THE DATA IS NON-COMMERCIAL
+------------------------------
+1,019 of the reference riddles are derived from CC-Riddle, released by Fan Xu,
+Yunxiang Zhang and Xiaojun Wan under CC BY-NC-SA 4.0. We selected, reorganized
+and augmented that corpus, so the ShareAlike condition applies. Redistribution
+of the data requires the same license, attribution to the upstream authors,
+and a notice that changes were made.
+
+CC BY-NC-SA 4.0 is NOT an OSI-approved open-source license. Please describe
+this dataset as "publicly released under CC BY-NC-SA 4.0", not as "open
+source". Making this repository freely available is itself a NonCommercial
+act under §1; the restriction applies to downstream commercial use.
+
+The MIT and CC BY 4.0 notices are separate and apply only to their respective
+directories; they do not relicense the data.
+
+This notice is provided for information and is not legal advice.

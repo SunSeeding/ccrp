@@ -96,7 +96,7 @@ public-corpus memorization contamination.
 ├── CHANGELOG.md                    v0.1 changes and known limitations
 ├── CITATION.cff                    citation metadata
 ├── THIRD_PARTY.md                  upstream attribution, modification notice, withheld material
-├── LICENSE                         MIT (scripts/ only)
+├── LICENSE                         repository-wide notice (data license: CC BY-NC-SA 4.0)
 ├── LICENSE-DATA                    CC BY-NC-SA 4.0 (data/)
 ├── LICENSE-DOCS                    CC BY 4.0 (paper/, docs/, README)
 ├── manifest.json                   byte sizes + SHA256 + row-count conventions
@@ -129,7 +129,7 @@ public-corpus memorization contamination.
 | Path | License | Reason |
 |---|---|---|
 | `data/` | **CC BY-NC-SA 4.0** | contains CC-Riddle-derived material; redistribution requires the same license, attribution and a modification notice |
-| `scripts/` | **MIT** | our original tooling |
+| `scripts/` | **MIT** | our original tooling (full text: `scripts/LICENSE`) |
 | `paper/`, `docs/`, `README*.md`, `THIRD_PARTY.md`, `CHANGELOG.md` | **CC BY 4.0** | documentation; the papers quote only short clue examples |
 | Third-party material | see `THIRD_PARTY.md` | upstream attribution + withheld records |
 
@@ -140,6 +140,10 @@ public-corpus memorization contamination.
 - **Scope of ShareAlike.** §4(b) provides that incorporating all or a
   substantial part of a database's contents into a database of your own makes
   *that database* Adapted Material — "but not its individual contents".
+- **The GitHub sidebar license label is not authoritative.** It can show only
+  one license; the root `LICENSE` is a repository-wide notice whose primary
+  license is the CC BY-NC-SA 4.0 governing `data/`. Always consult the table
+  above and the per-directory license files.
   `data/` therefore ships under BY-NC-SA; our original code and documents are
   not automatically covered and are licensed separately.
 - **CC BY-NC-SA 4.0 is not an OSI-approved open-source license.** Please say

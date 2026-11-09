@@ -149,7 +149,24 @@ def main() -> int:
         if not src.exists():
             raise SystemExit("missing source file: %s" % src_rel)
         dst.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(src, dst)
+        if dst_rel == "data/summary.json":
+            # The research-side summary still declares a local/restricted scope.
+            # Rewrite that one field for the public package; never touch the
+            # source summary.json or any experiment numbers in this object.
+            obj = json.loads(src.read_text(encoding="utf-8"))
+            obj["scope"] = (
+                "公开发布 / publicly released: CC BY-NC-SA 4.0 (data/), "
+                "MIT (scripts/), CC BY 4.0 (paper/ and docs/)"
+            )
+            obj["release_scope_note"] = (
+                "scope rewritten at export time; local research "
+                "04_generated/summary.json is unchanged"
+            )
+            dst.write_bytes(
+                (json.dumps(obj, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+            )
+        else:
+            shutil.copyfile(src, dst)
 
     # --- WITHHELD.md: fingerprints only, never clue text or URLs ----------
     site_explanations = sum(

@@ -59,7 +59,7 @@ that exclude NC-licensed material should review this before use.
 
 CODE AND DOCUMENTATION ARE LICENSED SEPARATELY
 ----------------------------------------------
-  `scripts/`                     MIT            — see LICENSE
+  `scripts/`                     MIT            — see scripts/LICENSE
   `paper/`, `docs/`, README*.md  CC BY 4.0     — see LICENSE-DOCS
   Third-party material           see THIRD_PARTY.md
 

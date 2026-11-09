@@ -53,7 +53,7 @@ python -c "import json,collections;print(collections.Counter((r['correct'] for r
 ├── CHANGELOG.md                    v0.1 变更与已知限制
 ├── CITATION.cff                    引用格式
 ├── THIRD_PARTY.md                  上游署名、修改声明、下架说明
-├── LICENSE                         MIT（仅 scripts/）
+├── LICENSE                         仓库级许可总览（主体 CC BY-NC-SA 4.0）
 ├── LICENSE-DATA                    CC BY-NC-SA 4.0（data/）
 ├── LICENSE-DOCS                    CC BY 4.0（paper/、docs/、README）
 ├── manifest.json                   全文件字节数 + SHA256 + 行数口径
@@ -86,13 +86,14 @@ python -c "import json,collections;print(collections.Counter((r['correct'] for r
 | 路径 | 许可 | 说明 |
 |---|---|---|
 | `data/` | **CC BY-NC-SA 4.0** | 含 CC-Riddle 派生内容；再分发须同许可 + 署名 + 标修改 |
-| `scripts/` | **MIT** | 我们原创的工具代码 |
+| `scripts/` | **MIT** | 我们原创的工具代码（全文见 `scripts/LICENSE`） |
 | `paper/`、`docs/`、`README*.md`、`THIRD_PARTY.md`、`CHANGELOG.md` | **CC BY 4.0** | 文档与论文；论文只短引谜面作例证 |
 | 第三方材料 | 见 `THIRD_PARTY.md` | 上游署名与 31 条下架记录 |
 
 - **发布本身不违反 NC**：CC BY-NC-SA 4.0 §1 把「非主要为商业利益或金钱报酬」定义为 NonCommercial，并明确无偿数字文件共享属 NonCommercial；NC 约束的是**下游商业使用**。
 - **SA 的边界**：§4(b) 规定把源库全部或实质部分纳入自有数据库时，**该库本身（but not its individual contents）**构成 Adapted Material。因此含 1,019 条 CC-Riddle 谜面的 `data/` 按 BY-NC-SA 发布；原创代码与文档不自动被传染，可分层许可。
 - **CC BY-NC-SA 4.0 不是 OSI 认证的开源许可**。请称「按 CC BY-NC-SA 4.0 公开发布」，不要称「开源数据集」。
+- **GitHub 侧栏只显示一个许可标签，不代表整仓许可**。根目录 `LICENSE` 是仓库级总览（主体为 `data/` 的 CC BY-NC-SA 4.0），实际适用一律以本表和各目录下的许可文件为准。
 
 ---
 
