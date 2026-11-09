@@ -41,10 +41,10 @@
 - **（15:45 补充）站点合规公开版 + 论文联动**：论文中英两版 §7 与附录 A 的「站点不对外发布」改为「合规公开版发布于 GitHub Pages」；重生成中英 HTML/PDF、重跑 `verify_paper.py`（PASS）、重跑 `publish_site.py`、同步重生成「一图看懂」长图。新增 `build_pages.py` 导出 gh-pages 分支内容：下架 31 条 UGC 谜面文本 / 26 处网页 URL / 28 条游戏题，`data.json` 参考集 1,019 条、题库 1,541 条，残留扫描 0。本地研究树一条未删。
 - **（15:50 补充）Zenodo 归档准备**：新增 `.zenodo.json`（机构署名、CC-BY-NC-SA-4.0、上游关联标识、关键词）与 `docs/ZENODO.md`（归档与 DOI 回填步骤）。**DOI 尚未产生，不编造**；`CITATION.cff` 与中英 README 已预留回填位置。
 - **（15:50 补充）v0.1.0 tag 与 GitHub Release**：整包 zip + 中英 PDF 作为附件；Release 与 About 描述、topics、Pages 通过 GitHub API 设置。
+- **（16:05 补充）README 首屏链接拆分**：中英 README 原把「仓库」与「在线站点」两个裸 URL 写在同一行、以全角空格和 `｜` 分隔，渲染器的自动链接会把两者粘连成一个超链。现改为各自独立一行，并使用 GFM 尖括号显式链接 `<https://…>`；两处 URL 本身均未变更。顺带清理 Roadmap 中已于本版本完成的条目。
 
 ## 计划 / Roadmap (v0.2+)
 
 - 重建 1,000 条按谜底字分层、SHA256 冻结的 test 集；补人工谜面质量与谜底唯一性评审。
-- 英文论文 HTML/PDF 版、一图看懂长图的英文化。
-- 站点 / 小游戏的合规公开版（需先完成谜面过滤与重渲染）。
-- Zenodo 归档 DOI 与正式 Release tag。
+- 一图看懂长图与站点界面的英文化。
+- Zenodo 归档发布：元数据已备，等待账号授权后取得 DOI 并回填 `CITATION.cff` 与中英 README。

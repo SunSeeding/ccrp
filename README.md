@@ -1,7 +1,11 @@
 # 汉字字谜探针数据集 · CCRP DataSet v0.1
 
 **Chinese Character Riddle Probes Dataset** ｜ 简称 **CCRP DataSet** ｜ 版本 **0.1**（2026-11-09）
-发布机构：**春芽数源 / Spring Buds Data Source Inc.**　｜　仓库：https://github.com/SunSeeding/ccrp　｜　在线站点：https://sunseeding.github.io/ccrp/
+发布机构：**春芽数源 / Spring Buds Data Source Inc.**
+
+仓库：<https://github.com/SunSeeding/ccrp>
+
+在线站点：<https://sunseeding.github.io/ccrp/>
 
 > **数据许可：`data/` 为 CC BY-NC-SA 4.0（非商业 · 署名 · 相同方式共享）**；`scripts/` 为 MIT，`paper/` 与文档为 CC BY 4.0。GitHub 侧栏显示 `Other`，是因平台识别库不含 CC-BY-NC-SA-4.0（仅有 CC-BY-4.0 / CC-BY-SA-4.0 / CC0-1.0），**不代表数据可商用、属 MIT 或公有领域**。以根 `LICENSE`（含 CC 官方完整法律文本）与 §4 许可地图为准。
 

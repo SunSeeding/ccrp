@@ -61,7 +61,7 @@
     }
   },
   "n_files": 42,
-  "total_bytes": 10467289,
+  "total_bytes": 10467659,
   "files": [
     {
       "path": ".gitattributes",
@@ -80,8 +80,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 5446,
-      "sha256": "64bafc665eb200529ff740e7e4843041ce7d72d789ab096ec5cc2fa3712454de"
+      "bytes": 5828,
+      "sha256": "023631b68a5b810b14f6106d09ce6852146ea437df455b8b375b9f632ee1638f"
     },
     {
       "path": "CITATION.cff",
@@ -245,13 +245,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 13276,
-      "sha256": "4f6625c8a2aed4180735262f77e9d79ca115cfa39fae0d1f9237601c06367fb7"
+      "bytes": 13274,
+      "sha256": "bd72face95b42821d76280350f09085637e7d2d3293007008cae82dbdce32389"
     },
     {
       "path": "README.md",
-      "bytes": 11040,
-      "sha256": "af26d3fca6b54674a11ff18a9f57c547981f423bfeeb32ec6d08bc9616496dd6"
+      "bytes": 11030,
+      "sha256": "95b8b56bc1dd30c1aedadf443d6e6fe67c4f7ef01242a15bbd1b2b5b170cfeac"
     },
     {
       "path": "scripts/build_release.py",
