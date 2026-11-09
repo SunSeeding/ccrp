@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>一图看懂｜汉字字谜能否成为大语言模型的结构探针？</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#0f2439}body{background:#0f2439}
+body{font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC","Source Han Sans SC",sans-serif;color:#16222e;-webkit-font-smoothing:antialiased;line-height:1.7}
+.wrap{width:1400px;margin:0 auto;background:#e9eef3;overflow:hidden}
+
+/* ---------- HERO ---------- */
+.hero{background:linear-gradient(128deg,#0f2439 0%,#1d4a75 55%,#2c6f9f 100%);color:#fff;padding:52px 62px 40px;position:relative}
+.hero:after{content:"";position:absolute;right:-120px;top:-140px;width:520px;height:520px;border:1px solid rgba(255,255,255,.10);border-radius:50%;box-shadow:0 0 0 70px rgba(255,255,255,.035),0 0 0 150px rgba(255,255,255,.025)}
+.eyebrow{font-size:13px;letter-spacing:3px;color:#9fc6e8;font-weight:700;margin-bottom:14px}
+.hero h1{font-size:46px;line-height:1.28;letter-spacing:1px;font-weight:800;position:relative;z-index:1}
+.hero .sub{font-size:17px;color:#c9e0f2;margin-top:14px;position:relative;z-index:1}
+.hero .meta{margin-top:18px;font-size:13.5px;color:#a8cbe8;position:relative;z-index:1}
+.hero .meta b{color:#fff}
+.verdict3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px;position:relative;z-index:1}
+.vc{border-radius:10px;padding:18px 22px 17px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22)}
+.vc .lb{font-size:13px;letter-spacing:1px;color:#cfe4f5}
+.vc .big{font-size:38px;font-weight:800;line-height:1.25;margin:4px 0 3px}
+.vc .why{font-size:12.8px;color:#d6e8f6;line-height:1.6}
+.vc.g{background:rgba(76,199,148,.17);border-color:rgba(120,225,183,.5)} .vc.g .big{color:#8bf0c4}
+.vc.r{background:rgba(231,112,80,.15);border-color:rgba(245,158,132,.5)} .vc.r .big{color:#ffb49d}
+.vc.a{background:rgba(240,186,80,.14);border-color:rgba(245,204,126,.5)} .vc.a .big{color:#ffd98a}
+.hero .final{margin-top:22px;padding:13px 20px;background:rgba(255,255,255,.13);border-left:4px solid #8bf0c4;border-radius:4px;font-size:16.5px;position:relative;z-index:1}
+.hero .final b{color:#8bf0c4}
+
+/* ---------- SECTION ---------- */
+.sec{background:#fff;margin:16px 0 0;padding:30px 46px 34px;border-radius:3px;box-shadow:0 2px 12px rgba(18,42,66,.07)}
+.sechd{display:flex;align-items:center;gap:16px;border-bottom:2px solid #e4ebf1;padding-bottom:14px;margin-bottom:22px}
+.num{width:42px;height:42px;border-radius:50%;background:#1d4a75;color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;flex:none}
+.sechd h2{font-size:25px;letter-spacing:.5px;line-height:1.3}
+.sechd .st{font-size:13px;color:#5c6f80;margin-top:2px}
+.sechd .tag{margin-left:auto;font-size:12.5px;color:#1d4a75;background:#eaf3fb;border:1px solid #cfe0ee;padding:5px 13px;border-radius:14px;white-space:nowrap}
+h3{font-size:16.5px;margin:20px 0 10px;color:#1d4a75;border-left:4px solid #1d4a75;padding-left:11px;line-height:1.4}
+h3:first-child{margin-top:0}
+p{font-size:14.2px;color:#33475a;line-height:1.8;margin:8px 0}
+.small{font-size:12.8px;color:#5c6f80;line-height:1.7}
+.note{background:#f4f8fb;border-left:4px solid #7ba3c6;padding:11px 16px;font-size:13.5px;color:#33475a;border-radius:0 5px 5px 0;margin:12px 0}
+.note.warn{background:#fdf6e9;border-left-color:#d7a441}
+.note.bad{background:#fdf0eb;border-left-color:#c9755a}
+.note.good{background:#edf8f2;border-left-color:#4ba985}
+.note b{color:#16222e}
+
+/* ---------- GRID ---------- */
+.c2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.c3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.c4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.box{background:#f6f9fc;border:1px solid #dde7ef;border-radius:8px;padding:15px 17px}
+.box .t{font-size:14.5px;font-weight:800;color:#1d4a75;margin-bottom:7px}
+.box p{font-size:13.2px;margin:4px 0;line-height:1.7}
+.box.blue{background:#eef5fb;border-color:#cfe0ee}
+.box.green{background:#edf8f2;border-color:#c6e7d7}
+.box.amber{background:#fdf6e9;border-color:#efdcb4}
+.box.red{background:#fdf0eb;border-color:#f0cdbf}
+.box.purple{background:#f3f0fa;border-color:#ddd3f0}
+
+/* ---------- CHIPS ---------- */
+.chip{display:inline-block;padding:2px 10px;border-radius:11px;font-size:12px;font-weight:800;white-space:nowrap;line-height:1.7}
+.ok{background:#e4f3ec;color:#176b4d;border:1px solid #b9dfcd}
+.mid{background:#fdf1dc;color:#8a5a12;border:1px solid #eed6aa}
+.no{background:#fdeae4;color:#a34527;border:1px solid #f0c6b6}
+.inf{background:#eaf3fb;color:#1d4a75;border:1px solid #cfe0ee}
+.pp{background:#f0ecf9;color:#5b4b8a;border:1px solid #ddd3f0}
+
+/* ---------- TABLE ---------- */
+table{width:100%;border-collapse:collapse;font-size:13.2px;margin:10px 0}
+table th:first-child,table td:first-child{min-width:104px}
+th{background:#eaf1f7;color:#1d4a75;font-weight:800;text-align:left;padding:9px 11px;border:1px solid #d7e2ec;line-height:1.5}
+td{padding:8px 11px;border:1px solid #e2eaf1;vertical-align:top;line-height:1.65;color:#33475a}
+tr:nth-child(even) td{background:#f8fafc}
+td b,th b{color:#16222e}
+td.c,th.c{text-align:center}
+.mono{font-family:Consolas,"SFMono-Regular",Menlo,monospace;font-size:12.6px}
+
+/* ---------- KPI ---------- */
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin:10px 0}
+.kpi{background:#f4f8fb;border:1px solid #dde7ef;border-radius:8px;padding:13px 15px;min-height:88px}
+.kpi b{display:block;font-size:27px;color:#1d4a75;letter-spacing:-.6px;line-height:1.25;font-family:Consolas,Menlo,monospace}
+.kpi span{font-size:12.4px;color:#5c6f80;line-height:1.5;display:block;margin-top:3px}
+.kpi.hl{background:#eaf3fb;border-color:#b9d5ea}
+.kpi.hl b{color:#a34527}
+
+/* ---------- BAR ---------- */
+.barrow{display:grid;grid-template-columns:76px 1fr 108px;gap:11px;align-items:center;margin:8px 0;font-size:13.2px}
+.bar{height:17px;background:#e6edf3;border-radius:9px;overflow:hidden}
+.bar>i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,#2c6f9f,#1d4a75)}
+.bar.g>i{background:linear-gradient(90deg,#5fb894,#2f8a68)}
+.bar.r>i{background:linear-gradient(90deg,#dd9177,#b55536)}
+.bar.a>i{background:linear-gradient(90deg,#e2be6c,#b4882c)}
+.barrow .v{text-align:right;font-family:Consolas,Menlo,monospace;font-size:13px;color:#33475a}
+
+/* ---------- MATRIX 2x2 ---------- */
+.mx{display:grid;grid-template-columns:118px 1fr 1fr;gap:8px;margin:12px 0;font-size:13.2px}
+.mx .hd{background:#eaf1f7;border:1px solid #d7e2ec;border-radius:7px;padding:9px;text-align:center;font-weight:800;color:#1d4a75}
+.mx .rh{background:#f2f6fa;border:1px solid #dde7ef;border-radius:7px;padding:10px;font-weight:800;color:#1d4a75;display:flex;align-items:center;justify-content:center;text-align:center}
+.mx .cell{border:1px solid #dde7ef;border-radius:7px;padding:13px 15px;background:#f8fafc}
+.mx .cell .n{font-size:27px;font-weight:800;color:#1d4a75;font-family:Consolas,Menlo,monospace;line-height:1.2}
+.mx .cell .d{font-size:12.6px;color:#5c6f80;margin-top:3px;line-height:1.6}
+.mx .cell.hi{background:#eaf3fb;border-color:#b9d5ea}
+.mx .cell.hi .n{color:#176b4d}
+.mx .cell.lo{background:#fdf0eb;border-color:#f0cdbf}
+.mx .cell.lo .n{color:#a34527}
+.mx .cell.mid2{background:#fdf6e9;border-color:#efdcb4}
+.mx .cell.mid2 .n{color:#8a5a12}
+
+/* ---------- FLOW ---------- */
+.flow{display:flex;gap:8px;align-items:stretch;margin:12px 0}
+.flow>div{flex:1;background:#f4f8fb;border:1px solid #dde7ef;border-radius:8px;padding:12px 13px;position:relative}
+.flow>div .s{font-size:11.5px;color:#8a9bab;font-weight:800;letter-spacing:1px}
+.flow>div .t{font-size:14px;font-weight:800;color:#1d4a75;margin:3px 0 5px}
+.flow>div .d{font-size:12.3px;color:#4a5b6b;line-height:1.6}
+.flow>div:not(:last-child):after{content:"›";position:absolute;right:-13px;top:50%;transform:translateY(-50%);font-size:24px;color:#8fb0c9;font-weight:800;z-index:2}
+
+/* ---------- CASE ---------- */
+.case{display:grid;grid-template-columns:1fr 62px 90px 1fr;gap:9px;align-items:center;background:#f8fafc;border:1px solid #e2eaf1;border-radius:7px;padding:9px 13px;margin:7px 0;font-size:13.2px}
+.case .q{font-weight:700;color:#16222e}
+.case .a{text-align:center;font-weight:800;color:#1d4a75;background:#eaf3fb;border-radius:5px;padding:3px 0}
+.case .res{font-size:12.6px;color:#4a5b6b;line-height:1.5}
+
+/* ---------- FORMULA ---------- */
+.fml{background:#0f2439;color:#dbeaf7;border-radius:8px;padding:16px 22px;font-family:Consolas,Menlo,monospace;font-size:15px;letter-spacing:.3px;margin:12px 0;line-height:1.9}
+.fml b{color:#8bf0c4}
+.fml .y{color:#ffd98a}
+
+/* ---------- FOOT ---------- */
+.foot{background:#0f2439;color:#b8cddd;padding:28px 62px 34px;font-size:12.8px;line-height:1.85;margin-top:16px}
+.foot h4{color:#fff;font-size:15px;margin-bottom:8px}
+.foot .fg{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.foot code{font-family:Consolas,Menlo,monospace;color:#8fc7ea;font-size:12px}
+.foot .barline{height:1px;background:rgba(255,255,255,.16);margin:18px 0 14px}
+.foot .end{color:#7f9bb3;font-size:12px;text-align:center}
+ul{margin:6px 0 6px 20px;font-size:13.4px;color:#33475a;line-height:1.85}
+li{margin:2px 0}
+ol{margin:6px 0 6px 20px;font-size:13.4px;color:#33475a;line-height:1.85}
+
+/* --- 站点导航条（发布时注入，原始论文/信息图产物保持不变） --- */
+.wbsb{display:flex;flex-wrap:wrap;align-items:center;gap:7px 9px;padding:9px 20px;
+ background:#0f2439;color:#dceaf6;font:13px/1.6 "Microsoft YaHei","PingFang SC",Arial,sans-serif}
+.wbsb .wbsb-label{margin-right:auto;color:#a9c9e2;font-size:12px}
+.wbsb a{display:inline-block;padding:3px 10px;border-radius:5px;text-decoration:none;
+ color:#eaf4fc;border:1px solid rgba(255,255,255,.30);font-size:12px}
+.wbsb a:hover{background:rgba(255,255,255,.15)}
+.wbsb a.wbsb-home{background:#2c6f9f;border-color:#2c6f9f;font-weight:700}
+.wbsb a.wbsb-sec{background:rgba(255,255,255,.10)}
+
+/* --- 站点四大板块导航（首页 + 子页共用） --- */
+.wbsec{display:flex;flex-wrap:wrap;align-items:center;gap:7px;padding:9px 14px;margin:0 0 10px;
+ background:#fff;border:1px solid #e3e8ef;border-radius:9px;font-size:13px}
+.wbsec .wbsec-brand{margin-right:auto;font-weight:700;color:#1a2230}
+.wbsec a,.wbsec .wbsec-on{display:inline-block;padding:3px 11px;border-radius:6px;
+ text-decoration:none;font-size:12px;border:1px solid #dbe3ed;color:#2456a6;background:#f7fafd}
+.wbsec a:hover{background:#eaf2fd}
+.wbsec .wbsec-on{background:#2f6fed;border-color:#2f6fed;color:#fff;font-weight:700}
+/* 站名里的「针」：全站唯一强调色（朱砂橙红），做成色块，浅底深底都清晰 */
+.wb-zhen{display:inline-block;padding:0 .16em;margin:0 .03em;border-radius:5px;
+ background:#e04b2f;color:#fff;font-weight:800;line-height:1.3}
+h1 .wb-zhen{font-size:.86em;vertical-align:.04em}
+@media(max-width:640px){.wbsec .wbsec-brand{flex-basis:100%;margin-bottom:4px}}
+</style>
+</head>
+<body><div class="wbsb"><span class="wbsb-label">字谜<span class="wb-zhen">针</span>探 · 研究论文　2026-11-06</span><a class="wbsb-home" href="../index.html">← 返回字谜针探首页</a><a class="wbsb-sec" href="../index.html">① 字谜数据集</a><a class="wbsb-sec" href="./index.html">② 论文</a><a class="wbsb-sec" href="../game/index.html">③ 小游戏</a><a class="wbsb-sec" href="../lab/index.html">④ 实验室</a><a href="./riddle-paper-infographic.html">一图看懂</a><a href="./riddle-paper-infographic.png" download="riddle-paper-infographic.png">下载长图 PNG</a><a href="./riddle-paper.pdf" download="riddle-paper.pdf">下载 PDF</a><a href="./riddle-paper.md" download="riddle-paper.md">下载 Markdown</a></div>
+<div class="wrap">
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="eyebrow">一 图 看 懂 · A ONE-PAGE VISUAL SUMMARY · 2026-11-06</div>
+  <h1>汉字字谜能否成为<br>大语言模型的结构探针？</h1>
+  <div class="sub">基于 27,517 条数据 · 1,194 次闭环作答 · 192 次 ICL 调用的六判据有效性裁定<br>副题：基于生成–求解闭环、2×2 全因子与 ICL 控制任务的有效性裁定</div>
+  <div class="meta"><b>研究性质</b>：API 调用层面的零权重修改实验　·　<b>不包含</b>任何训练 / 微调 / 梯度更新　·　<b>不报告</b>模型能力排名　·　13 节 / 21 表 / 4 图 / 13 条参考文献</div>
+  <div class="verdict3">
+    <div class="vc g"><div class="lb">用法一 · 诊断型结构探针</div><div class="big">能</div><div class="why">同一批题、同一判分器下的<b>条件间配对差</b>可归因；C1/C2/C6 满足，C3/C4 在自建闭环题集内满足。</div></div>
+    <div class="vc r"><div class="lb">用法二 · 排名型基准</div><div class="big">不能</div><div class="why">现有切片仅 11 个答案字、85/100 来自公开 train/valid、test 15 题答案全为「旦」，且四家推理预算不对等。</div></div>
+    <div class="vc a"><div class="lb">用法三 · 训练信号探针</div><div class="big">尚不能判定</div><div class="why">无任何训练实验；ICL 只是无需改权重的替代观察，且全部 McNemar p≥0.125。</div></div>
+  </div>
+  <div class="final">综合裁定 = <b>有条件的肯定</b>　｜　C1/C2/C6 完全满足 → C3/C4 分场景（自建题集成立、公开切片否决）→ <b>C5 是唯一硬缺口</b>（仅方向性证据）。答案不是二值的，取决于「拿来做什么」与「用哪批题」。</div>
+</div>
+
+<!-- ============ 01 ============ -->
+<div class="sec">
+  <div class="sechd"><div class="num">01</div><div><h2>为什么问「探针」而不是「基准」</h2><div class="st">字谜把汉字强制当作可分解、可重组的结构化对象，并要求逆向搜索</div></div><div class="tag">引言 §1 · 相关工作 §2</div></div>
+  <div class="c2">
+    <div>
+      <h3>任务本身对探针设计极为有利的三个性质</h3>
+      <div class="box blue" style="margin-bottom:9px"><div class="t">① 答案是单个汉字 → 判分客观</div><p>去空白后单字精确匹配；无需 LLM-as-judge、无需人工评分、无需主观量规，把测量工具自身的偏差压到最低。</p></div>
+      <div class="box blue" style="margin-bottom:9px"><div class="t">② 字形操作离散且可验证</div><p>取半 / 增删 / 并置 / 别解 / 谐音转调，一条推理链要么确实能从谜面走到谜底，要么不能，可逐条审计；字形、语义、音韵三类线索可正交指定。</p></div>
+      <div class="box blue"><div class="t">③ 生成与求解互为逆过程</div><p>出题＝（字＋字理＋手法）→ 谜面；猜题＝谜面 → 字。允许操纵「谁出题、谁猜、上下文给什么」来分离能力成分。</p></div>
+      <div class="note" style="margin-top:12px"><b>示例</b>　「叉去一点，添上一寸」→ <b>对</b>（「叉」去一点得「又」，并置「寸」）。</div>
+    </div>
+    <div>
+      <h3>术语边界：本文是「行为层探针」</h3>
+      <div class="box purple"><div class="t">表征层 structural probe ≠ 行为层 behavioral probe</div><p>Hewitt &amp; Manning（2019, NAACL 4129–4138）以<b>内部表征</b>为输入、用线性变换检验句法树距离是否被编码。本文不对隐藏状态作任何探测、不宣称定位到具体层或神经元，而是用一个<b>结构化、可判分、信息条件可控的外部任务</b>诊断能力。</p></div>
+      <div class="box" style="margin-top:9px"><div class="t">借用的方法论要求</div><p>Hewitt &amp; Liang（2019, EMNLP 2733–2743）：探针须配合<b>控制任务</b>才具<b>选择性</b>，否则高读数可能只是探针自身学会了任务。<br>Belinkov（2022, CL 48(1):207–219）：基线、度量、分类器选择与「相关性不等于因果」的陷阱。<br><b>本文的迁移</b>：把「同一批题、同一判分器、只换一个条件」当控制任务；把「生成方 × 评估方」2×2 交叉当选择性识别策略。</p></div>
+      <h3>三个可回答的经验问题</h3>
+      <table>
+        <tr><th style="width:66px">RQ</th><th>问题</th><th style="width:78px">判据</th></tr>
+        <tr><td><b>RQ1</b> 可逆性</td><td>持有答案时写出的解谜叙述，是否对应一条只给谜面时仍<b>可执行</b>的求解程序？</td><td class="c">C2 C5</td></tr>
+        <tr><td><b>RQ2</b> 选择性</td><td>把题交回制谜方本人（全新会话）猜中率是否上升？是「自己更懂自己的谜」还是「谁更会猜」的假象？</td><td class="c">C4</td></tr>
+        <tr><td><b>RQ3</b> 可激活性</td><td>不改权重、只给不同质量的示例，哪些能力被激活、哪些纹丝不动？</td><td class="c">C5</td></tr>
+      </table>
+      <div class="note bad"><b>前置边界</b>：下文所有百分比只用于<b>同一批题上的条件间配对比较</b>，绝不用于跨模型优劣宣称。数据集审计在本文中被降级为方法学证据与局限，作用是<b>否决 C3/C4</b>，不是主线。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 02 ============ -->
+<div class="sec">
+  <div class="sechd"><div class="num">02</div><div><h2>六条有效性判据 C1–C6 与逐条裁定</h2><div class="st">「字谜能否成为结构探针」被拆成六个可判定条件：资格 → 可归因 → 可外推 → 可复核</div></div><div class="tag">表 1 / 表 16 · 核心裁定</div></div>
+  <table>
+    <tr><th style="width:148px">判据</th><th style="width:290px">要求 · 违反时的典型伪影</th><th>关键证据</th><th style="width:126px" class="c">裁定</th></tr>
+    <tr><td><b>C1 客观可判分</b><div class="small">有没有资格</div></td><td>答案唯一可验证，不依赖评判者或量规<br><span class="small">伪影：LLM-as-judge 自我偏好、评分漂移</span></td><td>单字精确匹配；1,194 次闭环作答 + 192 次 ICL <b>零格式异常</b>；无评判者、无偏好对、无量规</td><td class="c"><span class="chip ok">满足</span></td></tr>
+    <tr><td><b>C2 结构化可分解</b><div class="small">有没有资格</div></td><td>可拆为正交的原子操作维度，以便定位缺口<br><span class="small">伪影：只有一个总分，无法区分字形/语义/音韵</span></td><td>三手法稳定难度序 <b>49.75% / 35.00% / 32.50%</b>；都错格 <b>79.85%</b> 为会意+谐音；生成/求解两方向可分别操纵</td><td class="c"><span class="chip ok">满足</span></td></tr>
+    <tr><td><b>C3 信息条件可控</b><div class="small">分水岭</div></td><td>能构造「持有答案 / 不持有答案」隔离对照，且题集无记忆污染<br><span class="small">伪影：公开集泄漏、答案先验、按答案字聚集</span></td><td><b>自建 597 题</b>：出题期持字理卡与答案，答题期仅谜面、隔一天、全新单轮<br><b>但</b>公开 100 题切片仅 11 个答案字、85/100 来自 train/valid、test 15 题全为「旦」</td><td class="c"><span class="chip mid">分场景</span><div class="small">自建满足 / 公开否决</div></td></tr>
+    <tr><td><b>C4 选择性（控制任务）</b><div class="small">分水岭</div></td><td>得分变化可归因于目标能力，而非格式、示例风格、提示长度或猜题能力主效应<br><span class="small">伪影：把 few-shot 格式效应、模型强弱差误读为能力</span></td><td>2×2 全因子把 <b>β=+16.26 pp</b> 从分层差值中分离，剩 <b>γ=+5.22 pp</b>；ICL 同谜面仅换推理来源（712.5 vs 739.5 token）<br><b>但</b>四家推理预算不对等、无人类基线、无多次采样</td><td class="c"><span class="chip mid">部分满足</span><div class="small">题内充分 / 跨模型不足</div></td></tr>
+    <tr><td><b>C5 能力层可区分</b><div class="small">能否外推到训练</div></td><td>能区分「权重里已有、缺格式对齐」与「需权重层注入」<br><span class="small">伪影：由单次准确率直接推断训练方案</span></td><td>ICL 192 次调用，<code>program</code> vs <code>self</code> <b>4:0</b>、会意题三条件零增益；<b>但所有 McNemar p≥0.125</b></td><td class="c"><span class="chip no">未达标</span><div class="small">仅方向性信号</div></td></tr>
+    <tr><td><b>C6 可复现可审计</b><div class="small">能否被复核</div></td><td>冻结题集、固定 prompt 版本、逐题留存、溯源分级<br><span class="small">伪影：无法复算、无法排除伪造来源</span></td><td>seed 20261106 + SHA256 冻结、prompt 版本固定、逐题 JSONL 留存、三级溯源与 <code>no_url</code> 标记；日间复现 K <b>100%</b> / U <b>75%</b></td><td class="c"><span class="chip ok">满足</span></td></tr>
+  </table>
+  <div class="c4" style="margin-top:14px">
+    <div class="box green"><div class="t">C1–C2 决定「有没有资格」</div><p>三条资格判据中 C1/C2 完全满足，在中文能力诊断任务中并不常见：多数任务要么依赖主观评分，要么只有一个总分。</p></div>
+    <div class="box amber"><div class="t">C3–C4 是探针与基准的分水岭</div><p>换成自建、配对、可交叉的题集，读数可归因；沿用公开切片则不能。</p></div>
+    <div class="box red"><div class="t">C5 是当前唯一硬缺口</div><p>它决定探针能否外推到训练；24 题 ICL 探针尚不足以判定。</p></div>
+    <div class="box blue"><div class="t">C6 决定结论能否被复核</div><p>SHA256 冻结 + 逐题留存 + 溯源分级，全部数字可从工作区产物重算。</p></div>
+  </div>
+  <div class="note warn"><b>元发现</b>：探针本身也会被「自我熟悉」污染。+5.22 pp 的 γ 意味着，任何「模型自己生成题目 → 自己或同系列模型评估」的探针设计，若未交叉生成方与评估方，读数里都会混入这一净优势。这是对 control-task 方法论在生成式评测场景下的具体补充。</div>
+</div>
+
+<!-- ============ 03 ============ -->
+<div class="sec">
+  <div class="sechd"><div class="num">03</div><div><h2>数据家底与自建题集流水线</h2><div class="st">从 27,517 条全量审计，到 597 条信息条件已知、来源可追溯的自创谜题</div></div><div class="tag">§3.3–3.4 · 表 2–5</div></div>
+  <div class="kpis">
+    <div class="kpi"><b>27,517</b><span>CC-Riddle 全量条数<br>2,863,919 字节 / 28 批</span></div>
+    <div class="kpi"><b>3,831</b><span>split=test 且 human 条数<br>覆盖 <b>981</b> 个答案字</span></div>
+    <div class="kpi hl"><b>11</b><span>100 题切片仅有的答案字数<br>（非17 楂16 杂15 旦15 …）</span></div>
+    <div class="kpi"><b>1,050</b><span>参考谜面<br>1,019 CC-Riddle + 31 web</span></div>
+    <div class="kpi"><b>1,050</b><span>解释条数<br>1,023 LLM 事后 + 27 站点</span></div>
+    <div class="kpi"><b>600</b><span>模型创作<br>K 300 / U 300 · 手法各 200</span></div>
+    <div class="kpi hl"><b>597</b><span>质检通过并进入盲测<br>K 298 / U 299</span></div>
+    <div class="kpi"><b>1,194</b><span>闭环作答次数<br>597 cross + 597 self</span></div>
+    <div class="kpi"><b>192</b><span>ICL 调用<br>24 题 × 4 条件 × 2 模型</span></div>
+    <div class="kpi"><b>13</b><span>参考文献<br>其中 3 条 probing 方法论</span></div>
+  </div>
+  <h3>自建题集六步流水线（目标：消除公开集记忆污染）</h3>
+  <div class="flow">
+    <div><div class="s">STEP 1</div><div class="t">目标字</div><div class="d">按现代汉语高频序取 100 个单字；IDS 含占位符或独体不可分解者标记，不作为权威字理</div></div>
+    <div><div class="s">STEP 2</div><div class="t">参考素材</div><div class="d">1,050 条既有谜面 + 每条 1 条解释；其中 1,023 条为「给定谜面+谜底」的<b>事后解释</b></div></div>
+    <div><div class="s">STEP 3</div><div class="t">字理卡</div><div class="d">拼音、笔画、部首、IDS 分解序列、高频序位</div></div>
+    <div><div class="s">STEP 4</div><div class="t">创作</div><div class="d">K / U 各 300 条，拆形·会意·谐音各 200；每条附 4 条<b>跨字</b>示例 + IDS 卡</div></div>
+    <div><div class="s">STEP 5</div><div class="t">质检</div><div class="d">597/600 通过；泄底 0、长度违规 0；3-gram Jaccard 阈值 <b>0.35</b>（p90=0, max=0.167）</div></div>
+    <div><div class="s">STEP 6</div><div class="t">溯源</div><div class="d">来源给链接/行 id/SHA256/许可；<b>LLM 生成内容无 URL</b>，只记模型·prompt 版本·时间戳·快照哈希并标 <code>no_url</code></div></div>
+  </div>
+  <div class="c2" style="margin-top:14px">
+    <div class="box amber"><div class="t">审计事实 A · 事后解释不是可靠监督</div><p>1,023 条 LLM 解释中 <b>602 条（58.9%）被模型自评 low</b>；手法自动分类严重偏向会意（<b>594 : 427 : 2</b>）。给定答案后补写解释，本质是事后合理化。</p></div>
+    <div class="box amber"><div class="t">审计事实 B · 各站点同属转载链</div><p>试点从 fkcmy.com 抓的 19 条「打一字」谜面中 <b>16 条（84.2%）</b>谜面与谜底同 CC-Riddle 完全一致；后续 43 条候选合并集另有 <b>12 条（27.9%）</b>直接重复。泛爬整站带不来独立数据。</p></div>
+  </div>
+</div>
+
+<!-- ============ 04 ============ -->
+<div class="sec">
+  <div class="sechd"><div class="num">04</div><div><h2>三套递进探针与统一口径</h2><div class="st">P0 零样本基线 → P1 生成–求解闭环 → P2 ICL 控制任务；共用同一判分器，数字可比</div></div><div class="tag">§3.1–3.2 / §3.5</div></div>
+  <div class="c3">
+    <div class="box blue"><div class="t">P0　零样本解谜基线</div><p><b>数据</b>：100 题（四模型前置评测）+ 597 题（交叉盲测）</p><p><b>操纵</b>：无</p><p><b>识别</b>：基线可解性、手法难度、效度审计</p><p><b>判据</b>：<span class="chip inf">C1</span> <span class="chip inf">C2</span> <span class="chip inf">C3</span></p><p><b>统计</b>：Wilson 95% CI、分层率</p></div>
+    <div class="box purple"><div class="t">P1　生成–求解闭环</div><p><b>数据</b>：597 题 × 2 条件 = <b>1,194 次作答</b></p><p><b>操纵</b>：猜题方＝对方 / 本人；会话全新</p><p><b>识别</b>：自我熟悉净效应、生成–理解不对称</p><p><b>判据</b>：<span class="chip pp">C2 C3 C4 C5</span></p><p><b>统计</b>：逐题配对 McNemar、2×2 可加分解、Fisher</p></div>
+    <div class="box green"><div class="t">P2　ICL 控制任务</div><p><b>数据</b>：24 题 × 4 条件 × 2 模型 = <b>192 次调用</b></p><p><b>操纵</b>：<code>assistant</code> 推理内容来源</p><p><b>识别</b>：能力可激活性、监督信号质量</p><p><b>判据</b>：<span class="chip ok">C4 C5</span></p><p><b>统计</b>：配对 McNemar、方向性对照</p></div>
+  </div>
+  <div class="note" style="margin-top:14px"><b>关键口径</b>：P1 的 <code>cross</code> 条件即复用 P0 的 597 次交叉盲测作答，并非另跑一批；P1 新增的是 597 次 <code>self</code> 作答。三套探针共用 <code>riddle_eval_hy4</code> 的系统提示、用户模板、输出解析与判分器，判分统一为<b>去空白后的单字精确匹配</b>。</div>
+  <div class="c2">
+    <div>
+      <h3>模型与调用协议</h3>
+      <table>
+        <tr><th>项</th><th>口径</th></tr>
+        <tr><td>参与闭环</td><td><b>kimi-k3.1-pro（K）</b>、<b>u2-flash（U）</b>，两个中文商用 API</td></tr>
+        <tr><td>未参与</td><td><b>hy4</b>、<b>deepseek-v4-pro（DS）</b>：账户额度返回 HTTP 402，未参与 P1/P2 任何调用；本文不因此推断其能力</td></tr>
+        <tr><td>全新单轮</td><td>每条题一次独立调用，<code>messages=[system, 单条 user]</code>，<code>history_messages=0</code>；不带谜底、字理卡、出题推理、跨字示例；出题 11-05 独立进程，答题 11-06 新进程</td></tr>
+        <tr><td>唯一变量</td><td>提示词、判分器、并发策略、请求参数完全一致；P1 的 <code>self</code> 与 <code>cross</code> 只差<b>猜题方身份</b></td></tr>
+        <tr><td>其他</td><td>prompt 版本 <code>riddle-gen-skill-v0.2-full100</code>；3 并发、指数退避、单题超时 180 s、重试 2 次</td></tr>
+        <tr><td>零失败</td><td>交叉 597 + 自测 597 + ICL 192，<code>format_bad=0</code>、<code>error=0</code></td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>统计方法与调用量</h3>
+      <table>
+        <tr><th>方法</th><th>用途</th></tr>
+        <tr><td>Wilson 95% CI (1927)</td><td>二项比例区间估计</td></tr>
+        <tr><td>McNemar 精确二项 (1947)</td><td>同 gid 两条件 0/1 结果的配对四格，用不一致格上的精确检验，<b>非正态近似</b></td></tr>
+        <tr><td>Fisher 精确检验 (1922)</td><td>2×2 列联表的组间构成比较</td></tr>
+        <tr><td>可加分解</td><td>2×2 全因子，见附录 B / 板块 06</td></tr>
+        <tr><td>显著性口径</td><td>全部双侧；<b>不做事后多重比较校正</b>，分层结果只作方向性解读</td></tr>
+      </table>
+      <div class="kpis" style="grid-template-columns:repeat(3,1fr);margin-top:6px">
+        <div class="kpi"><b>6,204.9 s</b><span>交叉盲测 597 次累计</span></div>
+        <div class="kpi"><b>5,164.1 s</b><span>自测 597 次累计<br>3 并发墙钟 28m39s</span></div>
+        <div class="kpi"><b>1,983.1 s</b><span>ICL 192 次累计<br>墙钟约 11 分钟</span></div>
+      </div>
+      <div class="note good"><b>凭据卫生</b>：四家 API Key 仅运行时从统一配置读取，不进入任何产物；全部交付物经泄露校验。所有 LLM 生成内容记录模型 / prompt 版本 / 时间戳 / 输入快照哈希。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 05 ============ -->
+<div class="sec">
+  <div class="sechd"><div class="num">05</div><div><h2>发现一 · 生成–求解的程序性不对称</h2><div class="st">597 条同题配对：出题期有答案与字理卡，答题期全新单轮只剩谜面</div></div><div class="tag">§4 · 表 6–11 · 附录 C</div></div>
+  <div class="c2">
+    <div>
+      <h3>总体：把题交回制谜方本人，猜中率上升 5.19 pp</h3>
+      <table>
+        <tr><th>条件</th><th class="c">正确 / 总数</th><th class="c">猜中率</th><th class="c">Wilson 95% CI</th></tr>
+        <tr><td>交叉盲测（A 出题 → B 猜，11-05）</td><td class="c">233 / 597</td><td class="c"><b>39.03%</b></td><td class="c">[35.20%, 43.00%]</td></tr>
+        <tr><td>同题自测（A 出题 → A 猜，11-06）</td><td class="c">264 / 597</td><td class="c"><b>44.22%</b></td><td class="c">[40.29%, 48.23%]</td></tr>
+        <tr><td><b>差值</b></td><td class="c">+31</td><td class="c"><b>+5.19 pp</b></td><td class="c">相对提升 13.3%</td></tr>
+      </table>
+      <div class="note good"><b>McNemar 精确检验 p = 0.0144</b>（不一致格 60 / 91，α=0.05 显著）。两次作答对错一致率 <b>74.71%</b>；给出<b>同一个答案字</b>仅 <b>36.35%</b>（217/597，含都答错的同一个错字）。条件率：P(自测对 | 交叉对)=74.25%，P(自测对 | 交叉错)=25.00%。</div>
+      <div class="note"><b>先排除两种平凡解释</b>　①「记住谜底」：隔一天、不同进程、全新会话，<code>maker==guesser</code> 但 <code>history_messages=0</code>；②「题目信息不足」：出题时模型自己持有目标字、IDS 卡、4 条跨字示例与手法，谜面完整。<b>但权重层面的自我熟悉无法排除</b>（全新对话只清了上下文，未清权重）。</div>
+      <h3>分层：一个表观矛盾</h3>
+      <table>
+        <tr><th>分层</th><th class="c">n</th><th class="c">交叉</th><th class="c">自测</th><th class="c">差值</th><th class="c">McNemar p</th></tr>
+        <tr><td><b>K 出题</b></td><td class="c">298</td><td class="c">36.58%</td><td class="c">58.05%</td><td class="c"><b>+21.48 pp</b></td><td class="c">&lt; 0.0001</td></tr>
+        <tr><td><b>U 出题</b></td><td class="c">299</td><td class="c">41.47%</td><td class="c">30.43%</td><td class="c"><b>−11.04 pp</b></td><td class="c">0.000142</td></tr>
+        <tr><td>拆形</td><td class="c">197</td><td class="c">49.75%</td><td class="c">60.41%</td><td class="c">+10.66 pp</td><td class="c"><b>0.0139</b></td></tr>
+        <tr><td>会意</td><td class="c">200</td><td class="c">35.00%</td><td class="c">37.00%</td><td class="c">+2.00 pp</td><td class="c">0.665</td></tr>
+        <tr><td>谐音</td><td class="c">200</td><td class="c">32.50%</td><td class="c">35.50%</td><td class="c">+3.00 pp</td><td class="c">0.405</td></tr>
+      </table>
+      <p class="small">按制谜方分层，两家方向完全相反且都显著；按手法分层只有<b>拆形</b>增益显著。最突出单格：K 自猜拆形谜 48.98% → <b>84.69%</b>（+35.71 pp）。方向为何相反 → 见板块 06。</p>
+    </div>
+    <div>
+      <h3>逐题配对四格（n=597）</h3>
+      <div class="mx" style="grid-template-columns:100px 1fr 1fr">
+        <div class="hd"></div><div class="hd">自测对</div><div class="hd">自测错</div>
+        <div class="rh">交叉对</div><div class="cell hi"><div class="n">173</div><div class="d">都对 · 两条件都解出</div></div><div class="cell mid2"><div class="n">60</div><div class="d"><b>仅交叉对</b> · 别人能解，出题者自己解不出</div></div>
+        <div class="rh">交叉错</div><div class="cell hi"><div class="n">91</div><div class="d"><b>仅自测对</b> · 只有制谜方本人解得出</div></div><div class="cell lo"><div class="n">273</div><div class="d">都错 · 占 45.7%，开放式联想是共同盲区</div></div>
+      </div>
+      <h3>四格 × 手法 × 制谜方</h3>
+      <table>
+        <tr><th>四格</th><th class="c">n</th><th class="c">拆形 / 会意 / 谐音</th><th class="c">K 出题 / U 出题</th></tr>
+        <tr><td>都对</td><td class="c">173</td><td class="c">75 / 48 / 50</td><td class="c">102 / 71</td></tr>
+        <tr><td><b>仅自测对</b></td><td class="c">91</td><td class="c">44 / 26 / 21</td><td class="c"><b>71 / 20</b></td></tr>
+        <tr><td><b>仅交叉对</b></td><td class="c">60</td><td class="c">23 / 22 / 15</td><td class="c"><b>7 / 53</b></td></tr>
+        <tr><td>都错</td><td class="c">273</td><td class="c">55 / 104 / 114</td><td class="c">118 / 155</td></tr>
+      </table>
+      <div class="note bad">制谜方归属在后两格间差异极显著：K:U = <b>71:20</b> vs <b>7:53</b>，<b>Fisher p = 1.65×10⁻¹²</b>。强模型出的题自己解得出，弱模型出的题反而别人更解得出。</div>
+      <div class="note"><b>答对（尤其 91 条「只有自己解得出」）</b>　谜面中的线索能被同一模型沿生成路径<b>逆向还原</b>为求解路径，说明生成策略与求解策略共享一套内部程序或风格约定，而非靠记忆。<br><b>答错（尤其 60 + 273 条）</b>　模型在有答案、字理卡、示例时能写出看似合理的解谜叙述，撤走后却解不回自己刚造的谜 → 那段叙述未必是<b>可执行的求解程序</b>，更接近<b>给定答案后的叙述化</b>。</div>
+      <h3>手法：结构化可迁移，开放式是共同盲区</h3>
+      <div class="barrow"><span>都错格</span><div class="bar r"><i style="width:79.85%"></i></div><span class="v">79.85%</span></div>
+      <div class="barrow"><span>总体</span><div class="bar"><i style="width:67.00%"></i></div><span class="v">67.00%</span></div>
+      <p class="small">会意 + 谐音在 273 条都错中占 218 条，显著高于总体 400/597。依赖离散字形操作的线索相对可形式化、可跨模型迁移；语义别解、文化常识、声调联想是共同地板。</p>
+    </div>
+  </div>
+  <h3>典型案例索引（附录 C）</h3>
+  <div class="c2">
+    <div>
+      <div class="case"><span class="q">衣裳同音，数数它最先</span><span class="a">一</span><span class="chip ok">仅自测对</span><span class="res">U 答「衣」／ K 自答「一」<br>谐音约定被出题者自己沿用</span></div>
+      <div class="case"><span class="q">卜字脚下添一横</span><span class="a">上</span><span class="chip ok">仅自测对</span><span class="res">U 答「下」／ K 自答「上」<br>方位解释只在同一模型内自洽</span></div>
+    </div>
+    <div>
+      <div class="case"><span class="q">叉去一点，添上一寸</span><span class="a">对</span><span class="chip no">仅交叉对</span><span class="res">U 答「对」／ 出题的 K 自答「夺」</span></div>
+      <div class="case"><span class="q">九百六十万平方公里</span><span class="a">国</span><span class="chip no">仅交叉对</span><span class="res">U 答「国」／ K 自答「垚」<br>自家先验反而把自己带偏</span></div>
+    </div>
+  </div>
+  <h3>两处必须如实报告的负面结果</h3>
+  <table>
+    <tr><th>检验</th><th>数值</th><th class="c">Fisher p</th><th>判定</th></tr>
+    <tr><td>「仅自测对」vs「仅交叉对」的<b>拆形占比</b></td><td>44/91 (48.4%) vs 23/60 (38.3%)</td><td class="c"><b>0.245</b></td><td><b>不显著</b>。只能说「总体增益按手法分解时拆形显著」，<b>不能</b>说「自我优势集中在拆形」——两句话不是一回事</td></tr>
+    <tr><td>出题推理文本<b>含谜底字</b>比例（至少一方解出 vs 都错）</td><td>293/324 (90.43%) vs 258/273 (94.51%)</td><td class="c"><b>0.066</b></td><td>仅为趋势；方向甚至相反（都错组含谜底字更多），<b>不能</b>作为「reasoning 纯属事后编造」的硬证据</td></tr>
+  </table>
+  <div class="note warn"><b>RQ1 的回答是有限度的</b>：数据支持「生成–求解之间存在程序性不对称」，且方向可由「是否持有答案」预测；但「出题期 reasoning 纯属事后编造」这一强命题未被证实，需由板块 07 的 ICL 错误示例实验从另一角度补证。</div>
+</div>
+
+<!-- ============ 06 ============ -->
+<div class="sec">
+  <div class="sechd"><div class="num">06</div><div><h2>发现二 · 2×2 全因子：方向相反是混淆，不是矛盾</h2><div class="st">按制谜方分层时，猜题方也被同时换掉了；两天的四格恰好凑齐一个近似完整全因子</div></div><div class="tag">§4.4 · 表 9 · 附录 B</div></div>
+  <div class="c2">
+    <div>
+      <h3>制谜方 × 猜题方四格（猜中率）</h3>
+      <div class="mx">
+        <div class="hd"></div><div class="hd">猜题方 = K（强，β=+16.26 pp）</div><div class="hd">猜题方 = U（弱）</div>
+        <div class="rh">K 出题<br><span class="small">n=298</span></div>
+        <div class="cell hi"><div class="n">58.05%</div><div class="d"><b>自测</b> · 173/298 · μ + α + β + γ</div></div>
+        <div class="cell"><div class="n">36.58%</div><div class="d"><b>交叉</b> · 109/298 · μ + α</div></div>
+        <div class="rh">U 出题<br><span class="small">n=299</span></div>
+        <div class="cell"><div class="n">41.47%</div><div class="d"><b>交叉</b> · 124/299 · μ + β</div></div>
+        <div class="cell lo"><div class="n">30.43%</div><div class="d"><b>自测</b> · 91/299 · μ + γ</div></div>
+      </div>
+      <div class="note"><b>关键在于识别策略</b>：K 出题时，自测＝强猜手 K、交叉＝弱猜手 U；U 出题恰好倒过来。所以按行（固定题源）比较时，差值里混进了「谁更会猜」这个主效应。</div>
+      <h3>可加模型与精确解</h3>
+      <div class="fml">rate = μ + α·1[题源=K] + β·1[猜题方=K] + <b>γ</b>·1[制谜方=猜题方]<br>
+<span class="y">μ</span> = [r(K,U)+r(U,K)+r(U,U)−r(K,K)] / 2 = <b>0.252149</b></div>
+      <table>
+        <tr><th>参数</th><th class="c">精确值</th><th>含义</th></tr>
+        <tr><td><b>α</b> 题源难度差</td><td class="c">+0.113623<br><b>+11.36 pp</b></td><td>K 出的题本身更易猜</td></tr>
+        <tr><td><b>β</b> 猜题能力差</td><td class="c">+0.162566<br><b>+16.26 pp</b></td><td>K 比 U 更会猜（主效应）</td></tr>
+        <tr><td><b>γ</b> 自我熟悉净效应</td><td class="c">+0.052199<br><b>+5.22 pp</b></td><td>两家共享的同一个自我优势</td></tr>
+      </table>
+      <p class="small">四格观测率（原始计数之比，不预先舍入）：r(K,K)=173/298=0.580537；r(K,U)=109/298=0.365772；r(U,K)=124/299=0.414716；r(U,U)=91/299=0.304348。</p>
+    </div>
+    <div>
+      <h3>两个分层差值被完全解释</h3>
+      <div class="box green"><div class="t">K 出题行：自测 − 交叉 = β + γ</div><p>(强猜手 + 自我) − (弱猜手) = +16.26 + 5.22 = <b>+21.48 pp</b> ✓ 与实测一致</p></div>
+      <div class="box red" style="margin-top:9px"><div class="t">U 出题行：自测 − 交叉 = −β + γ</div><p>(弱猜手 + 自我) − (强猜手) = −16.26 + 5.22 = <b>−11.04 pp</b> ✓ 与实测一致</p></div>
+      <div class="note good" style="margin-top:12px"><b>结论</b>：两家模型共享同一个约 +5.2 pp 的自我优势，表观符号被 ±16.3 pp 的猜题能力差<b>翻转</b>。不是「只有 K 认得自己的谜」。</div>
+      <h3>恒等式：总体检验的正是 γ</h3>
+      <div class="fml">n<sub>K</sub> = n<sub>U</sub> 时：<br>总体差值 = ½[(β+γ) + (−β+γ)] = <b>γ</b></div>
+      <p>本实验 n<sub>K</sub>=298、n<sub>U</sub>=299 略不平衡，故实测总体差值 <b>+5.19 pp</b> 与 γ=<b>+5.22 pp</b> 相差 0.03 pp（来自组大小与四舍五入）。这意味着板块 05 的 McNemar <b>p=0.0144 检验的对象本质上就是 γ</b>，而非被主效应污染的混合物。</p>
+      <div class="note warn"><b>分解的边界（必须随结论一起报告）</b>：这是描述性可加分解，不是回归估计；两组题源不同（K 298 / U 299），并非同一批题的严格重复测量；依赖「效应可加、无高阶交互」假设；未给出 γ 的置信区间。若两家自我优势强度实际不等（存在交互），γ 应读作两者的<b>加权平均净效应</b>。</div>
+      <div class="note"><b>口径说明</b>：配套 <code>selftest-analysis.json</code> 与离线站点采用「先把率四舍五入到四位再运算」，得 α=0.11365 / β=0.16255 / γ=0.05215 / K 行差 +21.47 pp。两种口径最多差 0.01 pp，不改变任何结论；<b>论文正文统一采用精确计数口径</b>。</div>
+      <div class="note bad"><b>对 C4 的意义</b>：若未把「生成方」与「评估方」作为两个独立因子交叉，任何「A 生成 → A 评估」型探针的读数都会被评估能力主效应污染。这正是 Hewitt &amp; Liang 所要求的选择性检验在行为层的对应物。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 07 ============ -->
+<div class="sec">
+  <div class="sechd"><div class="num">07</div><div><h2>发现三 · ICL 控制任务：一条错误解释拖垮整个条件</h2><div class="st">不改动权重，只在上下文里换示例的推理内容；同时是控制任务与「虚拟训练」</div></div><div class="tag">§5 · 表 12–15</div></div>
+  <div class="c2">
+    <div>
+      <h3>设计：同谜面、仅换 assistant 推理来源</h3>
+      <p><b>题集</b>：从 597 题按（制谜方 × 手法）分层抽 24 题（K/U × 拆形/会意/谐音，每格 4 题），固定种子 <code>20261106</code>，SHA256 <code>b16111d9…8537f</code> 冻结。<b>示例字 {对, 但, 和, 学} 与 24 个测试字严格不相交</b>，杜绝示例直接泄露谜底。</p>
+      <table>
+        <tr><th>条件</th><th class="c">k</th><th><code>assistant.reasoning</code> 内容</th><th class="c">平均 prompt token</th></tr>
+        <tr><td><code>zero</code></td><td class="c">0</td><td>无示例（同批基线）</td><td class="c">279.0</td></tr>
+        <tr><td><code>answer</code></td><td class="c">4</td><td>空（仅谜面 → 谜底），控消息结构与长度</td><td class="c">538.0</td></tr>
+        <tr><td><code>program</code></td><td class="c">4</td><td>人工编写的<b>可执行</b>拆解步骤</td><td class="c">712.5</td></tr>
+        <tr><td><code>self</code></td><td class="c">4</td><td><b>该模型自己</b>在给定谜底后写的事后解释</td><td class="c">739.5</td></tr>
+      </table>
+      <div class="note">后三者<b>共用完全相同的 4 条谜面与谜底</b>（2 拆形 / 1 会意 / 1 谐音，均取自 K 的创作）。<code>program</code> 与 <code>self</code> 的谜面、答案、消息结构、系统提示、采样参数完全相同，长度差 712.5 vs 739.5 token 仅来自推理文本本身 —— 整套实验里<b>最干净的对照</b>。</div>
+      <p class="small"><b>示例</b>：「旭日初升人独立」→ <b>但</b>。人工程序推理：「旭日初升」给出「日」与地平线一横，上下叠成「旦」；「人独立」取单人旁「亻」；左右并置得「但」。</p>
+      <h3>主结果（正确数 / 24）</h3>
+      <table>
+        <tr><th>模型</th><th class="c"><code>zero</code></th><th class="c"><code>answer</code></th><th class="c"><code>program</code></th><th class="c"><code>self</code></th></tr>
+        <tr><td><b>kimi-k3.1-pro</b></td><td class="c">10 <span class="small">41.67%</span></td><td class="c">10 <span class="small">41.67%</span></td><td class="c"><b>11 · 45.83%</b></td><td class="c"><b>11 · 45.83%</b></td></tr>
+        <tr><td><b>u2-flash</b></td><td class="c">9 <span class="small">37.50%</span></td><td class="c">7 <span class="small">29.17%</span></td><td class="c">9 <span class="small">37.50%</span></td><td class="c"><b>5 · 20.83%</b></td></tr>
+      </table>
+      <div class="note bad"><b>没有任何一个条件与 zero 的差异达到显著</b>：最小 p=0.125，n=24、每格仅 8 题。192 次调用零失败零格式异常，累计请求 1,983.1 s，输入 108,912 token / 输出 61,720 token。</div>
+    </div>
+    <div>
+      <h3>天然对照：非设计使然，却极具解释力</h3>
+      <div class="box green"><div class="t">K 自写的 4 条解释 → 全部正确</div><p>例：「『旭日初升』会意为『旦』，即太阳从地平线上升起；『人独立』提示单立人『亻』。将『亻』与『旦』左右组合，便成谜底『但』。」</p></div>
+      <div class="box red" style="margin-top:9px"><div class="t">U 自写的「旭日初升人独立」→ 字形误拆</div><p>U 写：「取『旭』字去掉『日』（初升的太阳），剩『九』；『人独立』变形为『亻』。『九』与『亻』组合，即为『但』。」<br><b>正确程序</b>：日 + 一 = 旦；亻 + 旦 = 但。</p></div>
+      <div class="note warn"><b>核心发现</b>：示例效果取决于推理内容<b>是否可执行且正确</b>，而非<b>是否出自模型自身</b>。K 全对 → <code>self</code> 与 <code>program</code> 完全持平 45.83%；U 含 1 错 → <code>self</code> 掉到 20.83%，比 <code>zero</code> 与 <code>program</code> 各低 <b>16.67 pp</b>。</div>
+      <h3>关键直接对照（配对四格）</h3>
+      <table>
+        <tr><th>模型</th><th>对照</th><th class="c">仅 A 对</th><th class="c">仅 B 对</th><th class="c">都对</th><th class="c">都错</th><th class="c">p</th></tr>
+        <tr><td>kimi</td><td><code>program</code> vs <code>self</code></td><td class="c">1</td><td class="c">1</td><td class="c">10</td><td class="c">12</td><td class="c">1.000</td></tr>
+        <tr><td>kimi</td><td><code>program</code> vs <code>answer</code></td><td class="c">1</td><td class="c">0</td><td class="c">10</td><td class="c">13</td><td class="c">1.000</td></tr>
+        <tr><td><b>u2</b></td><td><b><code>program</code> vs <code>self</code></b></td><td class="c"><b>4</b></td><td class="c"><b>0</b></td><td class="c">5</td><td class="c">15</td><td class="c"><b>0.125</b></td></tr>
+        <tr><td>u2</td><td><code>program</code> vs <code>answer</code></td><td class="c">4</td><td class="c">2</td><td class="c">5</td><td class="c">13</td><td class="c">0.6875</td></tr>
+      </table>
+      <p class="small">由于两条件除推理文本外完全相同，最简解释是<b>示例里那条错误的字形拆解被当作可复用的程序学进去了</b>。反直觉观察：仅给 (谜面, 谜底) 的 <code>answer</code> 对 U 是<b>干扰</b>（29.17%），加上程序脚手架才回到 37.50%。这条证据也补上了板块 05 留下的缺口：一旦把事后叙述当上下文示范，其中的错误会直接转化为求解错误。</p>
+      <h3>三个实验前预测的判定</h3>
+      <table>
+        <tr><th>预测</th><th class="c">判定</th><th>说明</th></tr>
+        <tr><td>P1 程序示例增益集中在拆形</td><td class="c"><span class="chip no">未验证</span></td><td>增益散在拆形/谐音（三格 +12.5 pp）；但<b>会意在 zero/answer/program 三条件下完全不动</b>（K 恒 25.0%、U 恒 ≤12.5%），可作「开放式联想难由 few-shot 激活」的方向性证据</td></tr>
+        <tr><td>P2 事后解释不优于可执行拆解</td><td class="c"><span class="chip mid">方向支持</span></td><td>与示例解释的<b>正确性</b>一一对应，而非与「是否自源」对应</td></tr>
+        <tr><td>P3 单次采样噪声大、不可复现</td><td class="c"><span class="chip ok">反向支持</span></td><td>严格同模型同题 12 题，隔一天 K <b>12/12 = 100%</b>、U <b>9/12 = 75%</b> 判定一致</td></tr>
+      </table>
+      <div class="note bad"><b>对 C5 的克制</b>：这是<b>单次、单条错误示例</b>的观察，p=0.125 不显著，属方向性证据而非判定性证据。<code>zero</code> 与 few-shot 的消息轮数不同（ICL 固有），示例谜面全部取自 K 的创作可能对 K 有风格优势。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 08 ============ -->
+<div class="sec">
+  <div class="sechd"><div class="num">08</div><div><h2>探针照出的三类能力结构</h2><div class="st">诊断型探针的价值不在分数，而在它把「缺什么」定位到了可命名的层</div></div><div class="tag">§6.3</div></div>
+  <div class="c3">
+    <div class="box blue"><div class="t">① 汉字结构知识「可描述但不可执行」</div><p>模型能谈论「木 + 目 = 相」，甚至在持有答案与 IDS 卡时写出完整解谜叙述；输入收缩为一句谜面时，同一模型无法稳定执行反向搜索。</p><p>用 Ryle（1949）<b>knowing-that / knowing-how</b> 表述：是<b>陈述性描述与程序性执行之间的断裂</b>，而非单纯「不知道字形」。</p><p class="small">三个观测：597 条中 273 条两家都错（45.7%）；60 条「别人能解、出题者自己解不出」；出题推理含谜底字与可解性的关系 p=0.066 且方向相反。</p><p class="small"><b>克制</b>：未做推理链人工逐条标注，无法给出「多少比例 reasoning 是伪程序」的定量结论。</p></div>
+    <div class="box purple"><div class="t">② 自我偏好可在客观判分任务上量化并分离</div><p>已有 self-preference 研究多建立在主观打分、偏好对或自评之上，评判工具本身携带偏差。本文<b>把评判环节完全去掉</b>，仍观测到 <b>γ=+5.22 pp</b> 净自我优势（配对 p=0.0144）。</p><p>因此该现象<b>不是 LLM-as-judge 的度量伪影</b>，而是求解成功率之差。</p><p class="small">识别策略比数字更值得强调：只按制谜方分层会得到「K +21.5 pp、U −11.0 pp」这种随模型而异、难以解释的读数；做成 2×2 全因子后被 β=+16.26 pp 完全解释，剩下共同的 γ。</p></div>
+    <div class="box green"><div class="t">③ 手法分层：结构化可迁移，开放式是共同盲区</div><p>四层结果一致：交叉盲测拆形 49.75% &gt; 会意 35.00% &gt; 谐音 32.50%；总体自测增益只有拆形显著（+10.66 pp, p=0.0139）；都错格会意+谐音 79.85%（总体 67.00%）；ICL 中会意在三条件下完全不动。</p><p class="small"><b>克制</b>：板块 05 已说明「自我优势集中在拆形」在四格占比层面不成立（Fisher p=0.245）。</p></div>
+  </div>
+  <h3>三种手法的交叉盲测 → 同题自测（C2 的直接证据）</h3>
+  <div class="c2">
+    <div>
+      <div class="barrow"><span>拆形 197</span><div class="bar"><i style="width:49.75%"></i></div><span class="v">49.75%</span></div>
+      <div class="barrow"><span>会意 200</span><div class="bar a"><i style="width:35.00%"></i></div><span class="v">35.00%</span></div>
+      <div class="barrow"><span>谐音 200</span><div class="bar r"><i style="width:32.50%"></i></div><span class="v">32.50%</span></div>
+      <p class="small">左：交叉盲测猜中率（A 出题 → B 猜）</p>
+    </div>
+    <div>
+      <div class="barrow"><span>拆形 197</span><div class="bar g"><i style="width:60.41%"></i></div><span class="v">60.41%</span></div>
+      <div class="barrow"><span>会意 200</span><div class="bar a"><i style="width:37.00%"></i></div><span class="v">37.00%</span></div>
+      <div class="barrow"><span>谐音 200</span><div class="bar r"><i style="width:35.50%"></i></div><span class="v">35.50%</span></div>
+      <p class="small">右：同题自测猜中率（A 出题 → A 猜）· 只有拆形提升显著</p>
+    </div>
+  </div>
+  <div class="note good"><b>与已有工作的关系</b>：CC-Riddle 原论文强调字谜需要字形、常识与比喻语言的综合，本文进一步指出<b>三者的难度并不对等</b>；RiddleBench 报告的自我确认偏差依赖推理链评估与模型自评，本文在单字精确匹配上量化同类现象并给出识别条件；Hu et al.（2026）用「新造歇后语 vs 旧项」的 Δacc 测记忆污染，本文改用「自己造题 → 全新会话自己答」在同一批题上实现配对控制。</div>
+</div>
+
+<!-- ============ 09 ============ -->
+<div class="sec">
+  <div class="sechd"><div class="num">09</div><div><h2>训练价值：三条可证伪假设 + 三类已实证风险</h2><div class="st">「这类数据对训练有什么价值」被改写为带观测锚点的假设，而非效果宣称</div></div><div class="tag">§6.4 · 表 18</div></div>
+  <div class="note bad" style="font-size:15px"><b>本文没有做任何 SFT、消融、训练曲线或下游迁移实验，因此不给出任何训练有效性结论，也不认为 C5 已达标。</b>　ICL 只是「无需改权重的虚拟训练」；24 题探针全部 p≥0.125，尚不足以判定「提得动 / 提不动」，H1–H3 全部保留为待检验假设。</div>
+  <div class="c3">
+    <div class="box blue"><div class="t">H1　监督信号必须是可执行且经校验的步骤</div><p><b>观测锚点</b>：ICL 中 1 条错误自解释使 U 掉 16.7 pp（<code>program</code> vs <code>self</code> 4:0）；1,023 条事后解释 58.9% 自评 low。</p><p><b>假设</b>：用 (谜面, 事后解释, 谜底) 做 SFT 会教模型编理由；应改用 (谜面, <b>可执行拆解</b>, 谜底)，且拆解须能被程序或人工校验。</p><p><b>证伪条件</b>：若用校验后步骤训练与用未校验解释训练，在留出集上无差异，H1 被证伪。</p></div>
+    <div class="box amber"><div class="t">H2　仅 (谜面, 谜底) 对弱模型可能有害</div><p><b>观测锚点</b>：U 的 <code>answer</code> 条件 29.17% &lt; <code>zero</code> 37.50%，补上程序脚手架才回到 37.50%。</p><p><b>假设</b>：弱模型需要过程监督而非纯标签监督；纯标签对齐可能挤占本已脆弱的求解路径。</p><p><b>证伪条件</b>：若扩大到 120 题后 <code>answer</code> 与 <code>zero</code> 无差异或反超，H2 被证伪。</p></div>
+    <div class="box red"><div class="t">H3　会意 / 谐音缺口可能不在格式层</div><p><b>观测锚点</b>：会意题在程序示例条件下零增益；都错格 79.85% 为会意+谐音。</p><p><b>假设</b>：这部分更可能需要权重层注入（结构/音韵表征、别解训练数据），few-shot 无法激活。</p><p><b>证伪条件</b>：若在 k=2/4/8 梯度、含高质量会意程序示例下出现显著增益，H3 被削弱。</p></div>
+  </div>
+  <h3>三条数据构造层面的风险（协议建议，非效果宣称）</h3>
+  <div class="c3">
+    <div class="box"><div class="t">① 泄漏风险</div><p>试点网络素材 84.2%（16/19）与 CC-Riddle 转载链完全一致、合并集另有 12/43 直接重复；公开 split 未按答案字隔离（test 15 题答案全「旦」）。用这类语料扩充训练集并沿用原 split 评测，会同时引入记忆污染与分布泄漏。</p></div>
+    <div class="box"><div class="t">② 监督信号风险</div><p>给定谜面 + 谜底补写的解释本质是事后合理化（58.9% 自评 low，手法自动分类偏会意 594:427:2）。把它当 CoT 监督，等于优化「叙述的合理性」而非「求解的可执行性」。</p></div>
+    <div class="box"><div class="t">③ 合成数据反馈循环</div><p>自出题自答存在 +5.22 pp 净自我优势。若用某模型生成题目/解释，再让同系列模型自评或自测，会系统性高估其能力；评测协议应<b>强制生成方与评估方交叉</b>。</p></div>
+  </div>
+  <div class="note"><b>判读规则也在此明确</b>：ICL <b>提得动</b> ⇒ 权重里已有能力，训练只需任务格式对齐；<b>提不动</b> ⇒ 更可能需要权重层注入，且训练数据须是可执行步骤。本文 24 题探针尚不足以判定属于哪一种。</div>
+</div>
+
+<!-- ============ 10 ============ -->
+<div class="sec">
+  <div class="sechd"><div class="num">10</div><div><h2>数据集审计：C3 / C4 在公开切片上被否决</h2><div class="st">本节降级为方法学证据与局限，作用是解释「为什么实验主体必须转向自建题集」</div></div><div class="tag">§3.3 · 表 3–4</div></div>
+  <div class="c2">
+    <div>
+      <h3>全量 27,517 条的分布陷阱</h3>
+      <table>
+        <tr><th>观察</th><th>实测</th><th>后果</th></tr>
+        <tr><td>来源随位置系统性变化</td><td>批 01–20（20,000 条）全 <code>human</code>；批 21 为 385 human + 615 gen；批 22–28（6,517 条）全 <code>gen</code>。合计 <b>human 20,385 / gen 7,132</b></td><td>任何「前 N 批」抽样都把来源与位置完全混淆</td></tr>
+        <tr><td>答案字按位置聚集</td><td>批 01 仅 <b>98</b> 个不同答案字，批 19 为 452，批 20 为 599，批 27 为 353</td><td>按 id 顺序切片 ≠ 按答案字分层</td></tr>
+        <tr><td>100 题调试切片</td><td>仅 <b>11</b> 个答案字：非17 楂16 杂15 旦15 霖10 估10 障7 荤5 顺3 唠1 傧1</td><td>准确率高度依赖答案先验，不可外推</td></tr>
+        <tr><td>公开集占比</td><td>train 50 / valid 35 / test 15；<b>test 15 题答案字全部为「旦」</b></td><td>记忆污染与答案字单一双重混淆</td></tr>
+        <tr><td>全量 test 实际覆盖</td><td><code>split=test</code> 且 <code>source=human</code> 共 <b>3,831</b> 条、覆盖 <b>981</b> 个答案字（最多「旦」31 条）；human train 12,461 / valid 4,093 / test 3,831；gen train 4,165 / valid 1,387 / test 1,580</td><td>11 个答案字远不足以代表 test 分布，必须按答案字分层重抽</td></tr>
+      </table>
+      <p class="small">源文件 <code>CC-Riddle.jsonl</code>，2,863,919 字节，SHA256 <code>3654d163…bbacd</code>，按原文件顺序切成 28 批。</p>
+      <div class="box" style="margin-top:10px"><div class="t">100 题切片仅覆盖 11 个答案字（括号内为出现次数）</div>
+        <p><span class="chip inf">非 17</span> <span class="chip inf">楂 16</span> <span class="chip inf">杂 15</span> <span class="chip inf">旦 15</span> <span class="chip inf">霖 10</span> <span class="chip inf">估 10</span> <span class="chip inf">障 7</span> <span class="chip inf">荤 5</span> <span class="chip inf">顺 3</span> <span class="chip inf">唠 1</span> <span class="chip inf">傧 1</span></p>
+        <p class="small">答案先验高度集中：前 4 个字占 <b>63/100</b>。而全量 <code>test</code> 的 3,831 条人工题覆盖 <b>981</b> 个答案字 —— 按 id 顺序取前 100 条完全不具代表性，这也是必须按答案字分层重抽的直接理由。</p>
+      </div>
+    </div>
+    <div>
+      <h3>100 题四模型结果按原始划分分层（正确数 / 题数）</h3>
+      <table>
+        <tr><th>模型</th><th class="c">train (50)</th><th class="c">valid (35)</th><th class="c">test (15)</th><th class="c">合计</th></tr>
+        <tr><td>hy4</td><td class="c">12/50 (24.0%)</td><td class="c">12/35 (34.3%)</td><td class="c">6/15 (40.0%)</td><td class="c"><b>30/100</b></td></tr>
+        <tr><td>u2-flash</td><td class="c">7/50 (14.0%)</td><td class="c">14/35 (40.0%)</td><td class="c">5/15 (33.3%)</td><td class="c"><b>26/100</b></td></tr>
+        <tr><td>kimi-k3.1-pro</td><td class="c">24/50 (48.0%)</td><td class="c">22/35 (62.9%)</td><td class="c">6/15 (40.0%)</td><td class="c"><b>52/100</b></td></tr>
+        <tr><td>deepseek-v4-pro</td><td class="c">7/50 (14.0%)</td><td class="c">12/35 (34.3%)</td><td class="c">7/15 (46.7%)</td><td class="c"><b>26/100</b></td></tr>
+      </table>
+      <div class="note warn">K 的优势集中在公开 train/valid；<b>在 15 题 test 子集上四家为 6/5/6/7，几乎持平</b>（DS vs hy4、DS vs K 的 McNemar 均 p=1.000）。100 题中四家全对 13 题、全错 41 题，猜测字发散到每家 56–71 个不同汉字。</div>
+      <h3>推理预算不对等（C4 被否决的另一半）</h3>
+      <table>
+        <tr><th>口径</th><th>实测</th></tr>
+        <tr><td>11-04 基线「是否开启原生思考」</td><td>只有 K 被强制开启（18.9 s/题、约 348 思考 token/题，输出 token 中思考占 <b>84%</b>）；其余三家关闭（2–5 s/题、0 思考 token）</td></tr>
+        <tr><td>11-05 120 题最高档标定单题耗时</td><td>hy4 <b>197.4 s</b> / U <b>33.2 s</b> / K <b>20.1 s</b> / DS <b>171.8 s</b>；四家「最高档」语义互不相同</td></tr>
+        <tr><td>输出量与外推</td><td>合计 <b>2,974,454</b> token（24,787/题）；外推全量约 <b>6.8 亿</b>输出 token / <b>10–22 天</b></td></tr>
+        <tr><td>402 异常</td><td>标定集中 hy4 <b>55/120</b>、DS <b>53/120</b> 条 402/超时异常 → 全量评测被阻塞，未启动</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="note bad"><b>裁定</b>：这些数字同时违反 <b>C3</b>（公开集记忆污染、答案字聚集）与 <b>C4</b>（推理预算不对等使跨模型差值不可归因），因此<b>不具备能力排名的效度</b>。本文只把它们用作方法学背景，全部实证结论建立在「同一批题、条件间逐题配对」之上。</div>
+</div>
+
+<!-- ============ 11 ============ -->
+<div class="sec">
+  <div class="sechd"><div class="num">11</div><div><h2>补齐路径、局限与待办</h2><div class="st">从「有条件肯定」走向「无条件肯定」需要做什么，以及本文不能说什么</div></div><div class="tag">§6.5 / §7 / §8</div></div>
+  <div class="c2">
+    <div>
+      <h3>让字谜成为更好探针的五条协议建议</h3>
+      <table>
+        <tr><th style="width:92px">目标</th><th>做法</th></tr>
+        <tr><td><b>补 C3</b></td><td>重建题集时按答案字分层、固定种子、SHA256 冻结，并从 <code>split=test</code> 的 3,831 条人工题中取；不要把按 id 顺序的前 N 批当随机样本。<b>冻结 1000 条分层 test 集是当前最高优先级</b></td></tr>
+        <tr><td><b>补 C4</b> 跨模型</td><td>把「是否开启原生思考」作为独立实验变量单独报告，或至少并列标注耗时与思考 token；补人类基线与多次重复采样</td></tr>
+        <tr><td><b>补 C4</b> 设计</td><td>生成–评估型实验必须交叉生成方与评估方两个因子，并报告配对不一致格与精确检验，而非只给总体准确率</td></tr>
+        <tr><td><b>补 C5</b></td><td>把 ICL 矩阵扩到 <b>120 题</b>（4 类示例 × k=0/2/4）以给出有意义的 p 值，并补人工对「解谜叙述是否可执行」的逐条标注；条件允许再做真实 SFT 消融</td></tr>
+        <tr><td><b>保持 C1/C6</b></td><td>继续报告负面结果与所有分层，避免只展示显著子组；溯源分级：数据集来源给论文/仓库 + 行 id + 文件哈希，网页来源给链接 + 片段哈希，模型生成内容标 <code>no_url</code>，<b>绝不伪造 URL</b></td></tr>
+      </table>
+      <h3>待办清单</h3>
+      <ul>
+        <li>作者 / 机构仍为「（待填）」；Zheng et al. 作者列表按投稿格式补全</li>
+        <li>ICL 扩到 120 题完整矩阵、补人工谜面质量与谜底唯一性评审、补人类基线</li>
+        <li>重建 1000 条按答案字分层冻结的 test 集（最高价值下一步）</li>
+        <li>主线 A 全量评测仍被 hy4 / DS 的 HTTP 402 阻塞，未启动</li>
+        <li>字义字段用户决定不补；会意手法因此受限</li>
+      </ul>
+    </div>
+    <div>
+      <h3>局限（必须随结论一起读）</h3>
+      <table>
+        <tr><th style="width:96px">层面</th><th>内容</th></tr>
+        <tr><td><b>规模与显著性</b></td><td>ICL 仅 24 题、每手法每格 8 题、单次采样，192 次调用所有 p≥0.125；<b>第 4 节的 597 条配对是本文唯一达到统计显著的结果</b></td></tr>
+        <tr><td><b>模型覆盖</b></td><td>闭环只有 K 与 U 两个中文商用 API；hy4 / DS 因 402 未参与；<b>无开源模型、无海外模型、无人类基线、无多次重复采样</b>；不主张跨厂商或跨语种普遍性</td></tr>
+        <tr><td><b>设计层面</b></td><td>① 2×2 为描述性可加模型，两组题源不同、依赖无交互假设、未估 γ 的 CI；② 权重层面自我熟悉无法排除；③ 示例谜面全部取自 K 的创作；④ <code>zero</code> 与 few-shot 消息轮数不同；⑤ 人工程序示例仅 4 条、无 k 梯度；⑥ 两次实验隔一天，模型版本可能变化；⑦ 出题期未采集推理链人工标注</td></tr>
+        <tr><td><b>题集层面</b></td><td>① 597 题覆盖 100 个高频字，不含低频字与繁体；② 全部 zero-shot 解谜；③ <b>质检以自动规则 + 3-gram Jaccard 为主，未做人工谜面质量与谜底唯一性评审——当前最大缺口</b>；④ 解释均为事后合理化或站点现成提示，非权威字理；⑤ 会意/谐音可能有地板效应；⑥ 字义字段未补</td></tr>
+        <tr><td><b>术语与外推</b></td><td>本文是行为层探针，不提供内部表征层面证据；C1–C6 为汉字结构化操作任务定制，是否适用于其他语言/任务需另行检验</td></tr>
+        <tr><td><b>数据与伦理</b></td><td>CCRP DataSet v0.1 已公开发布；data/ 为 CC BY-NC-SA 4.0、scripts/ 为 MIT、论文与文档为 CC BY 4.0；31 条网络 UGC 谜面按方案 C 下架；全部公开产物不含明文凭据；未使用人类被试数据</td></tr>
+      </table>
+      <div class="note good"><b>方法论副产品（超出字谜的适用性）</b>：任何「模型生成 → 模型评估」型探针，若未把生成方与评估方作为独立因子交叉，其读数都可能被<b>评估能力主效应</b>与<b>自我熟悉净效应</b>污染。</div>
+      <div class="note"><b>结论原句</b>：汉字字谜能成为大语言模型的结构探针，但只在特定用法与特定题集条件下成立。作为诊断型结构探针：<b>能</b>；作为排名型基准：<b>不能</b>；作为训练信号探针：<b>尚不能判定</b>。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 12 FOOT ============ -->
+<div class="foot">
+  <div class="fg">
+    <div>
+      <h4>可复现性与溯源</h4>
+      题集 seed <code>20261106</code>　·　ICL 冻结集 SHA256 <code>b16111d96d4609ae43d3d59824196342ae31178654aff366224e88597af8537f</code><br>
+      全量源文件 SHA256 <code>3654d163f026e75702d7fccfe52afa21ee2bbb28019c8420720b02a991abbacd</code>　·　制谜 prompt 版本 <code>riddle-gen-skill-v0.2-full100</code><br>
+      驱动脚本：<code>riddle_gen_run.py</code>（制谜与交叉盲测）、<code>riddle_gen_selftest.py</code>（自测 / 配对分析 / 站点渲染）、<code>riddle_gen_icl_probe.py</code>（ICL 探针）——三者互不覆盖、旧产物零改动。<b>重渲染站点请用 <code>riddle_gen_selftest.py --stage site</code></b>（幂等、零 API），只跑旧的 <code>--stage site</code> 会回退到不含自测的版本。<br>
+      论文生成：<code>paper/build_paper.py</code>（正文 → HTML）　·　校验：<code>paper/verify_paper.py</code>（重算 40+ 项数字 / 67 个关键串 / 泄露与外链检查）。
+    </div>
+    <div>
+      <h4>13 条参考文献（书目信息已逐条核对）</h4>
+      <span class="small" style="color:#9fbdd4;line-height:1.9">
+      [1] Xu, Zhang, Wan · CC-Riddle · arXiv:2206.13778, 2022/2023　|　[2] Halder et al. · RiddleBench · arXiv:2510.24932, 2025　|　[3] Hu et al. · 中文歇后语「推理还是记忆」· arXiv:2607.23440, 2026　|　[4] Zheng et al. · MT-Bench / Chatbot Arena · NeurIPS 2023 D&amp;B, arXiv:2306.05685　|　[5] Hewitt &amp; Manning · A Structural Probe · NAACL 2019, 4129–4138　|　[6] Hewitt &amp; Liang · Control Tasks · EMNLP-IJCNLP 2019, 2733–2743　|　[7] Belinkov · Probing Classifiers · CL 48(1):207–219, 2022　|　[8] Brown et al. · Few-Shot Learners · NeurIPS 33, 2020　|　[9] Wei et al. · Chain-of-Thought · NeurIPS 35, 2022　|　[10] Ryle · The Concept of Mind, 1949　|　[11] Wilson · JASA 22(158), 1927　|　[12] McNemar · Psychometrika 12(2), 1947　|　[13] Fisher · JRSS 85(1), 1922
+      </span>
+    </div>
+  </div>
+  <div class="barline"></div>
+  <div class="fg">
+    <div><h4>交付物</h4><span class="small" style="color:#9fbdd4">
+    <code>paper/riddle-paper.md</code>（31,287 字符 / 13,270 中文字，13 节 21 表 4 图 + 附录 A–C）<br>
+    <code>paper/riddle-paper.html</code>（排版阅读版，可打印）　·　<code>paper/riddle-paper.pdf</code>（26 页）<br>
+    <code>paper/riddle-paper-infographic.html</code> / <code>.png</code>（本图，一图看懂）
+    </span></div>
+    <div><h4>数字与凭据声明</h4><span class="small" style="color:#9fbdd4">
+    本图全部数字于 2026-11-06 从工作区产物回读复核；2×2 采用原始计数精确口径。<br>
+    溯源规则：CC-Riddle 来源给论文/仓库链接 + 行 id + 文件 SHA256 + 许可；网页来源给链接 + 片段哈希；<b>LLM 生成的解释与模型创作没有出处链接</b>，只记模型 / prompt 版本 / 时间戳 / 输入快照哈希并标 <code>no_url</code>，绝不伪造 URL。<br>
+    四家 API Key 仅运行时读取、不回显、不写入任何产物；全部交付物经泄露校验。
+    </span></div>
+  </div>
+  <div class="barline"></div>
+  <div class="end">一图看懂《汉字字谜能否成为大语言模型的结构探针？》　·　2026-11-06　·　本文所有数字不含任何明文凭据，不含伪造 URL</div>
+</div>
+
+</div>
+<script>
+/* 供 build_infographic.py 用 --dump-dom 读取页面真实高度，不影响视觉、不联网 */
+(function(){function m(){var r=document.documentElement;
+r.setAttribute('data-h',String(r.scrollHeight));
+r.setAttribute('data-foot',String(Math.ceil(document.querySelector('.foot').getBoundingClientRect().bottom+window.scrollY)));}
+if(document.readyState==='complete'){m();}else{window.addEventListener('load',m);}})();
+</script>
+</body>
+</html>

@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Can Chinese Character Riddles Serve as Structural Probes for Large Language Models?</title><style>
+:root{--ink:#1b2733;--muted:#5b6875;--line:#d8e0e8;--accent:#1d4a75;--soft:#f4f7fa}
+*{box-sizing:border-box}
+body{margin:0;background:#eceff2;color:var(--ink);
+ font-family:"Noto Serif CJK SC","Source Han Serif SC","Songti SC","SimSun",Georgia,serif;
+ font-size:15px;line-height:1.85;-webkit-font-smoothing:antialiased}
+.page{max-width:1000px;margin:0 auto;background:#fff;padding:56px 68px 90px;
+ box-shadow:0 2px 18px rgba(20,40,60,.10)}
+h1{font-size:29px;line-height:1.45;text-align:center;margin:6px 0 14px;letter-spacing:.4px}
+.subtitle{text-align:center;font-size:17px;color:var(--muted);margin:0 0 16px;
+ font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif}
+.meta{text-align:center;font-size:13px;color:var(--muted);margin:0 0 28px}
+h2{font-size:21px;margin:44px 0 16px;padding-bottom:9px;border-bottom:2px solid var(--accent);
+ font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;letter-spacing:.3px}
+h3{font-size:17px;margin:28px 0 10px;color:var(--accent);
+ font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif}
+p{margin:11px 0;text-align:justify}
+strong{font-weight:700;color:#12233a}
+em{font-style:italic;color:#33465c}
+code{font-family:Consolas,"Courier New",monospace;font-size:.88em;background:#f1f4f7;
+ padding:1px 5px;border-radius:3px;color:#8a3d22}
+pre{background:#f6f8fa;border:1px solid var(--line);border-left:4px solid var(--accent);
+ padding:14px 18px;overflow-x:auto;line-height:1.6;border-radius:4px}
+pre code{background:none;padding:0;color:var(--ink)}
+table{width:100%;border-collapse:collapse;margin:16px 0 20px;font-size:13.5px;
+ font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;break-inside:avoid}
+th{background:#eaf0f6;color:#15314f;font-weight:700;text-align:left;padding:9px 11px;
+ border:1px solid #c9d6e2;white-space:nowrap}
+td{padding:8px 11px;border:1px solid #dfe6ed;vertical-align:top}
+tbody tr:nth-child(even){background:#fafbfd}
+tr{break-inside:avoid}
+blockquote{margin:16px 0;padding:12px 18px;background:#fff8ec;border-left:4px solid #d9a86c;
+ color:#4a4034;font-size:14px;line-height:1.8;border-radius:0 4px 4px 0}
+ul,ol{margin:10px 0 14px;padding-left:26px}
+li{margin:5px 0;text-align:justify}
+hr{border:none;border-top:1px solid #e4e9ee;margin:30px 0}
+.toc{background:var(--soft);border:1px solid var(--line);border-radius:6px;
+ padding:18px 24px 18px;margin:26px 0 10px;
+ font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif}
+.toc h4{margin:0 0 10px;font-size:15px;color:var(--accent)}
+.toc ol{columns:2;column-gap:36px;margin:0;padding-left:0;list-style:none;font-size:13.5px}
+.toc a{color:#264a6e;text-decoration:none}
+.toc a:hover{text-decoration:underline}
+.fig{margin:22px 0 26px;padding:0;break-inside:avoid}
+.fig-body{border:1px solid var(--line);border-radius:6px;background:#fff;padding:8px}
+.fig svg{width:100%;height:auto;display:block;font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif}
+figcaption{text-align:center;font-size:12.5px;color:var(--muted);margin-top:8px;
+ font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif}
+.footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);
+ font-size:12px;color:var(--muted);text-align:center}
+a{color:#1d5c9e}
+@media print{
+ @page{size:A4;margin:17mm 15mm 18mm}
+ body{background:#fff;font-size:10.5pt;line-height:1.7}
+ .page{max-width:none;padding:0;box-shadow:none}
+ h2{page-break-after:avoid;margin-top:26px;font-size:15pt}
+ h3{page-break-after:avoid;font-size:12pt}
+ h1{font-size:20pt}
+ table,figure,blockquote,pre{page-break-inside:avoid}
+ .toc{page-break-after:always}
+ p{orphans:3;widows:3}
+}
+@media(max-width:760px){
+ .page{padding:26px 18px 50px}
+ .toc ol{columns:1}
+ table{font-size:12px}
+ th,td{padding:6px 7px}
+}
+
+body,h2,h3,.subtitle,.meta,th,td,blockquote,.footer,nav.toc h4{
+ font-family:Georgia,"Times New Roman","Noto Serif CJK SC",serif}
+</style></head>
+<body><div class="page">
+<h1>Can Chinese Character Riddles Serve as Structural Probes for Large Language Models?</h1>
+<p class="subtitle">—A Validity Assessment via a Generation–Solving Closed Loop, a 2×2 Full Factorial, and ICL Control Tasks</p>
+<p class="meta">Authors: 春芽数源 (corporate author)　　<strong>Affiliation</strong>: Spring Buds Data Source Inc.　　<strong>Date</strong>: 2026-11-06　　<strong>Public release</strong>: 2026-11-09 (companion dataset CCRP DataSet v0.1)</p>
+<nav class="toc"><h4>Contents</h4><ol><li><a href="#sec-1">— A Validity Assessment via a Generation–Solving Closed Loop, a 2×2 Full Factorial, and ICL Control Tasks</a></li>
+<li><a href="#sec-2">Abstract</a></li>
+<li><a href="#sec-3">1 Introduction</a></li>
+<li><a href="#sec-4">2 Related Work</a></li>
+<li><a href="#sec-5">3 Criteria-Driven Research Design and Data Substrate</a></li>
+<li><a href="#sec-6">4 Experiment 1: The Generation–Solving Closed Loop</a></li>
+<li><a href="#sec-7">5 Experiment 2: The ICL Control Task</a></li>
+<li><a href="#sec-8">6 Overall Verdict: Can Riddles Serve as Structural Probes?</a></li>
+<li><a href="#sec-9">7 Limitations</a></li>
+<li><a href="#sec-10">8 Conclusion</a></li>
+<li><a href="#sec-11">References</a></li>
+<li><a href="#sec-12">Appendix A　Data Conventions and Reproducibility</a></li>
+<li><a href="#sec-13">Appendix B　Derivation of the 2×2 Additive Decomposition</a></li>
+<li><a href="#sec-14">Appendix C　Index of Representative Cases</a></li></ol></nav>
+
+<h2 id="sec-1">— A Validity Assessment via a Generation–Solving Closed Loop, a 2×2 Full Factorial, and ICL Control Tasks</h2>
+
+<blockquote><strong>Scope of this paper</strong>: This paper answers a decidable methodological question—under what conditions Chinese character riddles can serve as structural probes for large language models (LLMs). The study consists exclusively of API-level experiments with <strong>no weight modification</strong>; it contains <strong>no training, fine-tuning, or gradient-update experiments</strong>, and all statements in §6.4 about "what training should supply" are explicitly labelled as hypotheses. <strong>The paper reports no model capability ranking.</strong></blockquote>
+<blockquote><strong>Translator's note on conventions.</strong> (1) All Chinese riddle texts are preserved verbatim in Chinese characters, because a riddle built on glyph decomposition, meaning, or tone is untranslatable; each is accompanied by a literal gloss and, where needed, a structural annotation in English. (2) All numbers, <em>p</em>-values, sample sizes, hashes, and model identifiers are copied verbatim from the Chinese original—no recomputation or rounding was introduced in translation. (3) Terminology is fixed as follows: 结构探针 <em>structural probe</em>; 行为层探针 <em>behavioral probe</em>; 控制任务 <em>control task</em>; 选择性 <em>selectivity</em>; 生成–求解闭环 <em>generation–solving closed loop</em>; 交叉盲测 <code>cross</code> <em>cross-model blind test</em>; 同题自测 <code>self</code> <em>same-item self-test</em>; 制谜方 <em>maker</em>; 猜题方 <em>solver</em>; 自我熟悉净效应 <em>net self-familiarity effect</em>; 拆形 / 会意 / 谐音 <em>graphemic decomposition (DECOMP) / semantic reinterpretation (SEM) / homophonic pun (HOMO)</em>; 谜面 <em>clue text</em>; 谜底 <em>answer character</em>; 事后解释 <em>post-hoc explanation</em>; 字理卡 <em>character-structure card</em>. (4) Model codenames K = kimi-k3.1-pro and U = u2-flash are retained. (5) "pp" = percentage points. Figures 1–4 exist only in the HTML edition generated by <code>build_paper.py</code>; this Markdown edition keeps their captions as bracketed references.</blockquote>
+
+<h2 id="sec-2">Abstract</h2>
+<p>Chinese character riddles require treating a single character as a decomposable, recombinable structured object and searching it in reverse. The answer is exactly one Chinese character and scoring is objective, which is why the task is often used to test an LLM's knowledge of Chinese characters. Whether it can serve as a <strong>structural probe</strong>—an instrument whose reading is attributable to the target ability rather than to the item distribution or the evaluation protocol itself—has not, however, been subject to explicit validity criteria. We first state six validity criteria for a behavioral structural probe (C1 objective scoring, C2 structured decomposability, C3 controllable information conditions, C4 selectivity and controls, C5 distinguishability of ability layers, C6 reproducibility and auditability), then test them one by one with three progressively more controlled experiments: a zero-shot solving baseline; a <strong>generation–solving closed loop</strong> (597 self-authored riddles answered by their own maker one day later in a fresh single-turn conversation); and an <strong>ICL control task</strong> (24 items × 4 conditions × 2 models = 192 calls, in which the same exemplar clue texts are reused and only the source of the <code>assistant</code> reasoning content is swapped).</p>
+<p>Main results: the cross-model blind-test solve rate was 39.0% (233/597), rising to 44.2% (264/597) in the same-item self-test, with an item-level paired exact McNemar test <em>p</em> = 0.0144. Stratified by maker, however, the differences run in opposite directions (kimi +21.5 pp, u2 −11.0 pp, both significant). This is confounding, not contradiction: maker × solver forms an approximately complete 2×2 factorial, and an additive decomposition yields a solver-ability gap <em>β</em> = +16.26 pp, an item-source difficulty gap <em>α</em> = +11.36 pp, and a <strong>net self-familiarity effect</strong> <em>γ</em> = +5.22 pp, which under a balanced design is exactly equal to the overall difference (observed +5.19 pp; the 0.03 pp discrepancy comes from the 298/299 group imbalance). That is, both models share the same self-advantage, whose apparent sign is flipped by the solver-ability gap. The four-cell diagnosis further shows 273 items wrong in both conditions, 91 correct only in the self-test, and 60 correct only in the cross test: when a model holds the answer, a character-structure card, and cross-character exemplars it can produce a plausible solving narrative, but once these are removed it cannot reliably execute the inverse search—a <strong>generation–comprehension procedural asymmetry</strong>. Two negative results that do not support the stronger interpretation are reported in full: the DECOMP share across "self-only correct" vs "cross-only correct" gives Fisher <em>p</em> = 0.245, and the difference in the proportion of maker reasoning texts containing the answer character gives <em>p</em> = 0.066.</p>
+<p>The ICL control task yields <strong>no statistically significant result</strong> (all McNemar <em>p</em> ≥ 0.125), yet provides a clean natural control: all four self-written exemplar explanations by kimi were correct, and its <code>self</code> condition tied the human-authored procedural exemplars (45.8%); u2's self-written explanations included one erroneous glyph decomposition ("旭日初升" mis-parsed as "旭 minus 日 = 九"), and its <code>self</code> condition fell to 20.8%, 16.7 pp below zero-shot, with <code>program</code> beating <code>self</code> 4:0 in the paired comparison. Exemplar effectiveness therefore depends on whether the reasoning content is <strong>executable and correct</strong>, not on whether the model wrote it itself.</p>
+<p><strong>The overall verdict is a conditional yes</strong>: C1/C2/C6 are fully satisfied; C3/C4 hold on the purpose-built closed-loop item set but are vetoed by the off-the-shelf public slice (100 items covering only 11 answer characters, 85 items drawn from public train/valid, all 15 test items answering 「旦」, and unequal reasoning budgets across the four vendors); C5 has only directional evidence. Chinese character riddles therefore <strong>can</strong> serve as a diagnostic structural probe, <strong>cannot</strong> serve as a ranking benchmark on the existing item set, and <strong>cannot yet be adjudicated</strong> as a training-signal probe. We provide protocol recommendations for completing C3/C4/C5 and strictly confine any training value to three falsifiable hypotheses and three empirically documented data risks.</p>
+<p><strong>Keywords</strong>: Chinese character riddles; structural probe; large language models; control task; selectivity; procedural knowledge; generation–solving asymmetry; self-preference; in-context learning; evaluation validity</p>
+<hr/>
+<h2 id="sec-3">1 Introduction</h2>
+<h3>1.1 Why riddles qualify as a structural probe candidate</h3>
+<p>Most Chinese NLP evaluations treat characters as atomic units in a token sequence. Chinese character riddles force the opposite operation: given a natural-language clue, the solver must reconstruct the target character as a <strong>combinatorial structure</strong> of components, strokes, pronunciation, and senses, and execute a series of reversible operations—"take half, add/delete, juxtapose, reinterpret, pun by tone"—before converging on exactly one character. One clue from our experiments:</p>
+<blockquote>「叉去一点，添上一寸」 → <strong>对</strong> (<em>duì</em>, "correct/right"). Literally: "Remove one dot from 叉 (<em>chā</em>, 'fork') and add an inch 寸 (<em>cùn</em>)": 叉 minus 丶 yields 又, juxtaposed with 寸 gives 对.</blockquote>
+<p>Three properties make this unusually favorable for probe design. First, <strong>the answer is a single character and scoring is exact string matching</strong>—no LLM-as-judge, no human rating, no subjective rubric—which minimizes bias originating in the measurement instrument itself. Second, <strong>glyph operations are discrete and verifiable</strong>: a reasoning chain either does lead from clue to answer or does not, and each item can be audited; orthographic, semantic, and phonological cues can be specified orthogonally. Third, <strong>generation and solving are inverse processes</strong>: making a riddle maps (character + character structure + technique) → clue, while solving maps clue → character. The two form a controllable closed loop, letting us manipulate <em>who makes, who solves, and what is present in the context</em> in order to separate ability components.</p>
+<p>CC-Riddle (Xu et al., 2022/2023) first systematized this task, constructing a QA dataset mixing human-authored and model-generated clues and reporting poor performance from BERT, ChatGPT, and ChatGLM. Recent riddle-reasoning benchmarks (e.g., RiddleBench, Halder et al., 2025) further use puzzles as diagnostic instruments, observing hallucination cascades, self-confirmation bias, and reasoning fragility. But most prior work retains an implicit premise: <strong>treat the riddle as a question and measure the model by its score</strong>. Asking instead "can riddles serve as a probe" changes the question from one about scores to: <strong>does this reading measure the target ability, or the item distribution, prompt format, and evaluation protocol?</strong></p>
+<h3>1.2 A probe is not a benchmark: six validity criteria</h3>
+<p>A terminological clarification is required first. In the probing literature, a <em>structural probe</em> takes a model's <strong>internal representations</strong> as input and tests, via a linear transformation, whether syntactic tree distance is encoded (Hewitt &amp; Manning, 2019). The "structural probe" of this paper is a <strong>behavioral probe</strong>: an external task that is structured, objectively scorable, and information-controlled, used to diagnose model abilities. We probe no hidden states and claim no localization to particular layers or neurons. Yet the methodological demands articulated for representational probing apply equally—indeed more critically—to behavioral probing: Hewitt &amp; Liang (2019) argue that a probe must be paired with a <strong>control task</strong> to possess <strong>selectivity</strong>, otherwise a high score may simply mean the probe itself has learned the task; Belinkov (2022) systematically reviews pitfalls in baselines, metrics, classifier choice, and the interpretation of correlations.</p>
+<p>We therefore decompose "can riddles serve as a structural probe" into six decidable criteria:</p>
+<p><strong>Table 1　Six validity criteria for a behavioral structural probe</strong></p>
+<table><thead><tr><th>Criterion</th><th>Requirement</th><th>Typical artifact when violated</th><th>Tested in</th></tr></thead><tbody>
+<tr><td>C1 Objective scoring</td><td>A unique, verifiable answer; no judge or rubric</td><td>LLM-as-judge self-preference, rating drift</td><td>§3.2, §4.2</td></tr>
+<tr><td>C2 Structured decomposability</td><td>The task decomposes into orthogonal atomic dimensions so gaps can be localized</td><td>A single aggregate score; orthography / semantics / phonology indistinguishable</td><td>§3.4, §4.3</td></tr>
+<tr><td>C3 Controllable information conditions</td><td>"Holds answer / does not hold answer" can be isolated, and the item set is free of memorization contamination</td><td>Public-set leakage, answer priors, clustering by answer character</td><td>§3.3–3.4, §4.1</td></tr>
+<tr><td>C4 Selectivity (control task)</td><td>Score changes are attributable to the target ability, not to format, exemplar style, prompt length, or a solver-ability main effect</td><td>Few-shot format effects or general model strength misread as ability</td><td>§4.4, §5.1</td></tr>
+<tr><td>C5 Distinguishability of ability layers</td><td>"Already in the weights, missing format alignment" vs "requires weight-level injection" can be told apart</td><td>Inferring a training recipe directly from a single accuracy</td><td>§5 (directional only)</td></tr>
+<tr><td>C6 Reproducibility and auditability</td><td>Frozen item set, pinned prompt version, per-item records, tiered provenance</td><td>No recomputation possible; fabricated sources cannot be excluded</td><td>§5.4, Appendix A</td></tr>
+</tbody></table>
+<p>The six criteria form a discriminating framework: C1–C2 decide <em>eligibility</em>; C3–C4 decide <em>whether the reading is attributable</em>—the watershed between a probe and a benchmark; C5 decides <em>whether conclusions extrapolate to training</em>; C6 decides <em>whether conclusions can be rechecked</em>. §6.1 adjudicates each in turn.</p>
+<h3>1.3 Research questions and contributions</h3>
+<p>Applying these criteria to riddles yields three answerable empirical questions:</p>
+<ul><li><strong>RQ1 (reversibility; C2/C5)</strong>: Does the solving narrative a model writes while holding the answer and character-structure information correspond to a solving procedure that remains executable when only the clue is given? If not, does the gap lie in <em>knowledge representation</em> or in <em>procedure execution</em>?</li><li><strong>RQ2 (selectivity; C4)</strong>: When the same riddles are handed back to their own maker (fresh conversation, no memory of the generation session), does the solve rate rise? Is that rise "one understands one's own riddles better", or an artifact of the main effect "who is the better solver"? Can it be quantified and separated on an objectively scored task?</li><li><strong>RQ3 (activability; C5)</strong>: Without changing weights, but supplying solving exemplars of differing quality in context, which abilities are activated and which remain unmoved? Can this ground falsifiable inferences about "what training should supply"?</li></ul>
+<p>The three experiments appear in §3.3, §4, and §5; the overall verdict is §6. Our contributions:</p>
+<ol><li><strong>We propose six criteria for a behavioral structural probe and adjudicate each.</strong> The answer is not a binary yes/no but use-case-specific: diagnostic probes hold, ranking benchmarks do not hold on the existing item set, and training-signal probes remain undetermined (Tables 16 and 17).</li><li><strong>We introduce the generation–solving closed loop with a complete 2×2 factorial separation.</strong> 597 paired items give a net self-familiarity effect <em>γ</em> = +5.22 pp (paired exact McNemar <em>p</em> = 0.0144), and show that the "opposite directions" observed when stratifying by maker result from the solver-ability main effect <em>β</em> flipping the sign. Unlike prior self-preference work (Zheng et al., 2023; Halder et al., 2025), which mostly relies on subjective ratings, our setting has <strong>fully objective scoring, an additive effect decomposition, and explicit identification conditions</strong>.</li><li><strong>We provide four-cell evidence for the generation–comprehension asymmetry together with honest negative results.</strong> 273 items were wrong in both conditions (SEM + HOMO = 79.9%, above the 67.0% overall), 91 were correct only in the self-test, 60 only in the cross test; maker attribution differs extremely significantly between the latter two cells (Fisher <em>p</em> = 1.65×10⁻¹²). We also report two tests that <strong>do not support</strong> the strong interpretation (<em>p</em> = 0.245, <em>p</em> = 0.066).</li><li><strong>We supply a natural control for supervision quality via an ICL task that holds clue texts fixed and swaps only the source of reasoning.</strong> kimi's four self-written exemplar explanations were all correct; u2's contained one erroneous glyph decomposition. Their <code>self</code> conditions diverge exactly as predicted (tie vs −16.7 pp), separating "exemplar reasoning correctness" from "exemplar self-authorship".</li></ol>
+<h3>1.4 A boundary that must be stated up front</h3>
+<p>This paper <strong>reports no model capability ranking</strong>. §3.3 uses our own data to show that neither the off-the-shelf 100-item slice nor the full public distribution supports ranking validity (11 answer characters, 85 items from public train/valid, all 15 test items answering 「旦」, unequal reasoning budgets). Accordingly, every percentage below is used only for <strong>paired within-item comparisons between conditions on the same item set</strong>, never for cross-model superiority claims. The dataset audit is demoted to methodological evidence and limitations; its role is to <strong>veto C3/C4</strong>, not to constitute the main line of the paper.</p>
+<hr/>
+<h2 id="sec-4">2 Related Work</h2>
+<p><strong>Chinese character riddle datasets and tasks.</strong> Xu, Zhang, and Wan (2022; revised 2023) released CC-Riddle, built from web crawling + generative models + human filtering, covering most common simplified characters, and tested BERT, ChatGPT, and ChatGLM under retrieval-, generation-, and multiple-choice-style QA strategies, finding that existing models struggle with character riddles. This dataset is our data substrate; its public train/valid/test split and its "clustering by answer character" ordering are the object of the validity audit in §3.3.</p>
+<p><strong>Probe methodology, control tasks, and selectivity.</strong> Hewitt &amp; Manning (2019) proposed the structural probe, testing whether syntactic trees are embedded in a linear transform of word-representation space; Hewitt &amp; Liang (2019) immediately noted that high probe accuracy may come from the probe itself memorizing word types, and advocated a random-label control task to measure selectivity; Belinkov (2022) further surveyed baselines, metrics, classifier choice, and the "correlation is not causation" problem. All of this work targets <strong>internal representations</strong>. We transplant the same requirements to the <strong>behavioral layer</strong>: "same items, same scorer, one condition changed" serves as the control task, the maker × solver 2×2 crossing serves as the identification strategy for selectivity, and the four ICL conditions serve as explicit controls for format effects. To our knowledge this is the first application of control-task logic to the behavioral diagnosis of structured operations on Chinese characters.</p>
+<p><strong>Puzzles as reasoning diagnostics.</strong> RiddleBench (Halder et al., 2025) collects 1,737 English riddles, finding that even strong models score only slightly above 60%, and reports hallucination cascades, error entrenchment, self-confirmation bias, and fragility under constraint reordering. "Self-confirmation" is the finding closest to ours, but RiddleBench scoring relies on reasoning-chain evaluation and model self-assessment, whereas we quantify the same class of phenomenon on exact single-character matching and separate it from solver ability through the 2×2 design.</p>
+<p><strong>Memorization contamination and "reasoning or memory".</strong> Hu et al. (2026) constructed a contamination-free set of Chinese <em>xiehouyu</em> (two-part allegorical sayings) coined by linguists, using the accuracy gap Δacc between low-frequency existing items and newly coined items as a memory indicator. They found an average drop of 23.6 pp for Chinese-frontier models versus 5.1 pp for English-centric models, and observed that model-authored quality was substantially below human quality. We agree on the need for contamination-free item sets but take a different diagnostic route: rather than difficulty-matching "newly coined vs old" items, we <strong>have the models author the items themselves and then answer them in a fresh conversation</strong>, achieving paired control on the very same items; we additionally observe both the generation and the solving side.</p>
+<p><strong>Self-preference and LLM-as-judge.</strong> Zheng et al. (2023) systematically documented position bias, verbosity bias, and self-enhancement bias on MT-Bench / Chatbot Arena, while cautiously noting that the data were insufficient to assert the bias definitively. Much subsequent work extends this direction with subjective scores or preference pairs. Our setting differs in that there is no judge, no preference pair, and no rubric—only a single-character output comparable against a gold answer. The observed +5.22 pp is therefore a <strong>difference in solving success rate</strong>, not a difference in scoring inclination.</p>
+<p><strong>In-context learning and procedural knowledge.</strong> Brown et al. (2020) established few-shot in-context learning; Wei et al. (2022) showed that chain-of-thought exemplars can elicit multi-step reasoning. We use the classical knowing-that / knowing-how distinction (Ryle, 1949) to state our core phenomenon: a model may be able to <strong>describe</strong> "木 + 目 = 相" without being able to <strong>execute</strong> the reverse search when given only the clue. ICL here plays a dual role—control task and <em>virtual training without weight changes</em>—and the direction of its gains is used to distinguish "format-alignment gap" from "weight-level ability gap" (§6.4).</p>
+<hr/>
+<h2 id="sec-5">3 Criteria-Driven Research Design and Data Substrate</h2>
+<h3>3.1 Overview of the three probes</h3>
+<p><strong>Table 2　The three experiments, their identification logic, and the criteria tested</strong></p>
+<table><thead><tr><th>Probe</th><th>Data scale</th><th>Manipulated variable</th><th>Identification target</th><th>Criteria</th><th>Main statistics</th></tr></thead><tbody>
+<tr><td>P0 Zero-shot solving baseline</td><td>100 items (four-model preliminary evaluation) + 597 items (cross blind test)</td><td>None</td><td>Baseline solvability, technique difficulty, validity audit</td><td>C1 C2 C3</td><td>Wilson 95% CI, stratified rates</td></tr>
+<tr><td>P1 Generation–solving closed loop</td><td>597 items × 2 conditions = 1,194 answers</td><td>Solver = other model / own maker; conversation is fresh</td><td>Net self-familiarity effect, generation–comprehension asymmetry</td><td>C2 C3 C4 C5</td><td>Item-level paired McNemar, 2×2 additive decomposition, Fisher</td></tr>
+<tr><td>P2 ICL control task</td><td>24 items × 4 conditions × 2 models = 192 calls</td><td>Source of <code>assistant</code> reasoning content</td><td>Ability activability, supervision-signal quality</td><td>C4 C5</td><td>Paired McNemar, directional contrasts</td></tr>
+</tbody></table>
+<p>All three probes share one system prompt, user template, output parser, and scorer (<code>SYSTEM_PROMPT</code> / <code>USER_TEMPLATE</code> / <code>parse_response</code> / <code>normalize_gold</code> from <code>riddle_eval_hy4</code>), with scoring uniformly defined as <strong>exact single-character matching after whitespace removal</strong>. This guarantees comparability across experiments and is the precondition for directly contrasting P1's <code>cross</code> condition with P2's <code>zero</code> condition. Note that P1's <code>cross</code> condition reuses the 597 cross blind-test answers from P0 rather than running a new batch; what P1 adds is the 597 <code>self</code> answers.</p>
+<h3>3.2 Models and call protocol</h3>
+<p>Two available Chinese commercial APIs participated in the closed-loop experiments: <strong>kimi-k3.1-pro</strong> (henceforth <strong>K</strong>) and <strong>u2-flash</strong> (<strong>U</strong>). Two further models, <strong>hy4</strong> and <strong>deepseek-v4-pro</strong> (DS), took part in the 100-item preliminary evaluation on 11-04 and the 120-item high-effort calibration on 11-05, but returned HTTP 402 due to account quota exhaustion and <strong>did not participate</strong> in any P1/P2 call. We draw no inference about the capabilities of these two models.</p>
+<p>Key protocol points:</p>
+<ul><li><strong>Fresh single-turn conversations</strong>: each riddle in the P1 self-test occupied one independent API call, with <code>messages</code> exactly <code>[system, single user]</code>, <code>history_messages=0</code>, carrying no answer, no character-structure card, no maker reasoning, no cross-character exemplars, and no prior turns. Riddle generation ran in a separate process on 2026-11-05; answering ran in a new process on 2026-11-06. The provenance field <code>conversation.mode="fresh_single_turn"</code> is unique across the corpus, and <code>maker==guesser</code> holds for 597/597 items.</li><li><strong>Prompt and sampling parameters</strong>: one shared <code>prompt_version</code> (<code>riddle-gen-skill-v0.2-full100</code>), 3 concurrent workers, exponential backoff for 429/timeouts, 180 s per-item timeout, 2 retries. The <code>self</code> and <code>cross</code> conditions of P1 use identical prompts, scorers, and request parameters—<strong>the only variable is the identity of the solver</strong>.</li><li><strong>Zero failures</strong>: both the 597 cross blind-test items and the 597 self-test items have <code>format_bad=0</code> and <code>error=0</code>; the 192 ICL calls likewise had zero failures and zero format anomalies.</li><li><strong>Credential hygiene</strong>: the four API keys are read from a unified configuration only at runtime and never enter any artifact; all deliverables passed a leakage scan.</li></ul>
+<h3>3.3 Data source and upfront validity audit: C3/C4 vetoed on the public slice</h3>
+<p>The data substrate is the full CC-Riddle corpus of 27,517 items (source file <code>CC-Riddle.jsonl</code>, 2,863,919 bytes, SHA256 <code>3654d163…bbacd</code>), sliced in original file order into 28 batches. Our complete distribution audit is itself a warning against treating "the first N items in order" as a random split:</p>
+<p><strong>Table 3　Full-corpus distribution audit</strong></p>
+<table><thead><tr><th>Observation</th><th>Measured</th><th>Consequence</th></tr></thead><tbody>
+<tr><td>Source varies systematically with position</td><td>Batches 01–20 (20,000 items) are all <code>human</code>; batch 21 is 385 <code>human</code> + 615 <code>gen</code>; batches 22–28 (6,517 items) are all <code>gen</code>. Total human 20,385 / gen 7,132</td><td>Any "first N batches" sample completely confounds source with position</td></tr>
+<tr><td>Answer characters cluster by position</td><td>Batch 01 has only 98 distinct answer characters; batch 19 has 452, batch 20 has 599, batch 27 has 353</td><td>Slicing by id order ≠ stratifying by answer character</td></tr>
+<tr><td>Answer distribution of the 100-item debug slice</td><td>Only 11 answer characters (非 17, 楂 16, 杂 15, 旦 15, 霖 10, 估 10, 障 7, 荤 5, 顺 3, 唠 1, 傧 1)</td><td>Accuracy depends heavily on answer priors and cannot be extrapolated</td></tr>
+<tr><td>Public-set share</td><td><code>source_split</code>: train 50 / valid 35 / test 15; moreover <strong>all 15 test items have the answer 「旦」</strong> (<em>dàn</em>, "dawn")</td><td>Memorization contamination confounded with a single answer character</td></tr>
+<tr><td>Actual coverage of the full test set</td><td><code>split=test</code> and <code>source=human</code>: 3,831 items covering <strong>981 distinct answer characters</strong> (max: 「旦」 with 31); full source × split: human train 12,461 / valid 4,093 / test 3,831; gen train 4,165 / valid 1,387 / test 1,580</td><td>The 11 answer characters of the 100-item slice are far from representative of the test distribution; stratified resampling by answer character is required</td></tr>
+</tbody></table>
+<p>Raw four-model results on these 100 items were hy4 30%, U 26%, K 52%, DS 26%, but stratifying by <code>source_split</code> changes the picture completely:</p>
+<p><strong>Table 4　100-item four-model results by original split (correct / n)</strong></p>
+<table><thead><tr><th>Model</th><th>train (50)</th><th>valid (35)</th><th>test (15)</th><th>Total</th></tr></thead><tbody>
+<tr><td>hy4</td><td>12/50 (24.0%)</td><td>12/35 (34.3%)</td><td>6/15 (40.0%)</td><td>30/100</td></tr>
+<tr><td>u2-flash</td><td>7/50 (14.0%)</td><td>14/35 (40.0%)</td><td>5/15 (33.3%)</td><td>26/100</td></tr>
+<tr><td>kimi-k3.1-pro</td><td>24/50 (48.0%)</td><td>22/35 (62.9%)</td><td>6/15 (40.0%)</td><td>52/100</td></tr>
+<tr><td>deepseek-v4-pro</td><td>7/50 (14.0%)</td><td>12/35 (34.3%)</td><td>7/15 (46.7%)</td><td>26/100</td></tr>
+</tbody></table>
+<p>K's advantage is concentrated in public train/valid; on the 15-item test subset the four models score 6/5/6/7, essentially tied (DS vs hy4 and DS vs K both give McNemar <em>p</em> = 1.000). Among the 100 items, all four models were correct on 13 and all four wrong on 41, with guessed characters diverging into 56–71 distinct characters per model. In addition, the four vendors' "highest reasoning tiers" are semantically incompatible: in the 11-04 baseline only K had native thinking forcibly enabled (18.9 s/item, ≈348 thinking tokens/item, thinking accounting for 84% of output tokens) while the other three had thinking disabled (2–5 s/item, 0 thinking tokens); in the 120-item high-tier calibration on 11-05, single-item probes took hy4 197.4 s, U 33.2 s, K 20.1 s, DS 171.8 s, with 2,974,454 output tokens in total (24,787/item), extrapolating to ≈680 million output tokens / 10–22 days for the full corpus; hy4 and DS also had 55/120 and 53/120 abnormal items (402/timeouts) in that calibration.</p>
+<p><strong>Verdict</strong>: these figures violate both C3 (public-set memorization contamination, answer-character clustering) and C4 (unequal reasoning budgets make cross-model differences unattributable), and therefore lack ranking validity. We use them only as methodological background; all empirical conclusions rest on <strong>paired within-item comparisons between conditions on the same item set</strong>. This also explains why the experimental core had to shift to a <strong>self-authored item set whose information conditions are fully controllable</strong>.</p>
+<h3>3.4 The purpose-built item set: riddle-generation protocol and quality control</h3>
+<p>To obtain items whose information conditions are known, whose provenance is traceable, and which are free of public-set memorization contamination, we built a riddle-generation pipeline:</p>
+<ol><li><strong>Target characters</strong>: 100 single characters taken in order of modern-Chinese frequency (including some indivisible characters and IDS-placeholder cases; IDS is therefore not treated as authoritative character etymology).</li><li><strong>Reference material</strong>: 1,050 existing clues, of which 1,019 are human-authored CC-Riddle clues and 31 are web clues collected per-character to fill gaps; one explanation was added for each, 1,023 generated by an LLM <strong>given the clue + answer</strong> (i.e., post-hoc explanations) and 27 taken from hints already present on the source site.</li></ol>
+<blockquote><strong>Public-release convention note (2026-11-09)</strong>: 1,050 / 1,023 above are the figures for the <strong>complete build-time</strong> reference set, and all statistics in this paper use them. The 31 web clues were tagged at collection time as "web UGC reposts, no clear authorisation, local / restricted research use only". The companion dataset <strong>CCRP DataSet v0.1</strong> therefore withholds them at export time under Scheme C, together with their 27 site-provided explanations, 4 LLM explanations and 58 page-link references, retaining only SHA256 fingerprints. Consequently the published <code>data/reference-slice.jsonl</code> and <code>data/explanations-llm.jsonl</code> each contain <strong>1,019</strong> rows. The local research artifacts are left byte-for-byte untouched; the fingerprint ledger is <code>data/WITHHELD.md</code>. <strong>No experimental conclusion changes</strong>: the 600 authored riddles, 597 closed-loop items and 192 ICL calls were verified to contain none of the withheld clue texts.</blockquote>
+<ol><li><strong>Character-structure card</strong>: pinyin, stroke count, radical, IDS decomposition sequence, frequency rank. Items whose IDS contains placeholders or which are indivisible are flagged and their IDS is not used as authoritative etymology.</li><li><strong>Generation</strong>: K and U each produced 300 riddles, balanced across techniques (DECOMP / SEM / HOMO, 200 each). Each request specified the target character and technique and supplied 4 <strong>cross-character</strong> exemplars plus the target character's IDS card; the model output a clue text, an answer character, and a "solving narrative". The three techniques make C2's structured decomposability empirically testable.</li><li><strong>Quality control</strong>: 597 of 600 passed (3 rejected for suspected paraphrasing of a reference clue or exact overlap with an existing clue); final answer leakage 0, length violations 0. The originality 3-gram Jaccard threshold of 0.35 was calibrated on the quantiles of 60 items from the 10-character pilot (p90 = 0, max = 0.167).</li><li><strong>Provenance</strong>: CC-Riddle sources carry the paper and repository links (the dataset contains no per-item URLs), row id, file SHA256, and license; web sources carry the page URL and a snippet hash; <strong>model-generated content has no source URL</strong> and records only model, prompt version, timestamp, and input-snapshot hash, marked <code>no_url</code>. No URL is ever fabricated.</li></ol>
+<p><strong>Table 5　Purpose-built item-set artifacts</strong></p>
+<table><thead><tr><th>Stage</th><th>Count</th><th>Note</th></tr></thead><tbody>
+<tr><td>Reference clues</td><td>1,050</td><td>1,019 CC-Riddle human + 31 web</td></tr>
+<tr><td>Explanations</td><td>1,050</td><td>1,023 LLM post-hoc + 27 site-provided</td></tr>
+<tr><td>Model-authored riddles</td><td>600</td><td>K 300 / U 300; DECOMP 200 / SEM 200 / HOMO 200</td></tr>
+<tr><td>Passed quality control</td><td>597</td><td>K 298 / U 299</td></tr>
+<tr><td>Entered blind test</td><td>597</td><td>DECOMP 197 / SEM 200 / HOMO 200</td></tr>
+</tbody></table>
+<p>Two audit facts should be flagged here, as §6.4 uses them in discussing training applicability. First, <strong>602 (58.9%) of the 1,023 LLM explanations were self-rated <code>low</code> by the model that produced them</strong>, and automatic technique classification was heavily skewed toward SEM (594:427:2)—"writing an explanation after being given the answer" is not a reliable source of supervision. Second, in the pilot stage, <strong>16 of 19 (84.2%) "guess one character" clues scraped from <code>fkcmy.com</code> had clue text and answer exactly identical to CC-Riddle</strong>, and a further 12 of the 43 candidates in the later merged set (27.9%) were direct duplicates: character-riddle sites and CC-Riddle belong to the same reposting chain, so indiscriminate site-wide crawling yields no independent data.</p>
+<h3>3.5 Statistical methods</h3>
+<ul><li><strong>Interval estimation</strong>: Wilson 95% confidence intervals for binomial proportions (Wilson, 1927).</li><li><strong>Paired comparisons</strong>: the 0/1 outcomes of the two conditions for the same <code>gid</code> form a paired 2×2 table; we use the <strong>exact binomial test</strong> on the discordant cells (the two-sided exact version of McNemar, 1947), not a normal approximation.</li><li><strong>Between-group composition</strong>: Fisher's exact test for 2×2 contingency tables (Fisher, 1922).</li><li><strong>Effect decomposition</strong>: the additive model of §4.4 and the derivation of the identity are given in Appendix B.</li><li><strong>Significance convention</strong>: all <em>p</em>-values in this report are two-sided; no post-hoc multiple-comparison correction is applied, so stratified results (especially the small ICL strata) are read directionally only. All raw per-item results are retained as JSONL and can be recomputed.</li></ul>
+<hr/>
+<h2 id="sec-6">4 Experiment 1: The Generation–Solving Closed Loop</h2>
+<h3>4.1 Design and mapping to criteria</h3>
+<figure class="fig"><div class="fig-body"><svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="生成求解闭环示意图">
+<defs><marker id="ar" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#5b6875"/></marker></defs>
+<rect x="0" y="0" width="900" height="300" fill="#ffffff"/>
+<text x="18" y="26" font-size="14" font-weight="700" fill="#1b2733">出题期 · 2026-11-05 · 独立进程</text>
+<text x="478" y="26" font-size="14" font-weight="700" fill="#1b2733">答题期 · 2026-11-06 · 全新单轮对话</text>
+<rect x="18" y="40" width="360" height="196" rx="8" fill="#f4f7fa" stroke="#c9d4de"/>
+<rect x="34" y="60" width="150" height="76" rx="6" fill="#ffffff" stroke="#9fb3c6"/>
+<text x="109" y="82" text-anchor="middle" font-size="13" font-weight="700" fill="#1b2733">给定信息</text>
+<text x="109" y="102" text-anchor="middle" font-size="12" fill="#43525f">目标字 · IDS 字理卡</text>
+<text x="109" y="120" text-anchor="middle" font-size="12" fill="#43525f">4 条跨字示例 · 手法</text>
+<line x1="186" y1="98" x2="214" y2="98" stroke="#5b6875" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="216" y="60" width="146" height="76" rx="6" fill="#e8f0f8" stroke="#5b83ab"/>
+<text x="289" y="90" text-anchor="middle" font-size="14" font-weight="700" fill="#1d4a75">制谜模型 A</text>
+<text x="289" y="112" text-anchor="middle" font-size="12" fill="#43525f">生成谜面 + 解谜叙述</text>
+<line x1="289" y1="138" x2="289" y2="160" stroke="#5b6875" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="34" y="162" width="328" height="56" rx="6" fill="#ffffff" stroke="#9fb3c6"/>
+<text x="198" y="184" text-anchor="middle" font-size="13" font-weight="700" fill="#1b2733">产物：谜面（进入题库，经质检与溯源）</text>
+<text x="198" y="204" text-anchor="middle" font-size="12" fill="#7a4a3a">答案 / 字理 / 叙述 —— 不进入答题上下文</text>
+<line x1="382" y1="190" x2="470" y2="190" stroke="#5b6875" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="388" y="128" width="76" height="34" rx="5" fill="#fff6e9" stroke="#d9a86c"/>
+<text x="426" y="150" text-anchor="middle" font-size="12" fill="#8a5a20">仅谜面</text>
+<text x="426" y="118" text-anchor="middle" font-size="11" fill="#6b7684">隔一天</text>
+<text x="18" y="266" font-size="12.5" fill="#5b6875">信息条件差异：出题期持有目标字、字理卡与跨字示例；答题期只有谜面，答案与出题期推理均不进入上下文</text>
+<rect x="478" y="40" width="404" height="196" rx="8" fill="#f4f7fa" stroke="#c9d4de"/>
+<rect x="494" y="60" width="150" height="56" rx="6" fill="#ffffff" stroke="#9fb3c6"/>
+<text x="569" y="83" text-anchor="middle" font-size="13" font-weight="700" fill="#1b2733">输入</text>
+<text x="569" y="102" text-anchor="middle" font-size="12" fill="#43525f">[system, 单条 user]</text>
+<line x1="646" y1="88" x2="674" y2="88" stroke="#5b6875" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="676" y="58" width="190" height="86" rx="6" fill="#e8f0f8" stroke="#5b83ab"/>
+<text x="771" y="80" text-anchor="middle" font-size="13" font-weight="700" fill="#1d4a75">猜题方（唯一变量）</text>
+<text x="771" y="102" text-anchor="middle" font-size="12" fill="#43525f">cross：模型 B（对方）</text>
+<text x="771" y="122" text-anchor="middle" font-size="12" fill="#43525f">self：模型 A（本人）</text>
+<line x1="771" y1="146" x2="771" y2="164" stroke="#5b6875" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="494" y="166" width="372" height="52" rx="6" fill="#ffffff" stroke="#9fb3c6"/>
+<text x="680" y="187" text-anchor="middle" font-size="13" font-weight="700" fill="#1b2733">输出：单个汉字 → 与标准答案精确匹配（0 / 1）</text>
+<text x="680" y="206" text-anchor="middle" font-size="12" fill="#43525f">同一 gid 在两条件下构成逐题配对观测</text>
+</svg></div><figcaption>Figure 1  Generation-solving closed loop: information conditions in the making phase and the solving phase</figcaption></figure>
+<p>The 597 quality-controlled, self-authored riddles were each answered once under two conditions:</p>
+<ul><li><strong>Cross-model blind test (<code>cross</code>, 2026-11-05)</strong>: riddles made by K were solved by U, and riddles made by U were solved by K.</li><li><strong>Same-item self-test (<code>self</code>, 2026-11-06)</strong>: riddles made by K were solved by K, and riddles made by U were solved by U, in fresh single-turn conversations one day later with no context from the generation session.</li></ul>
+<p>Both conditions share prompts, scorer, concurrency policy, and item set; the <code>gid</code> sets are identical, yielding 597 <strong>item-level paired</strong> observations. The design lets item difficulty cancel automatically in the paired comparison, so the difference can be attributed to the change in solver identity. In terms of probe criteria, the design operates C3 (isolation of information conditions) and C5 (contrasting the generation and solving directions), while the 2×2 decomposition in §4.4 carries the C4 selectivity identification.</p>
+<h3>4.2 Overall results</h3>
+<p><strong>Table 6　Cross blind test and same-item self-test, overall</strong></p>
+<table><thead><tr><th>Condition</th><th>Correct / total</th><th>Solve rate</th><th>Wilson 95% CI</th></tr></thead><tbody>
+<tr><td>Cross blind test (A makes → B solves)</td><td>233 / 597</td><td>39.03%</td><td>[35.20%, 43.00%]</td></tr>
+<tr><td>Same-item self-test (A makes → A solves)</td><td>264 / 597</td><td><strong>44.22%</strong></td><td>[40.29%, 48.23%]</td></tr>
+<tr><td>Difference</td><td>+31</td><td><strong>+5.19 pp</strong></td><td>Relative improvement 13.3%</td></tr>
+</tbody></table>
+<p><strong>Table 7　Item-level paired 2×2 table (n = 597)</strong></p>
+<table><thead><tr><th></th><th>Self correct</th><th>Self wrong</th><th>Total</th></tr></thead><tbody>
+<tr><td><strong>Cross correct</strong></td><td>173</td><td>60</td><td>233</td></tr>
+<tr><td><strong>Cross wrong</strong></td><td>91</td><td>273</td><td>364</td></tr>
+<tr><td><strong>Total</strong></td><td>264</td><td>333</td><td>597</td></tr>
+</tbody></table>
+<p>The discordant cells are 60 (cross-only correct) and 91 (self-only correct); the exact binomial test gives <em>p</em> = 0.0144, significant at α = 0.05. The correct/wrong agreement rate between the two answerings is 74.71%, while the rate of producing <strong>the same answer character</strong> is only 36.35% (217/597, including cases where both gave the same wrong character). Conditionally, <code>P(self correct | cross correct) = 74.25%</code> and <code>P(self correct | cross wrong) = 25.00%</code>.</p>
+<p>Two trivial explanations must be excluded before interpretation. <strong>First, remembering the answer</strong>: the self-test ran one day later in a new process with a fresh conversation whose <code>messages</code> contained neither the answer nor the maker reasoning; <code>maker==guesser</code> but <code>history_messages=0</code>, so a correct answer cannot be copied from context. <strong>Second, insufficient information in the clue</strong>: at generation time the model held the target character, an IDS card, four cross-character exemplars, and a specified technique, and the clue is precisely what it wrote from those inputs; at solving time only those inputs are absent, while the clue itself is complete. The difference between conditions can therefore only come from <em>who the solver is</em> (and the internal-representation differences that follow). Weight-level self-familiarity (the same model both making and answering) cannot be fully excluded—an important limitation detailed in §7.</p>
+<h3>4.3 Stratified results: an apparent contradiction</h3>
+<p><strong>Table 8　Stratified by maker and by technique</strong></p>
+<table><thead><tr><th>Stratum</th><th>n</th><th>Cross</th><th>Self</th><th>Difference</th><th>McNemar <em>p</em></th></tr></thead><tbody>
+<tr><td>K makes</td><td>298</td><td>36.58%</td><td>58.05%</td><td><strong>+21.48 pp</strong></td><td>&lt; 0.0001</td></tr>
+<tr><td>U makes</td><td>299</td><td>41.47%</td><td>30.43%</td><td><strong>−11.04 pp</strong></td><td>0.000142</td></tr>
+<tr><td>DECOMP (拆形)</td><td>197</td><td>49.75%</td><td>60.41%</td><td>+10.66 pp</td><td><strong>0.0139</strong></td></tr>
+<tr><td>SEM (会意)</td><td>200</td><td>35.00%</td><td>37.00%</td><td>+2.00 pp</td><td>0.665</td></tr>
+<tr><td>HOMO (谐音)</td><td>200</td><td>32.50%</td><td>35.50%</td><td>+3.00 pp</td><td>0.405</td></tr>
+</tbody></table>
+<p>Stratified by maker, the two models move in exactly opposite directions and both effects are significant; a careless reading would conclude that "only K recognizes its own riddles, while U recognizes its own even less". Stratified by technique, only <strong>DECOMP</strong> shows a significant self-test gain (+10.66 pp), with SEM and HOMO non-significant; the most striking single cell is K solving its own DECOMP riddles, 48.98% → 84.69% (+35.71 pp). Technique yields a stable, interpretable difficulty ordering (DECOMP &gt; SEM ≈ HOMO), which is direct evidence for C2.</p>
+<h3>4.4 The 2×2 full factorial: opposite directions are confounding, not contradiction</h3>
+<figure class="fig"><div class="fig-body"><svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="2乘2全因子分解示意图">
+<defs><marker id="ar2" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#5b6875"/></marker></defs>
+<rect x="0" y="0" width="900" height="340" fill="#ffffff"/>
+<text x="225" y="26" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1b2733">猜题方 = K（强，β=+16.26 pp）</text>
+<text x="495" y="26" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1b2733">猜题方 = U（弱）</text>
+<text x="30" y="100" font-size="13" font-weight="700" fill="#1b2733">K 出题</text>
+<text x="30" y="226" font-size="13" font-weight="700" fill="#1b2733">U 出题</text>
+<rect x="96" y="44" width="258" height="96" rx="8" fill="#eaf3fb" stroke="#5b83ab"/>
+<text x="225" y="74" text-anchor="middle" font-size="23" font-weight="700" fill="#1d4a75">58.05%</text>
+<text x="225" y="98" text-anchor="middle" font-size="12.5" fill="#1d4a75">自测（n=298）</text>
+<text x="225" y="120" text-anchor="middle" font-size="12" fill="#43525f">μ + α + β + γ</text>
+<rect x="366" y="44" width="258" height="96" rx="8" fill="#f7f9fb" stroke="#c9d4de"/>
+<text x="495" y="74" text-anchor="middle" font-size="23" font-weight="700" fill="#1b2733">36.58%</text>
+<text x="495" y="98" text-anchor="middle" font-size="12.5" fill="#43525f">交叉（n=298）</text>
+<text x="495" y="120" text-anchor="middle" font-size="12" fill="#43525f">μ + α</text>
+<rect x="96" y="172" width="258" height="96" rx="8" fill="#f7f9fb" stroke="#c9d4de"/>
+<text x="225" y="202" text-anchor="middle" font-size="23" font-weight="700" fill="#1b2733">41.47%</text>
+<text x="225" y="226" text-anchor="middle" font-size="12.5" fill="#43525f">交叉（n=299）</text>
+<text x="225" y="248" text-anchor="middle" font-size="12" fill="#43525f">μ + β</text>
+<rect x="366" y="172" width="258" height="96" rx="8" fill="#fdf1ec" stroke="#c98a72"/>
+<text x="495" y="202" text-anchor="middle" font-size="23" font-weight="700" fill="#a34527">30.43%</text>
+<text x="495" y="226" text-anchor="middle" font-size="12.5" fill="#a34527">自测（n=299）</text>
+<text x="495" y="248" text-anchor="middle" font-size="12" fill="#43525f">μ + γ</text>
+<line x1="628" y1="92" x2="638" y2="92" stroke="#5b6875" stroke-width="2" marker-end="url(#ar2)"/>
+<line x1="628" y1="220" x2="638" y2="220" stroke="#5b6875" stroke-width="2" marker-end="url(#ar2)"/>
+<rect x="642" y="60" width="248" height="64" rx="6" fill="#eaf3fb" stroke="#5b83ab"/>
+<text x="766" y="80" text-anchor="middle" font-size="12" fill="#43525f">K 出题行：自测 − 交叉</text>
+<text x="766" y="102" text-anchor="middle" font-size="14" font-weight="700" fill="#1d4a75">+21.48 pp = β + γ</text>
+<text x="766" y="118" text-anchor="middle" font-size="11" fill="#6b7684">173/298 − 109/298</text>
+<rect x="642" y="188" width="248" height="64" rx="6" fill="#fdf1ec" stroke="#c98a72"/>
+<text x="766" y="208" text-anchor="middle" font-size="12" fill="#43525f">U 出题行：自测 − 交叉</text>
+<text x="766" y="230" text-anchor="middle" font-size="14" font-weight="700" fill="#a34527">−11.04 pp = −β + γ</text>
+<text x="766" y="246" text-anchor="middle" font-size="11" fill="#6b7684">91/299 − 124/299</text>
+<rect x="96" y="288" width="794" height="38" rx="6" fill="#f1f5f8" stroke="#c9d4de"/>
+<text x="493" y="312" text-anchor="middle" font-size="12.5" fill="#1b2733">平衡设计下：总体 (自测 − 交叉) = ½[(β+γ) + (−β+γ)] = γ = +5.22 pp ≈ 实测 +5.19 pp</text>
+</svg></div><figcaption>Figure 2  Maker x solver 2x2 full factorial: how the apparent contradiction is explained by beta (differences are self minus cross within a row)</figcaption></figure>
+<p>The key is that <strong>stratifying by maker simultaneously swaps the solver</strong>. When K makes the riddles, <code>self</code> means the stronger solver K and <code>cross</code> means the weaker solver U; when U makes them, the mapping reverses. Spread across the four cells from the two days, the data form an approximately complete 2×2 factorial (maker ∈ {K, U} × solver ∈ {K, U}):</p>
+<p><strong>Table 9　Maker × solver four cells (solve rate)</strong></p>
+<table><thead><tr><th>Maker \ Solver</th><th>K solves</th><th>U solves</th></tr></thead><tbody>
+<tr><td><strong>K makes</strong> (n = 298)</td><td>58.05% (self)</td><td>36.58% (cross)</td></tr>
+<tr><td><strong>U makes</strong> (n = 299)</td><td>41.47% (cross)</td><td>30.43% (self)</td></tr>
+</tbody></table>
+<p>Let the additive model (derived in Appendix B) be:</p>
+<p><code>rate = μ + α·1[item source = K] + β·1[solver = K] + γ·1[maker = solver]</code></p>
+<p>Solving from the four cells: <em>μ</em> = 0.252149 (the U-makes/U-solves baseline after removing γ), <em>α</em> = +0.113623 (K-authored items are easier), <em>β</em> = +0.162566 (K's solving ability exceeds U's by 16.26 pp), and <strong>γ = +0.052199 (net self-familiarity advantage of 5.22 pp)</strong>. All are computed as ratios of raw counts without prior rounding; see Appendix B.</p>
+<p>The two stratified differences are then fully explained:</p>
+<ul><li>K makes: self − cross = (strong solver + self) − (weak solver) = <em>β</em> + <em>γ</em> = +21.48 pp ✓</li><li>U makes: self − cross = (weak solver + self) − (strong solver) = −<em>β</em> + <em>γ</em> = −11.04 pp ✓</li></ul>
+<p>That is, <strong>both models share the same self-advantage of roughly +5.2 pp</strong>, whose sign is flipped by the ±16.3 pp solver-ability gap. More important is the identity: under a balanced design, the overall "self − cross" difference equals <em>γ</em> exactly. Here the two groups are slightly unbalanced (n = 298/299), so the observed overall difference of +5.19 pp differs from <em>γ</em> = +5.22 pp by 0.03 pp owing to group sizes and rounding. This means <strong>the overall significance test in §4.2 is testing γ itself</strong>, not a mixture contaminated by main effects.</p>
+<blockquote><strong>Boundary of the decomposition (must be reported alongside the conclusion)</strong>: this is a descriptive additive decomposition, not a regression estimate; the two item sources differ (K 298 items / U 299 items), so these are not strict repeated measurements on the same items; the model assumes additivity and no higher-order interaction; and no confidence interval for <em>γ</em> is given. If K's and U's self-advantages are in fact unequal (an interaction exists), <em>γ</em> should be read as their weighted average net effect.</blockquote>
+<p>From the standpoint of probe methodology, this section is the core of C4: <strong>if "generator" and "evaluator" are not crossed as two independent factors, the reading of any "A generates → A evaluates" probe will be contaminated by the evaluator-ability main effect</strong>. This is the behavioral-layer counterpart of the selectivity check demanded by Hewitt &amp; Liang (2019).</p>
+<h3>4.5 Four-cell diagnosis: what correct and incorrect answers each tell us</h3>
+<p>Crossing the cross/self 2×2 table with technique and maker gives the paper's central diagnostic material:</p>
+<p><strong>Table 10　Answer four cells × technique × maker</strong></p>
+<table><thead><tr><th>Four cell</th><th>n</th><th>DECOMP / SEM / HOMO</th><th>K makes / U makes</th></tr></thead><tbody>
+<tr><td>Both correct</td><td>173</td><td>75 / 48 / 50</td><td>102 / 71</td></tr>
+<tr><td><strong>Self-only correct</strong></td><td>91</td><td>44 / 26 / 21</td><td><strong>71 / 20</strong></td></tr>
+<tr><td><strong>Cross-only correct</strong></td><td>60</td><td>23 / 22 / 15</td><td><strong>7 / 53</strong></td></tr>
+<tr><td>Both wrong</td><td>273</td><td>55 / 104 / 114</td><td>118 / 155</td></tr>
+</tbody></table>
+<p>Maker attribution differs extremely significantly between the "self-only correct" and "cross-only correct" cells (K:U = 71:20 vs 7:53, Fisher <em>p</em> = 1.65×10⁻¹²): riddles made by the stronger model are solvable by that model itself, whereas riddles made by the weaker model are more often solvable by someone else.</p>
+<p><strong>What a correct answer—especially the 91 "only its own maker solves it" items—shows.</strong> The generation-phase input was (target character + IDS card + 4 cross-character exemplars + specified technique); the answering phase had only the clue. The fact that cues encoded in the clue can be <strong>inverted along the generation path</strong> into a solving path by the same model indicates that generation and solving strategies share an internal procedure or stylistic convention, rather than relying on memory. Two representative cases:</p>
+<ul><li>「衣裳同音，数数它最先」→ answer 「一」 (<em>yī</em>, "one"). Literally: "Same sound as 衣裳 (<em>yīshang</em>, 'clothes'); it comes first when counting." U answered 「衣」 (<em>yī</em>, "clothing"); K, its own maker, answered 「一」—the convention by which the homophone points to the answer was retained by the maker itself.</li><li>「卜字脚下添一横」→ answer 「上」 (<em>shàng</em>, "up/above"). Literally: "Add a horizontal stroke at the foot of 卜 (<em>bǔ</em>)". U answered 「下」 (<em>xià</em>, "down"); K, its own maker, answered 「上」—the spatial interpretation is self-consistent only within one model's generation/solving conventions.</li></ul>
+<p><strong>What an incorrect answer—especially the 60 "someone else can solve it but its maker cannot", and the 273 both-wrong items—shows.</strong> With the answer, a character-structure card, and exemplars available, a model can write a plausible-looking solving narrative; once these are removed, the same model cannot solve its own freshly made riddle. This suggests the narrative may not be an <strong>executable solving procedure</strong> but something closer to <strong>narrativization after the answer is given</strong>. Representative cases:</p>
+<ul><li>「叉去一点，添上一寸」→ answer 「对」: U solved it correctly; K, the maker, answered 「夺」 (<em>duó</em>, "seize").</li><li>「九百六十万平方公里」→ answer 「国」 (<em>guó</em>, "country"). Literally: "9.6 million square kilometres" (China's area). U answered 「国」; K, the maker, answered 「垚」 (<em>yáo</em>, three 土 'earth' stacked)—its own prior led it astray.</li></ul>
+<p><strong>At the technique level</strong>: among the 273 both-wrong items, SEM + HOMO account for 218/273 = <strong>79.85%</strong>, significantly above the overall 400/597 = 67.00%. Open-ended semantic/phonological association is a shared blind spot of both models, whereas structured glyph decomposition transfers relatively well.</p>
+<h3>4.6 Two negative results that must be reported</h3>
+<p>To avoid writing the above interpretation as an over-confident conclusion, we ran two additional tests whose results <strong>do not support</strong> the strong reading:</p>
+<p><strong>Table 11　Negative-result tests</strong></p>
+<table><thead><tr><th>Test</th><th>Values</th><th>Fisher <em>p</em></th><th>Verdict</th></tr></thead><tbody>
+<tr><td>DECOMP share in "self-only correct" vs "cross-only correct"</td><td>44/91 (48.4%) vs 23/60 (38.3%)</td><td><strong>0.245</strong></td><td>Not significant. One may say only that "the overall gain is significant for DECOMP when decomposed by technique (Table 8)"; one <strong>cannot</strong> say "the self-advantage is concentrated in DECOMP"—the two statements are not equivalent</td></tr>
+<tr><td>Share of maker reasoning texts directly containing the answer character (at least one party solved it vs both wrong)</td><td>293/324 (90.43%) vs 258/273 (94.51%)</td><td><strong>0.066</strong></td><td>A trend only; moreover the direction is <em>more</em> answer-containing text in the both-wrong group, so this cannot serve as hard evidence that reasoning is post-hoc rationalization</td></tr>
+</tbody></table>
+<p>Our answer to RQ1 is therefore <strong>qualified</strong>: the data support "a procedural asymmetry between generation and solving", whose direction is predictable from "whether the answer is held"; but the stronger claim that "generation-phase reasoning is purely fabricated after the fact" is <strong>not confirmed</strong> by these data and needs the erroneous-exemplar experiment of §5 for evidence from another angle. For C5, this section supplies only indirect evidence.</p>
+<hr/>
+<h2 id="sec-7">5 Experiment 2: The ICL Control Task</h2>
+<h3>5.1 Design: a dual role as control task and virtual training</h3>
+<figure class="fig"><div class="fig-body"><svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ICL四条件设计图">
+<rect x="0" y="0" width="900" height="300" fill="#ffffff"/>
+<rect x="18" y="18" width="864" height="42" rx="6" fill="#f1f5f8" stroke="#c9d4de"/>
+<text x="450" y="45" text-anchor="middle" font-size="13" font-weight="700" fill="#1b2733">共用：4 条示例谜面 + 谜底（对 / 但 / 和 / 学）· 2 拆形 · 1 会意 · 1 谐音；示例字与 24 个测试字严格不相交</text>
+<text x="18" y="88" font-size="13" font-weight="700" fill="#1b2733">条件</text>
+<text x="150" y="88" font-size="13" font-weight="700" fill="#1b2733">assistant.reasoning</text>
+<text x="570" y="88" font-size="13" font-weight="700" fill="#1b2733">K 结果</text>
+<text x="740" y="88" font-size="13" font-weight="700" fill="#1b2733">U 结果</text>
+<line x1="18" y1="96" x2="882" y2="96" stroke="#c9d4de"/>
+<g font-size="13" fill="#1b2733">
+<text x="18" y="126" font-weight="700">zero</text><text x="150" y="126" fill="#6b7684">k=0，无示例</text><text x="570" y="126">41.67%</text><text x="740" y="126">37.50%</text>
+<text x="18" y="166" font-weight="700">answer</text><text x="150" y="166" fill="#6b7684">k=4，空（仅谜面→谜底）</text><text x="570" y="166">41.67%</text><text x="740" y="166" fill="#a34527">29.17%</text>
+<text x="18" y="206" font-weight="700">program</text><text x="150" y="206" fill="#1d4a75">k=4，人工可执行拆解（正确）</text><text x="570" y="206" fill="#1d4a75">45.83%</text><text x="740" y="206" fill="#1d4a75">37.50%</text>
+<text x="18" y="246" font-weight="700">self</text><text x="150" y="246" fill="#6b7684">k=4，模型自己给定谜底后写的事后解释</text><text x="570" y="246">45.83%（4 条全对）</text><text x="740" y="246" fill="#a34527">20.83%（含 1 条误拆）</text>
+</g>
+<line x1="18" y1="104" x2="882" y2="104" stroke="#eef2f6"/>
+<line x1="18" y1="140" x2="882" y2="140" stroke="#eef2f6"/>
+<line x1="18" y1="180" x2="882" y2="180" stroke="#eef2f6"/>
+<line x1="18" y1="220" x2="882" y2="220" stroke="#eef2f6"/>
+<rect x="18" y="264" width="864" height="28" rx="6" fill="#fff6e9" stroke="#d9a86c"/>
+<text x="450" y="283" text-anchor="middle" font-size="12" fill="#8a5a20">program vs self 的 prompt 仅差推理文本（712.5 vs 739.5 token）；U 的 4:0 单向优势把「正确性」与「自我性」分离</text>
+</svg></div><figcaption>Figure 3  ICL control task: the same exemplar clues, with only the source of the assistant reasoning replaced</figcaption></figure>
+<p>P1 located the gap in "inverse execution when only the clue is given". RQ3 asks: without changing weights, can supplying solving exemplars in context activate that ability? If yes, the ability is already in the weights and only task-format alignment is missing; if not, weight-level structural representations are more likely needed. For the probe criteria this section plays two roles at once: as a <strong>control task</strong> testing C4 (separating format effects, exemplar provenance, and reasoning correctness), and as <strong>virtual training without weight changes</strong> providing directional evidence for C5.</p>
+<p><strong>Item set</strong>: 24 items drawn from the 597 by stratifying on (maker × technique)—K/U × DECOMP/SEM/HOMO, 4 items per cell—with fixed seed 20261106 and frozen item-set SHA256 <code>b16111d9…8537f</code>. <strong>The exemplar characters {对, 但, 和, 学} are strictly disjoint from the 24 test characters</strong>, maintaining the holdout-isolation discipline and preventing exemplars from leaking answers.</p>
+<p><strong>Four conditions</strong> (<code>zero</code> / <code>answer</code> / <code>program</code> / <code>self</code>): the last three share <strong>exactly the same 4 clue texts and answers</strong> (2 DECOMP / 1 SEM / 1 HOMO, all taken from K's riddles), and differ only in the reasoning content of the <code>assistant</code> reply:</p>
+<p><strong>Table 12　The four ICL conditions</strong></p>
+<table><thead><tr><th>Condition</th><th>k</th><th><code>assistant.reasoning</code> content</th><th>Mean prompt tokens</th></tr></thead><tbody>
+<tr><td><code>zero</code></td><td>0</td><td>No exemplars (same-batch baseline)</td><td>279.0</td></tr>
+<tr><td><code>answer</code></td><td>4</td><td>Empty (clue → answer only), controlling message structure and length</td><td>538.0</td></tr>
+<tr><td><code>program</code></td><td>4</td><td>Human-written <strong>executable</strong> decomposition steps</td><td>712.5</td></tr>
+<tr><td><code>self</code></td><td>4</td><td><strong>The model's own</strong> post-hoc explanation written after being given the answer</td><td>739.5</td></tr>
+</tbody></table>
+<p><code>program</code> and <code>self</code> have identical clue texts, answers, message structure, system prompt, and sampling parameters; prompt lengths are 712.5 vs 739.5 tokens, the difference arising solely from the reasoning text itself. This is the <strong>cleanest contrast in the entire study</strong>: the only substantive variable is <em>who wrote the reasoning content and whether it is correct</em>.</p>
+<p>An example DECOMP clue: 「旭日初升人独立」→ <strong>但</strong> (<em>dàn</em>, "but"). Literally: "The rising sun at dawn, a person standing alone". The human-authored procedural reasoning: "旭日初升" supplies 「日」 (<em>rì</em>, sun) and a horizontal stroke for the horizon, stacked into 「旦」 (<em>dàn</em>, dawn); "人独立" takes the person radical 「亻」; juxtaposing them left and right yields 「但」.</p>
+<h3>5.2 Results</h3>
+<p>192 calls (2 models × 24 items × 4 conditions), zero failures and zero format anomalies; cumulative request time 1,983.1 s (3 concurrent workers, ≈11 minutes wall clock), 108,912 input tokens and 61,720 output tokens.</p>
+<p><strong>Table 13　Main ICL results (correct / 24, solve rate)</strong></p>
+<table><thead><tr><th>Model</th><th><code>zero</code></th><th><code>answer</code></th><th><code>program</code></th><th><code>self</code></th></tr></thead><tbody>
+<tr><td>kimi-k3.1-pro</td><td>10/24 (41.67%)</td><td>10/24 (41.67%)</td><td>11/24 (<strong>45.83%</strong>)</td><td>11/24 (<strong>45.83%</strong>)</td></tr>
+<tr><td>u2-flash</td><td>9/24 (37.50%)</td><td>7/24 (29.17%)</td><td>9/24 (37.50%)</td><td>5/24 (<strong>20.83%</strong>)</td></tr>
+</tbody></table>
+<p><strong>No condition differs significantly from <code>zero</code></strong> (smallest <em>p</em> = 0.125; n = 24 with only 8 items per cell). Stratified by technique, the <code>program − answer</code> gains are scattered across DECOMP and HOMO (three cells at +12.5 pp: K×HOMO, U×DECOMP, U×HOMO), while <strong>SEM items do not move at all across <code>zero</code>/<code>answer</code>/<code>program</code></strong> (K SEM constant at 25.0%; U SEM ≤12.5% throughout), with only one item fluctuating in K's <code>self</code> condition (25.0% → 37.5%, non-significant).</p>
+<p><strong>Prediction P1 ("gains concentrate in DECOMP") was not verified</strong>; but a different reading is more valuable: SEM items are almost completely immobile across all four conditions, suggesting open-ended semantic association is not an ability that few-shot exemplars can activate.</p>
+<h3>5.3 A natural control: how one wrong explanation drags down a whole condition</h3>
+<p>The <code>prepare</code> stage produced a control that was not designed but is highly informative. When K and U each wrote post-hoc explanations for the 4 exemplar clues, <strong>all 4 of K's were correct</strong>, whereas <strong>U mis-parsed the glyph decomposition</strong> of 「旭日初升人独立」:</p>
+<blockquote>U's self-written explanation: "In the clue '旭日初升' (the rising sun at dawn), take 旭 (<em>xù</em>) and remove 日 ('the sun that has just risen'), leaving 九 (<em>jiǔ</em>); '人独立' (a person standing alone) means 人 (<em>rén</em>) standing by itself, which can be written as the radical 亻. Combining 九 and 亻 gives the answer 但."<br/>The correct procedure: 「日 + 一 = 旦」; 「亻 + 旦 = 但」.<br/>K's self-written explanation (correct): "'旭日初升' is interpreted as 旦 (<em>dàn</em>), the sun rising above the horizon; '人独立' cues the standing-person radical 亻. Combining 亻 and 旦 side by side gives the answer 但."</blockquote>
+<p>The two models' <code>self</code> conditions relative to <code>program</code> therefore diverge exactly as this would predict:</p>
+<p><strong>Table 14　Key direct contrasts (paired 2×2)</strong></p>
+<table><thead><tr><th>Model</th><th>Contrast</th><th>Only A correct</th><th>Only B correct</th><th>Both correct</th><th>Both wrong</th><th>McNemar <em>p</em></th></tr></thead><tbody>
+<tr><td>kimi</td><td><code>program</code> vs <code>self</code></td><td>1</td><td>1</td><td>10</td><td>12</td><td>1.000</td></tr>
+<tr><td>kimi</td><td><code>program</code> vs <code>answer</code></td><td>1</td><td>0</td><td>10</td><td>13</td><td>1.000</td></tr>
+<tr><td>u2</td><td><strong><code>program</code> vs <code>self</code></strong></td><td><strong>4</strong></td><td><strong>0</strong></td><td>5</td><td>15</td><td><strong>0.125</strong></td></tr>
+<tr><td>u2</td><td><code>program</code> vs <code>answer</code></td><td>4</td><td>2</td><td>5</td><td>13</td><td>0.6875</td></tr>
+</tbody></table>
+<p>K's <code>self</code> and <code>program</code> tie exactly (45.83%); U's <code>self</code> falls to 20.83%—16.67 pp below <code>zero</code> and 16.67 pp below <code>program</code>, with <code>program</code> beating <code>self</code> 4:0 one-directionally. Because the two conditions are identical except for the reasoning text, the simplest explanation is that <strong>the erroneous glyph decomposition in the exemplar was learned as a reusable procedure</strong>, not that "one's own explanations are inherently more compatible". An additional counter-intuitive observation: <code>answer</code>, which supplies only (clue, answer), <strong>interferes</strong> with U (29.17%), and only the procedural scaffolding restores it to 37.50%.</p>
+<p><strong>This evidence also fills the gap left in §4.6</strong>: §4.5 could say only that "a narrative written after the answer is given may not be executable", with Fisher <em>p</em> = 0.066 insufficient to establish it; the present section shows that once such a narrative is presented as an in-context demonstration, its error is <strong>directly converted into a solving error</strong>. This supports the inference that "post-hoc explanations should not be used as supervision by default"—but note that it remains <strong>a single observation with a single erroneous exemplar</strong>, and <em>p</em> = 0.125 is not significant. For C5 this is directional, not decisive, evidence.</p>
+<h3>5.4 Reproducibility: day-to-day drift is smaller than expected</h3>
+<p>To quantify single-sample noise (C6), we compared the <code>zero</code> condition of ICL with the 11-06 self-test on the 12 items that are <strong>strictly the same model and the same item</strong> (an earlier version mistakenly included items in the 11-06 data answered by the other model; the criterion has been corrected):</p>
+<table><thead><tr><th>Model</th><th>n</th><th>Judgments agreeing</th><th>Agreement</th><th><code>zero</code></th><th>11-06 self-test</th></tr></thead><tbody>
+<tr><td>kimi</td><td>12</td><td>12</td><td><strong>100%</strong></td><td>33.33%</td><td>33.33%</td></tr>
+<tr><td>u2</td><td>12</td><td>9</td><td>75%</td><td>33.33%</td><td>25.00%</td></tr>
+</tbody></table>
+<p>K reproduced perfectly one day later; U flipped on three items. Sampling variability in this experiment is thus smaller than commonly feared, and the 597 paired P1 results have reasonable test–retest stability; n = 12 is still too small for a tight variance estimate, so §7 retains "single sampling" as a limitation.</p>
+<h3>5.5 Verdicts on three falsifiable predictions</h3>
+<p><strong>Table 15　Pre-registered predictions and verdicts</strong></p>
+<table><thead><tr><th>Prediction</th><th>Verdict</th><th>Note</th></tr></thead><tbody>
+<tr><td>P1 Gains from procedural exemplars concentrate in DECOMP</td><td><strong>Not verified</strong></td><td>Gains scattered across DECOMP/HOMO; but SEM shows zero gain across <code>zero</code>/<code>answer</code>/<code>program</code>, usable as directional evidence that "open-ended association is hard to activate with few-shot exemplars"</td></tr>
+<tr><td>P2 Post-hoc explanations are no better than executable decompositions</td><td><strong>Directional support</strong></td><td>The pattern tracks the correctness of exemplar explanations (K all correct → tie; U one wrong → −16.7 pp), not whether the explanation was self-authored</td></tr>
+<tr><td>P3 Single-sample noise is large and results are irreproducible</td><td><strong>Supported in reverse</strong></td><td>Strictly same-model same-item: K 100%, U 75% reproduction</td></tr>
+</tbody></table>
+<hr/>
+<h2 id="sec-8">6 Overall Verdict: Can Riddles Serve as Structural Probes?</h2>
+<h3>6.1 Adjudicating the criteria one by one</h3>
+<figure class="fig"><div class="fig-body"><svg viewBox="0 0 900 362" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="结构探针有效性裁定流程图">
+<defs><marker id="ar4" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#5b6875"/></marker></defs>
+<rect x="0" y="0" width="900" height="362" fill="#ffffff"/>
+<text x="18" y="22" font-size="13" font-weight="700" fill="#1b2733">判据层 · 行为层结构探针的六条有效性要求</text>
+<rect x="18" y="34" width="134" height="58" rx="6" fill="#eaf3fb" stroke="#5b83ab"/>
+<text x="85" y="56" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1d4a75">C1 客观判分</text>
+<text x="85" y="78" text-anchor="middle" font-size="12" fill="#1d4a75">满足</text>
+<rect x="164" y="34" width="134" height="58" rx="6" fill="#eaf3fb" stroke="#5b83ab"/>
+<text x="231" y="56" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1d4a75">C2 结构可分解</text>
+<text x="231" y="78" text-anchor="middle" font-size="12" fill="#1d4a75">满足</text>
+<rect x="310" y="34" width="134" height="58" rx="6" fill="#fff6e9" stroke="#d9a86c"/>
+<text x="377" y="56" text-anchor="middle" font-size="12.5" font-weight="700" fill="#8a5a20">C3 信息可控</text>
+<text x="377" y="78" text-anchor="middle" font-size="12" fill="#8a5a20">分场景</text>
+<rect x="456" y="34" width="134" height="58" rx="6" fill="#fff6e9" stroke="#d9a86c"/>
+<text x="523" y="56" text-anchor="middle" font-size="12.5" font-weight="700" fill="#8a5a20">C4 选择性</text>
+<text x="523" y="78" text-anchor="middle" font-size="12" fill="#8a5a20">部分满足</text>
+<rect x="602" y="34" width="134" height="58" rx="6" fill="#fdf1ec" stroke="#c98a72"/>
+<text x="669" y="56" text-anchor="middle" font-size="12.5" font-weight="700" fill="#a34527">C5 能力层可分</text>
+<text x="669" y="78" text-anchor="middle" font-size="12" fill="#a34527">未达标</text>
+<rect x="748" y="34" width="134" height="58" rx="6" fill="#eaf3fb" stroke="#5b83ab"/>
+<text x="815" y="56" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1d4a75">C6 可复现</text>
+<text x="815" y="78" text-anchor="middle" font-size="12" fill="#1d4a75">满足</text>
+<line x1="85" y1="92" x2="85" y2="106" stroke="#8c9aa8" stroke-width="1.5"/>
+<line x1="231" y1="92" x2="231" y2="106" stroke="#8c9aa8" stroke-width="1.5"/>
+<line x1="377" y1="92" x2="377" y2="106" stroke="#8c9aa8" stroke-width="1.5"/>
+<line x1="523" y1="92" x2="523" y2="106" stroke="#8c9aa8" stroke-width="1.5"/>
+<line x1="669" y1="92" x2="669" y2="106" stroke="#8c9aa8" stroke-width="1.5"/>
+<line x1="815" y1="92" x2="815" y2="106" stroke="#8c9aa8" stroke-width="1.5"/>
+<line x1="85" y1="106" x2="815" y2="106" stroke="#8c9aa8" stroke-width="1.5"/>
+<line x1="158" y1="106" x2="158" y2="132" stroke="#5b6875" stroke-width="2" marker-end="url(#ar4)"/>
+<line x1="450" y1="106" x2="450" y2="132" stroke="#5b6875" stroke-width="2" marker-end="url(#ar4)"/>
+<line x1="742" y1="106" x2="742" y2="132" stroke="#5b6875" stroke-width="2" marker-end="url(#ar4)"/>
+<text x="18" y="126" font-size="13" font-weight="700" fill="#1b2733">探针层</text>
+<rect x="18" y="136" width="280" height="58" rx="6" fill="#f4f7fa" stroke="#c9d4de"/>
+<text x="158" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#1b2733">P0 零样本解谜基线</text>
+<text x="158" y="180" text-anchor="middle" font-size="11.5" fill="#5b6875">100 题前置评测 + 597 题交叉盲测</text>
+<rect x="310" y="136" width="280" height="58" rx="6" fill="#f4f7fa" stroke="#c9d4de"/>
+<text x="450" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#1b2733">P1 生成–求解闭环</text>
+<text x="450" y="180" text-anchor="middle" font-size="11.5" fill="#5b6875">597 题 × 2 条件 · 2×2 全因子</text>
+<rect x="602" y="136" width="280" height="58" rx="6" fill="#f4f7fa" stroke="#c9d4de"/>
+<text x="742" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#1b2733">P2 ICL 控制任务</text>
+<text x="742" y="180" text-anchor="middle" font-size="11.5" fill="#5b6875">24 题 × 4 条件 × 2 模型</text>
+<line x1="158" y1="194" x2="158" y2="210" stroke="#8c9aa8" stroke-width="1.5"/>
+<line x1="450" y1="194" x2="450" y2="210" stroke="#8c9aa8" stroke-width="1.5"/>
+<line x1="742" y1="194" x2="742" y2="210" stroke="#8c9aa8" stroke-width="1.5"/>
+<line x1="158" y1="210" x2="742" y2="210" stroke="#8c9aa8" stroke-width="1.5"/>
+<line x1="158" y1="210" x2="158" y2="234" stroke="#5b6875" stroke-width="2" marker-end="url(#ar4)"/>
+<line x1="450" y1="210" x2="450" y2="234" stroke="#5b6875" stroke-width="2" marker-end="url(#ar4)"/>
+<line x1="742" y1="210" x2="742" y2="234" stroke="#5b6875" stroke-width="2" marker-end="url(#ar4)"/>
+<text x="18" y="230" font-size="13" font-weight="700" fill="#1b2733">裁定层</text>
+<rect x="18" y="238" width="280" height="72" rx="6" fill="#eaf3fb" stroke="#5b83ab"/>
+<text x="158" y="262" text-anchor="middle" font-size="13" font-weight="700" fill="#1d4a75">诊断型结构探针</text>
+<text x="158" y="288" text-anchor="middle" font-size="19" font-weight="700" fill="#1d4a75">能</text>
+<rect x="310" y="238" width="280" height="72" rx="6" fill="#fdf1ec" stroke="#c98a72"/>
+<text x="450" y="262" text-anchor="middle" font-size="13" font-weight="700" fill="#a34527">排名型基准（现有切片）</text>
+<text x="450" y="288" text-anchor="middle" font-size="19" font-weight="700" fill="#a34527">不能</text>
+<rect x="602" y="238" width="280" height="72" rx="6" fill="#fff6e9" stroke="#d9a86c"/>
+<text x="742" y="262" text-anchor="middle" font-size="13" font-weight="700" fill="#8a5a20">训练信号探针</text>
+<text x="742" y="288" text-anchor="middle" font-size="17" font-weight="700" fill="#8a5a20">尚不能判定</text>
+<rect x="18" y="322" width="864" height="30" rx="6" fill="#f1f5f8" stroke="#c9d4de"/>
+<text x="450" y="342" text-anchor="middle" font-size="12.5" fill="#1b2733">综合结论：有条件的肯定 —— C1/C2/C6 满足，C3/C4 分场景，C5 未达标（补齐路径见 6.5）</text>
+</svg></div><figcaption>Figure 4  Validity adjudication: six criteria - three probes - three uses</figcaption></figure>
+<p>Gathering the evidence of §§3–5 under the six criteria of Table 1 gives a direct answer to the title question:</p>
+<p><strong>Table 16　Verdict on each of the six criteria</strong></p>
+<table><thead><tr><th>Criterion</th><th>Key evidence</th><th>Verdict</th></tr></thead><tbody>
+<tr><td>C1 Objective scoring</td><td>Exact single-character matching; 1,194 closed-loop answers + 192 ICL calls with zero format anomalies; no judge, no preference pair, no rubric</td><td><strong>Satisfied</strong></td></tr>
+<tr><td>C2 Structured decomposability</td><td>Three techniques give a stable difficulty ordering (49.75% / 35.00% / 32.50%); 79.85% of the both-wrong cell is SEM + HOMO; generation and solving directions can be manipulated separately</td><td><strong>Satisfied</strong></td></tr>
+<tr><td>C3 Controllable information conditions</td><td>Purpose-built 597 items: maker holds structure card and answer, solver sees only the clue one day later in a fresh single turn; but the public 100-item slice has only 11 answer characters, 85/100 from train/valid, and all 15 test items answering 「旦」</td><td><strong>Use-case dependent</strong>: satisfied on the purpose-built set, not on the public slice</td></tr>
+<tr><td>C4 Selectivity</td><td>The 2×2 factorial separates <em>β</em> = +16.26 pp from the stratified difference, leaving <em>γ</em> = +5.22 pp; ICL holds clue texts fixed and swaps only reasoning provenance (712.5 vs 739.5 tokens). But reasoning budgets are unequal across the four vendors, and there is no human baseline or repeated sampling</td><td><strong>Partially satisfied</strong>: within-item controls are adequate; cross-model controls are not</td></tr>
+<tr><td>C5 Distinguishability of ability layers</td><td>192 ICL calls, <code>program</code> vs <code>self</code> 4:0, SEM items with zero gain across three conditions; but all McNemar <em>p</em> ≥ 0.125</td><td><strong>Not met</strong> (directional signal only)</td></tr>
+<tr><td>C6 Reproducibility and auditability</td><td>seed 20261106 + SHA256 freezing, pinned prompt version, per-item JSONL records, tiered provenance and <code>no_url</code> markers; day-to-day reproduction K 100% / U 75%</td><td><strong>Satisfied</strong></td></tr>
+</tbody></table>
+<p>The answer is therefore not binary. <strong>The three "eligibility" criteria C1/C2/C6 are all satisfied</strong>, which is uncommon for Chinese ability-diagnosis tasks: most depend on subjective scoring (C1), yield only an aggregate score (C2), or cannot be recomputed item by item (C6). <strong>C3/C4 are the watershed</strong>: on a purpose-built, paired, crossable item set the reading is attributable; on the public slice it is not. <strong>C5 is the sole hard gap</strong>, and it determines whether the probe can extrapolate to training.</p>
+<blockquote><strong>An additional meta-finding</strong>: the probe itself can be contaminated by "self-familiarity". The <em>γ</em> = +5.22 pp implies that in any probe design where "a model generates items → itself or a model from the same family evaluates them", the reading will contain this net advantage unless generator and evaluator are crossed. This can be read as a concrete supplement to control-task methodology for generative evaluation settings.</blockquote>
+<h3>6.2 Three uses, three conclusions</h3>
+<p>"Can it serve as a structural probe" also depends on what it is used for. The same data yield different verdicts under different uses:</p>
+<p><strong>Table 17　Verdicts for three uses</strong></p>
+<table><thead><tr><th>Use</th><th>Meaning of the reading</th><th>Verdict</th><th>Grounds</th></tr></thead><tbody>
+<tr><td>Diagnostic structural probe</td><td><strong>Paired between-condition difference</strong> on the same items with the same scorer</td><td><strong>Yes</strong></td><td>C1/C2/C6 satisfied; C3/C4 satisfied within the purpose-built closed-loop set; reveals three ability gaps and one separable bias</td></tr>
+<tr><td>Ranking benchmark</td><td>Cross-model aggregate accuracy</td><td><strong>No</strong> (on the existing slice)</td><td>Tables 3 / 4: 11 answer characters, memorization contamination, unequal reasoning budgets; the four models tie 6/5/6/7 on the 15-item test</td></tr>
+<tr><td>Training-signal probe</td><td>Causal effect of SFT / data construction</td><td><strong>Not yet decidable</strong></td><td>No training experiment whatsoever; ICL is only a weight-preserving substitute observation, with all <em>p</em> ≥ 0.125</td></tr>
+</tbody></table>
+<p>The three cannot substitute for one another: treating a paired diagnostic difference as a ranking, or an ICL directional signal as evidence for training effectiveness, is a misuse of the reading.</p>
+<h3>6.3 The ability structure revealed by the probe</h3>
+<p><strong>Knowledge of character structure is "describable but not executable".</strong> The original CC-Riddle paper already noted that models perform poorly on character riddles. Our closed loop supplies complementary evidence: a model <strong>can talk about</strong> structural relations such as "木 + 目 = 相" (<em>mù</em> 'wood' + <em>mù</em> 'eye' = <em>xiāng</em> 'mutual'), and can even write a complete solving narrative when it holds the answer and an IDS card; but when the input shrinks to a single clue, the same model cannot reliably execute the reverse search. In Ryle's (1949) knowing-that / knowing-how terms, what we observe is a <strong>fracture between declarative description and procedural execution</strong>, not simple ignorance of glyphs. Three observations converge: ① 273 of 597 items (45.7%) were wrong for both models; ② 60 items were solvable by the other model but not by their maker; ③ the relation between "maker reasoning contains the answer character" and solvability has <em>p</em> = 0.066 and even points in the opposite direction. We must be restrained here: we did not annotate reasoning chains item by item, so we cannot give a quantitative claim such as "what fraction of reasoning is a pseudo-procedure".</p>
+<p><strong>Self-preference can be quantified and separated on an objectively scored task.</strong> Prior self-preference research mostly rests on subjective ratings, preference pairs, or self-evaluation, where the measuring instrument itself carries bias. Removing the judging stage entirely, we still observe a net self-advantage of +5.22 pp (paired <em>p</em> = 0.0144), showing the phenomenon is not an artifact of LLM-as-judge measurement. Methodologically the more important point is the identification strategy: stratifying only by maker yields the apparently model-specific, hard-to-explain reading "K +21.5 pp, U −11.0 pp"; after making maker × solver a 2×2 factorial, the apparent contradiction is fully explained by <em>β</em> = +16.26 pp, leaving a shared <em>γ</em> = +5.22 pp.</p>
+<p><strong>Stratified by technique: structured cues transfer, open-ended cues are a shared blind spot.</strong> Three layers agree: in the cross blind test DECOMP 49.75% &gt; SEM 35.00% &gt; HOMO 32.50%; in the overall self-test gain by technique only DECOMP is significant (+10.66 pp, <em>p</em> = 0.0139); SEM + HOMO make up 79.85% of the both-wrong cell (vs 67.00% overall); and in ICL, SEM does not move at all across <code>zero</code>/<code>answer</code>/<code>program</code>. Together this reads as: <strong>cues relying on discrete glyph operations are relatively easy to formalize and relatively easy to transfer across models; cues relying on semantic reinterpretation, cultural common sense, and tonal association are a shared floor for both models</strong>. This is consistent with the CC-Riddle paper's emphasis that riddles require a combination of glyph knowledge, common sense, and figurative language, and further shows that the three are not equally difficult. Restraint is again needed: §4.6 established that "the self-advantage is concentrated in DECOMP" does <strong>not</strong> hold at the level of four-cell composition (Fisher <em>p</em> = 0.245).</p>
+<h3>6.4 Implications for training-data design: three falsifiable hypotheses (<strong>not empirical conclusions</strong>)</h3>
+<p>One of the questions that originally motivated this project was "what value does this kind of data have for training". <strong>This paper performs no SFT, no ablation, no training curves, and no downstream transfer experiments; it therefore offers no conclusion about training effectiveness and does not consider C5 met.</strong> But juxtaposing the three classes of empirical findings above lets us restate "training value" as <strong>hypotheses with observational anchors</strong>, each with an explicit falsification condition:</p>
+<p><strong>Table 18　Observationally grounded training hypotheses and falsification routes</strong></p>
+<table><thead><tr><th>#</th><th>Observational anchor</th><th>Hypothesis</th><th>Falsification condition</th></tr></thead><tbody>
+<tr><td>H1 Supervision must be executable, validated steps</td><td>In ICL, one erroneous self-explanation cost U 16.7 pp (<code>program</code> vs <code>self</code> 4:0); 58.9% of 1,023 post-hoc explanations were self-rated <code>low</code></td><td>SFT on <code>(clue, post-hoc explanation, answer)</code> teaches the model to fabricate reasons; use <code>(clue, executable decomposition, answer)</code> instead, with the decomposition validated by a program or a human</td><td>H1 is falsified if training on validated steps and on unvalidated explanations perform identically on a held-out set</td></tr>
+<tr><td>H2 Bare <code>(clue, answer)</code> pairs may harm weaker models</td><td>U's <code>answer</code> condition 29.17% &lt; <code>zero</code> 37.50%, recovering to 37.50% only with procedural scaffolding</td><td>Weaker models need process supervision rather than label supervision; label-only alignment may crowd out an already fragile solving path</td><td>H2 is falsified if, at 120 items, <code>answer</code> shows no difference from <code>zero</code> or overtakes it</td></tr>
+<tr><td>H3 The SEM/HOMO gap may not lie at the format layer</td><td>SEM items show zero gain under procedural exemplars; 79.85% of the both-wrong cell is SEM + HOMO</td><td>This ability more likely requires weight-level injection (structural/phonological representations, reinterpretation training data); few-shot cannot activate it</td><td>H3 is weakened if a k = 2/4/8 gradient with high-quality SEM procedural exemplars produces a significant gain</td></tr>
+</tbody></table>
+<p>Three further <strong>risks in constructing training/evaluation data</strong>, each empirically documented here, are offered as protocol advice rather than effect claims:</p>
+<ol><li><strong>Leakage risk</strong>: 84.2% (16/19) of pilot web material was identical to the CC-Riddle reposting chain, with a further 12/43 direct duplicates in the merged set, and the public split is not isolated by answer character (all 15 test items answer 「旦」). Expanding a training set with such material while evaluating on the original split introduces memorization contamination and distribution leakage simultaneously.</li><li><strong>Supervision-signal risk</strong>: explanations written given clue + answer are post-hoc rationalizations by nature (58.9% self-rated <code>low</code>; automatic technique classification skewed 594:427:2 toward SEM). Treating them as CoT supervision optimizes "narrative plausibility" rather than "solving executability".</li><li><strong>Synthetic-data feedback loop</strong>: self-authorship/self-answering carries a +5.22 pp net self-advantage. If one model generates items/explanations and a model from the same family self-evaluates or self-tests, its ability will be systematically overestimated; evaluation protocols must force generator and evaluator to be crossed (§§4.4, 6.1).</li></ol>
+<p>The decision rule for reading "ICL moves it / ICL does not move it" is stated explicitly here: <strong>moves it</strong> ⇒ the ability is already in the weights and training needs only task-format alignment; <strong>does not move it</strong> ⇒ weight-level injection is more likely needed and training data must be executable steps. Our 24-item probe <strong>is not yet sufficient to decide which applies</strong> (all <em>p</em> ≥ 0.125), so H1–H3 all remain hypotheses to be tested.</p>
+<h3>6.5 Protocol recommendations for making riddles a better probe</h3>
+<p>For the criteria not yet met, the completion paths are:</p>
+<ol><li><strong>Complete C3</strong>: when rebuilding the item set, stratify by answer character, fix the seed, freeze with SHA256, and draw from the 3,831 human items with <code>split=test</code>; do not treat the first N batches in id order as a random sample (Table 3). Freezing a 1,000-item stratified test set is the highest-priority next step.</li><li><strong>Complete C4 (cross-model)</strong>: report "whether native thinking is enabled" as an independent experimental variable, or at minimum report latency and thinking tokens side by side; the four vendors' "highest tiers" have different semantics, and comparing them directly reintroduces the 11-04 budget asymmetry. Add a human baseline and repeated sampling.</li><li><strong>Complete C4 (design)</strong>: generation–evaluation experiments must cross generator and evaluator as two factors and report paired discordant cells with exact tests, rather than only aggregate accuracy.</li><li><strong>Complete C5</strong>: expand the ICL matrix to 120 items (4 exemplar types × k = 0/2/4) for meaningful <em>p</em>-values, add human item-by-item annotation of whether a solving narrative is executable, and, if feasible, run a real SFT ablation.</li><li><strong>Preserve C1/C6</strong>: keep reporting negative results and all strata, avoiding the display of significant subgroups only (Tables 11 and 15 are examples); keep tiered provenance—dataset sources with paper/repository + row id + file hash, web sources with URL + snippet hash, model-generated content marked <code>no_url</code>—and <strong>never fabricate a URL</strong>.</li></ol>
+<hr/>
+<h2 id="sec-9">7 Limitations</h2>
+<p><strong>Experiment scale and significance.</strong> The ICL probe has only 24 items, 8 items per technique × condition cell, and a single sample; across all 192 calls every McNemar <em>p</em> ≥ 0.125, and the core contrast of §5.3 is only a directional signal. This is precisely why C5 is not met. Meaningful <em>p</em>-values require expanding to the full 120-item matrix (4 exemplar types × k = 0/2/4). The 597 paired items of §4 are the only statistically significant result in this paper.</p>
+<p><strong>Model coverage.</strong> The closed-loop experiments involve only two Chinese commercial APIs, K and U; hy4 and DS did not participate because of HTTP 402 quota exhaustion (in the calibration set these two had 55/120 and 53/120 abnormal items respectively). There is no open-weight model, no non-Chinese model, no human baseline, and no repeated sampling. We therefore claim no generality across vendors or languages, and the cross-model part of C4 can only be judged "partially satisfied".</p>
+<p><strong>Design.</strong> ① The 2×2 decomposition is a descriptive additive model; the two item sources differ (298/299) and are not strictly paired; it assumes no interaction and we estimate no confidence interval for <em>γ</em>. ② Weight-level self-familiarity cannot be excluded—the same model both makes and answers, and a "fresh conversation" clears the context but not the weights. ③ All exemplar clues come from K's riddles, possibly giving K a stylistic advantage. ④ <code>zero</code> and few-shot conditions differ in the number of message turns (inherent to ICL), which <code>answer</code> controls only partially. ⑤ Only 4 human-authored procedural exemplars exist, with no k gradient. ⑥ The two experiments are one day apart, so model versions may have changed. ⑦ No human item-by-item annotation of whether generation-phase narratives are executable was collected.</p>
+<p><strong>Item set.</strong> ① The 597 items cover 100 high-frequency characters, excluding low-frequency and traditional characters. ② All solving is zero-shot; the 4 cross-character exemplars used at generation time never enter the answering phase. ③ Quality control relies mainly on automatic rules plus a 3-gram Jaccard originality threshold (0.35, calibrated on 60 pilot items), with <strong>no human review of clue quality or answer uniqueness</strong>—the largest current gap. ④ All explanations are post-hoc rationalizations or site-provided hints, not authoritative character etymology. ⑤ SEM/HOMO may exhibit floor effects that compress the observable space for ICL gains. ⑥ The character-meaning field was not added as originally planned, constraining the SEM technique.</p>
+<p><strong>Terminology and extrapolation.</strong> The "structural probe" of this paper is a behavioral probe and provides no evidence at the level of internal representations; criteria C1–C6 were customized for structured operations on Chinese characters, and their applicability to other languages or tasks requires separate testing.</p>
+<p><strong>Data and ethics.</strong> The companion dataset was publicly released on 2026-11-09 as <strong>Chinese Character Riddle Probes Dataset (CCRP DataSet) v0.1 / 汉字字谜探针数据集</strong>, published by Spring Buds Data Source Inc. (春芽数源). Licensing is per-directory: <code>data/</code> under <strong>CC BY-NC-SA 4.0</strong> (non-commercial, attribution, share-alike, inherited from the upstream CC-Riddle corpus; §4(b) of the legal code makes a database containing a substantial part of the source an Adapted Material), <code>scripts/</code> under MIT, and <code>paper/</code> plus documentation under CC BY 4.0. Full attribution to the three upstream authors, the license link, the source repository URI and the notice that the corpus was "selected, reorganized and augmented" are in the repository's <code>THIRD_PARTY.md</code>. CC BY-NC-SA 4.0 is <strong>not</strong> an OSI-approved open-source license; making the repository freely available is itself NonCommercial under §1, and NC restricts downstream commercial use. The 31 web UGC clues in the build-time reference set carried a "local / restricted research use only" tag and are withheld from the package under Scheme C, with only SHA256 fingerprints retained (<code>data/WITHHELD.md</code>); <strong>the local research artifacts were not deleted</strong>; a compliance-filtered public edition of the offline site and game is published with v0.1 on GitHub Pages, from which the 31 web UGC clues, 27 site-provided explanations, 58 page links and 28 game-bank items have been withheld under Scheme C. The complete build-time materials remain only in the local research tree. Every published artifact was scanned and contains no plaintext credentials, no machine-local absolute paths and no third-party page links. No human-subject data were used.</p>
+<hr/>
+<h2 id="sec-10">8 Conclusion</h2>
+<p><strong>Chinese character riddles can serve as a structural probe for large language models— but only under specific uses and specific item-set conditions.</strong></p>
+<p>Adjudicating the six validity criteria one by one: C1 (objective scoring), C2 (structured decomposability), and C6 (reproducibility and auditability) are fully satisfied; C3 (controllable information conditions) and C4 (selectivity) hold on the purpose-built 597-item closed-loop set but are vetoed by the off-the-shelf public slice; C5 (distinguishability of ability layers) currently has only directional evidence and is the sole hard gap. Therefore, <strong>as a diagnostic structural probe: yes</strong>—with exact single-character matching, orthogonal decomposition into three techniques, a reversible generation/solving closed loop, and 2×2 crossed controls, it reveals three features of the ability structure: character-structure knowledge is "describable but not executable"; generation and solving are asymmetric; and there is a +5.22 pp self-familiarity bias (which, without factor separation, has its sign flipped by the ±16.26 pp solver-ability gap). <strong>As a ranking benchmark: no</strong>—11 answer characters, memorization contamination, and unequal reasoning budgets make cross-model scores unattributable. <strong>As a training-signal probe: not yet decidable</strong>—although the ICL control task gives the clean contrast "exemplar effectiveness depends on reasoning correctness, not self-authorship", all <em>p</em> ≥ 0.125 and no training experiment was run.</p>
+<p>We therefore give a reproducible verdict on the title question, together with a path from "conditional yes" to "unconditional yes": freeze a 1,000-item test set stratified by answer character (complete C3); control reasoning budgets and add a human baseline plus repeated sampling (complete C4); expand the ICL matrix to 120 items and add human reasoning-chain annotation and a real SFT ablation (complete C5). A methodological by-product extends beyond riddles: <strong>any "model generates → model evaluates" probe that does not cross generator and evaluator as independent factors may have its reading contaminated by the evaluator-ability main effect and by the net self-familiarity effect</strong>.</p>
+<hr/>
+<h2 id="sec-11">References</h2>
+<ol><li>Xu F, Zhang Y, Wan X. <strong>CC-Riddle: A Question Answering Dataset of Chinese Character Riddles</strong>. <em>arXiv preprint</em> arXiv:2206.13778, 2022 (v2 revised 2023-09-24). Dataset: github.com/pku0xff/CC-Riddle.</li><li>Halder D, Saji A, Jayakumar T, Puduppully R, Kunchukuttan A, Dabre R. <strong>RiddleBench: A New Generative Reasoning Benchmark for LLMs</strong>. <em>arXiv preprint</em> arXiv:2510.24932, 2025.</li><li>Hu H, Song S, Shao C, Zhang K, Zhu T, Zhao X. <strong>Reasoning or Memorization: Can LLMs Understand and Generate Chinese Xiehouyu Riddles?</strong> <em>arXiv preprint</em> arXiv:2607.23440, 2026.</li><li>Zheng L, Chiang W-L, Sheng Y, et al. <strong>Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena</strong>. <em>NeurIPS 2023 Datasets and Benchmarks Track</em>; arXiv:2306.05685, 2023.</li><li>Hewitt J, Manning C D. <strong>A Structural Probe for Finding Syntax in Word Representations</strong>. <em>Proceedings of NAACL-HLT 2019</em>, Volume 1: 4129–4138; DOI 10.18653/v1/N19-1419.</li><li>Hewitt J, Liang P. <strong>Designing and Interpreting Probes with Control Tasks</strong>. <em>Proceedings of EMNLP-IJCNLP 2019</em>: 2733–2743; DOI 10.18653/v1/D19-1275.</li><li>Belinkov Y. <strong>Probing Classifiers: Promises, Shortcomings, and Advances</strong>. <em>Computational Linguistics</em>, 48(1): 207–219, 2022; DOI 10.1162/coli_a_00422.</li><li>Brown T B, Mann B, Ryder N, et al. <strong>Language Models are Few-Shot Learners</strong>. <em>Advances in Neural Information Processing Systems 33</em>: 1877–1901, 2020.</li><li>Wei J, Wang X, Schuurmans D, et al. <strong>Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</strong>. <em>Advances in Neural Information Processing Systems 35</em>, 2022; arXiv:2201.11903.</li><li>Ryle G. <strong>The Concept of Mind</strong>. London: Hutchinson, 1949. (knowing-that / knowing-how distinction)</li><li>Wilson E B. <strong>Probable Inference, the Law of Succession, and Statistical Inference</strong>. <em>Journal of the American Statistical Association</em>, 22(158): 209–212, 1927.</li><li>McNemar Q. <strong>Note on the Sampling Error of the Difference between Correlated Proportions or Percentages</strong>. <em>Psychometrika</em>, 12(2): 153–157, 1947.</li><li>Fisher R A. <strong>On the Interpretation of χ² from Contingency Tables, and the Calculation of P</strong>. <em>Journal of the Royal Statistical Society</em>, 85(1): 87–94, 1922.</li></ol>
+<blockquote>Bibliographic details for references 1–9 and 11–13 were verified item by item via public search on 2026-11-06 (5–7 were added when the title was changed; volume and page numbers follow the ACL Anthology / MIT Press official entries). The author list of reference 4 is abbreviated with "et al." by convention and should be completed in the target style before submission. Reference 10 is a philosophical classic used only for a conceptual distinction; no specific page is cited.</blockquote>
+<hr/>
+<h2 id="sec-12">Appendix A　Data Conventions and Reproducibility</h2>
+<p><strong>Artifact inventory</strong> (relisted using repository-relative paths of the public CCRP DataSet v0.1; per-file byte sizes and SHA256 are in <code>manifest.json</code>, field dictionary in <code>data/README.md</code>)</p>
+<table><thead><tr><th>File</th><th>Content</th></tr></thead><tbody>
+<tr><td><code>data/reference-slice.jsonl</code></td><td>1,019 CC-Riddle-derived reference clues and structure cards (build-time set: 1,050)</td></tr>
+<tr><td><code>data/explanations-llm.jsonl</code></td><td>1,019 corresponding LLM explanations (build-time: 1,023)</td></tr>
+<tr><td><code>data/provenance-reference.jsonl</code></td><td>Per-clue provenance (upstream row id, source-file SHA256, license)</td></tr>
+<tr><td><code>data/WITHHELD.md</code></td><td>SHA256 fingerprint ledger for the 31 withheld clues; contains no clue text and no page links</td></tr>
+<tr><td><code>data/generated-{kimi,u2}.jsonl</code></td><td>600 authored riddles with generation-phase reasoning</td></tr>
+<tr><td><code>data/quality.jsonl</code></td><td>600 quality-control verdicts</td></tr>
+<tr><td><code>data/blind.jsonl</code></td><td>597 cross blind-test items</td></tr>
+<tr><td><code>data/blind-self.jsonl</code></td><td>597 same-item self-test items, with <code>conversation</code> convention fields</td></tr>
+<tr><td><code>data/selftest-analysis.json</code></td><td>Paired statistics, strata, 2×2 decomposition</td></tr>
+<tr><td><code>data/icl-probe-{items.jsonl,examples.json,jsonl}</code></td><td>24-item frozen set, 4 exemplars, 192 calls</td></tr>
+<tr><td><code>data/icl-probe-analysis.json</code></td><td>ICL main table, strata, key contrasts, design metadata</td></tr>
+<tr><td><code>data/{provenance-generated,selftest-provenance}.jsonl</code></td><td>Provenance for authored riddles and the self-test (<code>no_url</code> markers, input-snapshot hashes)</td></tr>
+<tr><td><code>data/summary.json</code></td><td>Pipeline summary and limitations statement</td></tr>
+</tbody></table>
+<blockquote>The 100-item four-model results, the 120-item highest-tier calibration and the 27,517-item full-corpus slices used in §3.3 are local intermediate artifacts of the <strong>item-set validity audit</strong> and are not shipped with CCRP DataSet v0.1; their figures can be recomputed from the publicly available upstream CC-Riddle corpus following the protocol in §3.3. The build-time <code>03_prompt/</code> snapshots remain in the local, restricted environment; a compliance-filtered public edition of the offline site is published on GitHub Pages. The <code>input_snapshot_sha256</code> values in the package keep the generation conditions verifiable.</blockquote>
+<p><strong>Reproducibility essentials</strong>: item-set seed 20261106, SHA256 <code>b16111d96d4609ae43d3d59824196342ae31178654aff366224e88597af8537f</code>; generation prompt version <code>riddle-gen-skill-v0.2-full100</code>; full source-file SHA256 <code>3654d163f026e75702d7fccfe52afa21ee2bbb28019c8420720b02a991abbacd</code>; all LLM-generated content records model / prompt version / timestamp / input-snapshot hash. Driver scripts: <code>riddle_gen_run.py</code> (generation and cross blind test), <code>riddle_gen_selftest.py</code> (self-test, paired analysis, site rendering), <code>riddle_gen_icl_probe.py</code> (ICL probe); the three do not overwrite one another and no earlier artifact is modified. <strong>To re-render the site use <code>riddle_gen_selftest.py --stage site</code></strong>; running only the older script's <code>--stage site</code> reverts to a version without the self-test.</p>
+<p><strong>API call volume</strong>: cross blind test 597 calls (cumulative 6,204.9 s), same-item self-test 597 calls (cumulative 5,164.1 s; 28m39s wall clock at 3 workers), ICL 192 calls (cumulative 1,983.1 s; ≈11 minutes wall clock); all with zero failures and zero format anomalies.</p>
+<h2 id="sec-13">Appendix B　Derivation of the 2×2 Additive Decomposition</h2>
+<p>Write the four observed rates (Table 9). All computations below use <strong>ratios of raw counts</strong>, with no prior rounding:</p>
+<ul><li><code>r(K,K) = 173/298 = 0.580537</code></li><li><code>r(K,U) = 109/298 = 0.365772</code></li><li><code>r(U,K) = 124/299 = 0.414716</code></li><li><code>r(U,U) = 91/299 = 0.304348</code></li></ul>
+<p>The model <code>rate = μ + α·1[item source = K] + β·1[solver = K] + γ·1[maker = solver]</code> gives:</p>
+<pre><code>r(K,K) = μ + α + β + γ
+r(K,U) = μ + α
+r(U,K) = μ + β
+r(U,U) = μ + γ</code></pre>
+<p>From the last three, <code>α = r(K,U) − μ</code>, <code>β = r(U,K) − μ</code>, <code>γ = r(U,U) − μ</code>; substituting into the first:</p>
+<pre><code>μ = [r(K,U) + r(U,K) + r(U,U) − r(K,K)] / 2
+  = (0.365772 + 0.414716 + 0.304348 − 0.580537) / 2 = 0.252149</code></pre>
+<p>Hence <code>α = 0.113623</code> (+11.36 pp), <code>β = 0.162566</code> (+16.26 pp), <code>γ = 0.052199</code> (+5.22 pp). Stratified differences:</p>
+<pre><code>K makes: r(K,K) − r(K,U) = β + γ = 0.214765 = +21.48 pp
+U makes: r(U,U) − r(U,K) = −β + γ = −0.110368 = −11.04 pp</code></pre>
+<p>Both equalities hold <strong>exactly</strong> under raw counts (β+γ and −β+γ equal the two row differences); there is no approximation.</p>
+<blockquote><strong>Convention note</strong>: the companion analysis file <code>selftest-analysis.json</code> and the offline site adopt "round each rate to four decimals first, then compute", giving <code>α = 0.11365</code>, <code>β = 0.16255</code>, <code>γ = 0.05215</code>, and a K-row difference of <code>+21.47 pp</code>. The two conventions differ by at most 0.01 pp and change no conclusion; the main text uniformly uses raw-count ratios.</blockquote>
+<p><strong>Identity</strong>: when group sizes are equal (n_K = n_U),</p>
+<pre><code>Overall difference = ½[(β+γ) + (−β+γ)] = γ</code></pre>
+<p>Here n_K = 298, n_U = 299, so the observed difference +5.19 pp differs from γ = +5.22 pp by 0.03 pp. This shows that the McNemar test on the overall difference in §4.2 is, in substance, a test of γ.</p>
+<h2 id="sec-14">Appendix C　Index of Representative Cases</h2>
+<table><thead><tr><th>Type</th><th>Clue text</th><th>Answer</th><th>Cross answer</th><th>Self answer</th><th>Source</th></tr></thead><tbody>
+<tr><td>Self-only correct</td><td>衣裳同音，数数它最先</td><td>一</td><td>U answered 「衣」</td><td>K, the maker, answered 「一」</td><td><code>blind*.jsonl</code></td></tr>
+<tr><td>Self-only correct</td><td>卜字脚下添一横</td><td>上</td><td>U answered 「下」</td><td>K, the maker, answered 「上」</td><td>ibid.</td></tr>
+<tr><td>Cross-only correct</td><td>叉去一点，添上一寸</td><td>对</td><td>U answered 「对」</td><td>K, the maker, answered 「夺」</td><td>ibid.</td></tr>
+<tr><td>Cross-only correct</td><td>九百六十万平方公里</td><td>国</td><td>U answered 「国」</td><td>K, the maker, answered 「垚」</td><td>ibid.</td></tr>
+<tr><td>ICL erroneous exemplar</td><td>旭日初升人独立</td><td>但</td><td>—</td><td>U's self-written explanation mis-parsed it as "旭 minus 日 = 九"</td><td><code>icl-probe-examples.json</code></td></tr>
+</tbody></table>
+<hr/>
+<p><em>All figures in this paper were re-read and verified against workspace artifacts on 2026-11-06; the paper contains no plaintext credentials and no fabricated URLs.</em></p>
+<hr/>
+<blockquote><strong>Translator's note — release reconciliation (2026-11-09, resolved).</strong> This is a faithful translation of the 2026-11-06 Chinese original, updated on 2026-11-09 to match the public release of <strong>CCRP DataSet v0.1</strong>. Both language editions now: (a) name the publisher (春芽数源 / Spring Buds Data Source Inc., as corporate author); (b) replace the former "not publicly released" statement in §7 with the per-directory license map, the CC BY-NC-SA 4.0 attribution and modification notice, and the Scheme-C withhold of 31 web UGC clues; (c) explain in §3.4 and Appendix A why the build-time counts 1,050 / 1,023 differ from the published 1,019 / 1,019; (d) relist Appendix A paths as repository-relative paths. The Chinese original was edited in parallel, so the two editions have no substantive divergence. Reference 4's author list remains abbreviated with "et al." and should be completed in the target style before journal submission.</blockquote>
+<div class="footer">Companion to CCRP DataSet v0.1 · 2026-11-06 · Figures 1-4 are reproduced from the Chinese HTML edition (diagram labels remain in Chinese); all numbers were re-read from the workspace artifacts</div>
+</div></body></html>

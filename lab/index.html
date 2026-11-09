@@ -1,0 +1,92 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>实验室 · 向未来许个愿｜字谜针探</title><style>
+
+/* --- 站点导航条（发布时注入，原始论文/信息图产物保持不变） --- */
+.wbsb{display:flex;flex-wrap:wrap;align-items:center;gap:7px 9px;padding:9px 20px;
+ background:#0f2439;color:#dceaf6;font:13px/1.6 "Microsoft YaHei","PingFang SC",Arial,sans-serif}
+.wbsb .wbsb-label{margin-right:auto;color:#a9c9e2;font-size:12px}
+.wbsb a{display:inline-block;padding:3px 10px;border-radius:5px;text-decoration:none;
+ color:#eaf4fc;border:1px solid rgba(255,255,255,.30);font-size:12px}
+.wbsb a:hover{background:rgba(255,255,255,.15)}
+.wbsb a.wbsb-home{background:#2c6f9f;border-color:#2c6f9f;font-weight:700}
+.wbsb a.wbsb-sec{background:rgba(255,255,255,.10)}
+
+/* --- 站点四大板块导航（首页 + 子页共用） --- */
+.wbsec{display:flex;flex-wrap:wrap;align-items:center;gap:7px;padding:9px 14px;margin:0 0 10px;
+ background:#fff;border:1px solid #e3e8ef;border-radius:9px;font-size:13px}
+.wbsec .wbsec-brand{margin-right:auto;font-weight:700;color:#1a2230}
+.wbsec a,.wbsec .wbsec-on{display:inline-block;padding:3px 11px;border-radius:6px;
+ text-decoration:none;font-size:12px;border:1px solid #dbe3ed;color:#2456a6;background:#f7fafd}
+.wbsec a:hover{background:#eaf2fd}
+.wbsec .wbsec-on{background:#2f6fed;border-color:#2f6fed;color:#fff;font-weight:700}
+/* 站名里的「针」：全站唯一强调色（朱砂橙红），做成色块，浅底深底都清晰 */
+.wb-zhen{display:inline-block;padding:0 .16em;margin:0 .03em;border-radius:5px;
+ background:#e04b2f;color:#fff;font-weight:800;line-height:1.3}
+h1 .wb-zhen{font-size:.86em;vertical-align:.04em}
+@media(max-width:640px){.wbsec .wbsec-brand{flex-basis:100%;margin-bottom:4px}}
+
+:root{--ink:#1a2230;--muted:#5d6b7d;--line:#e3e8ef;--bg:#f6f8fb;--card:#fff;--violet:#6a55c0}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font:14px/1.8 "Microsoft YaHei","PingFang SC",Arial,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:24px 20px 70px}
+a{color:#5542a8}
+.top{background:linear-gradient(120deg,#322a63 0%,#5b46ad 62%,#7d68cf 100%);
+ color:#fff;border-radius:14px;padding:26px 28px;margin-bottom:14px}
+.top .tag{display:inline-block;padding:2px 11px;border-radius:12px;font-size:12px;
+ background:rgba(255,255,255,.17);color:#e5ddff;margin-bottom:10px}
+.top h1{margin:0 0 6px;font-size:26px;letter-spacing:1px}
+.top p{margin:0;color:#ded5ff;font-size:13px}
+.status{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.status span{padding:4px 11px;border-radius:6px;background:#eee9fb;border:1px solid #d9cef5;
+ font-size:12px;color:#4b3f8f}
+.idea{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--violet);
+ border-radius:11px;padding:18px 22px;margin:12px 0;box-shadow:0 2px 10px rgba(26,34,48,.04)}
+.idea .num{display:inline-block;min-width:32px;padding:1px 8px;border-radius:6px;
+ background:#eee9fb;color:var(--violet);font-weight:700;font-size:13px;margin-right:9px}
+.idea h2{display:inline;margin:0;font-size:19px}
+.idea .en{display:block;margin:5px 0 10px 41px;font-size:12px;color:var(--muted);letter-spacing:.3px}
+.idea p{margin:8px 0 0}
+.idea .todo{margin-top:12px;padding:9px 12px;border-radius:7px;background:#faf8ff;
+ border:1px dashed #ded4f7;font-size:13px;color:#4c4470}
+.idea .kw{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+.idea .kw span{padding:2px 9px;border-radius:10px;background:#f2f5fa;font-size:12px;color:#4a5768}
+pre.dsl{margin:12px 0 0;padding:13px 16px;border-radius:8px;background:#1d2340;color:#e8ecff;
+ font:13px/1.75 Consolas,"Courier New",monospace;overflow-x:auto;white-space:pre}
+.dsl-note{font-size:12px;color:var(--muted);margin-top:6px}
+.wish{margin-top:22px;padding:16px 20px;border-radius:11px;background:#f4f1ff;
+ border:1px dashed #c9bdf0;font-size:13px;color:#4b3f8f}
+.foot{margin-top:30px;padding-top:12px;border-top:1px solid var(--line);
+ color:var(--muted);font-size:12px}
+@media(max-width:640px){.wrap{padding:16px 12px 50px}.idea{padding:15px}}
+
+</style></head><body>
+<div class="wbsb"><span class="wbsb-label">字谜<span class="wb-zhen">针</span>探 · 实验室 · 未来许愿　2026-11-06</span><a class="wbsb-home" href="../index.html">← 返回字谜针探首页</a><a class="wbsb-sec" href="../index.html">① 字谜数据集</a><a class="wbsb-sec" href="../paper/index.html">② 论文</a><a class="wbsb-sec" href="../game/index.html">③ 小游戏</a><a class="wbsb-sec" href="./index.html">④ 实验室</a><a href="../paper/riddle-paper-infographic.html">一图看懂</a><a href="../paper/riddle-paper-infographic.png" download="riddle-paper-infographic.png">下载长图 PNG</a><a href="../paper/riddle-paper.pdf" download="riddle-paper.pdf">下载 PDF</a><a href="../paper/riddle-paper.md" download="riddle-paper.md">下载 Markdown</a></div>
+<div class="wrap">
+ <div class="top">
+  <span class="tag">板块 ④ · 实验室</span>
+  <h1>向未来许个愿</h1>
+  <p>这里什么都不实现，只放几个还没想清楚的脑洞，作为以后网站发展的备忘。</p>
+ </div>
+ <div class="status">
+  <span>共 4 条构想</span><span>全部未实现</span><span>不需要注册</span>
+  <span>不收集任何数据</span><span>写于 2026-11-06</span>
+ </div>
+ <div id="ideas"><section class="idea"><span class="num">01</span><h2>这里有字谜</h2><span class="en">Riddle Intake · 开源情报式的情报源</span><p>把站点当成一个开源情报收集系统的情报源：用户或 Agent 可以提供链接、PDF、书页扫描、图片等线索，持续丰富字谜库。每条入库都带出处、抓取时间、片段哈希、许可与去重结论；模型创作与模型解析明确标注 no_url，绝不伪造链接。</p><div class="todo"><b>还没想清楚：</b>待想清楚：提交者身份与可信度、版权与许可、去重与一谜多底、质量闸门、以及如何与已冻结的 100 字数据隔离。</div></section><section class="idea"><span class="num">02</span><h2>大模型擂台</h2><span class="en">Model Arena · 一次评测与一张榜单</span><p>由网站出题给大模型，本质上就是一次大模型评测：统一题集、统一提示词、统一判分，产出榜单与分层结果。另设「模型自己出题、全新会话自己答」的闭环赛道，把生成能力与求解能力分开量。</p><div class="todo"><b>还没想清楚：</b>待想清楚：论文已裁定现有公开切片不具备排名效度，必须先重建 1000 条分层冻结 test 集；还要解决记忆污染、多次采样方差、调用成本与榜单版本化。</div></section><section class="idea"><span class="num">03</span><h2>Agent Forum</h2><span class="en">Agent-only Forum · 智能体的论坛</span><p>只允许 Agent 注册发贴的论坛，灵感来自 ClawBook。人类只读：议题围绕谜面、解题链、评测结果与反例；帖子本身可以成为新的语料与情报源，反哺第一条「这里有字谜」。</p><div class="todo"><b>还没想清楚：</b>待想清楚：Agent 身份与凭据、发帖协议与速率、如何避免自说自话与刷榜、内容审核，以及和擂台、情报源之间的数据边界。</div></section><section class="idea"><span class="num">04</span><h2>解谜语法</h2><span class="en">Riddle Solving DSL · 描述思维链的数据格式</span><p>创造一种 Domain Language / 数据格式，专门描述解字谜的思维链，让「怎么想到的」可记录、可比较、可回放，而不是只留一个谜底和一段事后解释。例如谜面「玉无瑕疵」：第 1 步分解「玉」这个汉字，记为 Destructure 玉。</p><pre class="dsl">Riddle(&quot;玉无瑕疵&quot;)
+  ├─ Destructure 玉 → 王 + 丶
+  ├─ Parse 无瑕疵 → 去「丶」
+  └─ Compose → 王</pre><p class="dsl-note">上例仅为示意，非正式语法定义；「王」是常见谜底，字理以权威字典为准。</p><div class="todo"><b>还没想清楚：</b>待想清楚：算子集合、拆形/会意/谐音三类的表达力、与 IDS 字形对齐、ICL 示例互操作，以及怎样验证一条链不是事后编造。</div></section></div>
+ <div class="wish">
+  这几条不是路线图，也不是承诺，只是给未来的自己留的便签：
+  想到细节了再实现，没想到就一直放这儿，提醒自己这个项目还能往哪走。
+ </div>
+ <div class="foot">
+  字谜针探 · 站点四板块：<a href="../index.html">① 字谜数据集</a> ·
+  <a href="../paper/index.html">② 论文</a> ·
+  <a href="../game/index.html">③ 小游戏</a> · <a href="index.html">④ 实验室</a>。
+  <br>本页为纯静态备忘，无表单、无脚本、无存储、无网络请求；
+  站名「字谜针探」取「结构探针」之意，故用「针」字并以朱砂色标出。
+ </div>
+</div>
+</body></html>
