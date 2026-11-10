@@ -63,7 +63,7 @@
 | ICL 探针 | 2026-11-06 | 24 题 × 4 条件 × 2 模型 = 192 次，零失败 |
 | 论文 1 | 2026-11-06 | 中文原稿；2026-11-09 英文全译 |
 | 公开导出 | 2026-11-09 | 方案 C：过滤 31 条 UGC，生成 v0.1 |
-| 论文 2 | 2026-11-06 / 11-10 | 另一课题组的中文原文；2026-11-10 英文全译（仅文档层新增，数据零改动） |
+| 论文 2 | 2026-11-06 / 11-10 | 中文原文；2026-11-10 英文全译 + 中英两版署名统一为机构署名（仅文档层改动，数据零改动） |
 
 **谁采集、谁标注。** 由发布机构用脚本自动采集与生成；**没有人工标注员**，没有众包，没有人工谜面质量 / 谜底唯一性评审。这是本数据集当前最大的质量缺口。
 
@@ -103,7 +103,7 @@
 
 ## 6. Distribution / 分发
 
-以 GitHub 仓库形式公开发布，纯文本 UTF-8 / LF。许可证按目录分层：`data/` CC BY-NC-SA 4.0；`scripts/` MIT；`docs/`、`README*.md`、`paper/README.md` 与 Paper 1（`paper/riddle-paper*`）CC BY 4.0。**例外**：Paper 2（`paper/gmn-paper-zh.pdf`、`gmn-paper-en.*`）由另一课题组署名，原文未声明论文许可，不适用 `LICENSE-DOCS`，仅供对照阅读与学术引用。完整第三方署名与修改声明见 `THIRD_PARTY.md` 与 `paper/README.md`，再分发 `data/` 时须保留。
+以 GitHub 仓库形式公开发布，纯文本 UTF-8 / LF。许可证按目录分层：`data/` CC BY-NC-SA 4.0；`scripts/` MIT；`docs/`、`README*.md`、`paper/README.md` 与 Paper 1（`paper/riddle-paper*`）CC BY 4.0。**例外**：Paper 2（`paper/gmn-paper-zh.pdf`、`gmn-paper-en.*`）原文未声明论文文本许可，仓库不代为补充授权，不适用 `LICENSE-DOCS`，仅供对照阅读与学术引用；两篇论文署名同为春芽数源 / Spring Buds Data Source Inc.。完整第三方署名与修改声明见 `THIRD_PARTY.md` 与 `paper/README.md`，再分发 `data/` 时须保留。
 
 `manifest.json` 给出每个文件的字节数与 SHA256、行数口径、下架统计与项目版本；`scripts/verify_release.py` 可离线复算。仓库地址为 `https://github.com/SunSeeding/ccrp`，已回填 `CITATION.cff` 的 `repository-code` / `url`。
 

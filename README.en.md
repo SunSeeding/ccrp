@@ -59,7 +59,7 @@ annotation, as above. The three techniques are **graphemic decomposition
 | ICL control task | 192 calls | 24 items × 4 conditions × 2 models, frozen seed `20261106` |
 | Companion papers | **2** | Paper 1 (Chinese + English); Paper 2 (Chinese original + full English translation). Index: `paper/README.md` |
 
-**Two independent papers** (the second was added on 2026-11-10): (1) *Can Chinese Character Riddles Serve as Structural Probes for Large Language Models?*, signed by this dataset's publisher, which adjudicates the validity of riddles as a structural probe; (2) *Blind Men Touching Characters: Probing Symbolic Algebra vs. 2D Spatial Perception in LLMs via Chinese Character Riddles*, signed by a different research group, with a full English translation at `paper/gmn-paper-en.md`. Both draw on the same 597-item closed loop, but their questions and conclusions do not supersede one another. Dataset contents, experimental numbers, published tags / Release assets and the Zenodo deposit are unchanged.
+**Two independent papers** (the second was added on 2026-11-10): (1) *Can Chinese Character Riddles Serve as Structural Probes for Large Language Models?*, signed by this dataset's publisher, which adjudicates the validity of riddles as a structural probe; (2) *Blind Men Touching Characters: Probing Symbolic Algebra vs. 2D Spatial Perception in LLMs via Chinese Character Riddles*, signed by the same corporate author (byline unified 2026-11-10), with a full English translation at `paper/gmn-paper-en.md`. Both draw on the same 597-item closed loop, but their questions and conclusions do not supersede one another. Dataset contents, experimental numbers, published tags / Release assets and the Zenodo deposit are unchanged.
 
 **Headline result** (quote verbatim; do not recompute): cross blind test
 39.03% (233/597) → same-item self-test 44.22% (264/597), item-level paired
@@ -152,7 +152,7 @@ public-corpus memorization contamination.
 | `data/` | **CC BY-NC-SA 4.0** | contains CC-Riddle-derived material; redistribution requires the same license, attribution and a modification notice |
 | `scripts/` | **MIT** | our original tooling (full text: `scripts/LICENSE`) |
 | `docs/`, `README*.md`, `THIRD_PARTY.md`, `CHANGELOG.md`, `paper/README.md`, `paper/riddle-paper*` | **CC BY 4.0** | our own documentation and Paper 1; the papers quote only short clue examples |
-| `paper/gmn-paper-zh.pdf`, `paper/gmn-paper-en.*` | **no licence stated by the original author** | Paper 2 is signed by a different group and its Chinese original states only a dataset licence. Both editions are provided for reference and academic citation; obtain the original author's permission for reuse beyond reading |
+| `paper/gmn-paper-zh.pdf`, `paper/gmn-paper-en.*` | **no licence stated by the original author** | Paper 2 shares the same corporate author as Paper 1; its Chinese original states only a dataset licence, not a licence for the paper text, and the repository does not add one. Both editions are provided for reference and academic citation; obtain the publisher's permission for reuse beyond reading |
 | Third-party material | see `THIRD_PARTY.md` | upstream attribution + withheld records |
 
 - **Publishing does not violate NonCommercial.** CC BY-NC-SA 4.0 §1 defines
@@ -226,11 +226,11 @@ modification notice is in `THIRD_PARTY.md`; retain it when redistributing
 **Citing the second paper**: *Blind Men Touching Characters: Probing Symbolic
 Algebra vs. 2D Spatial Perception in LLMs via Chinese Character Riddles*
 (Chinese original 盲人摸字：通过汉字字谜探查大模型的一维符号代数与二维空间失明),
-authored by the Computational Linguistics and LLM Cognitive Diagnostics
-Research Group; Chinese original 2026-11-06, English translation 2026-11-10.
-It is a **separate work** from Paper 1: `CITATION.cff` keeps Paper 1 as the
-dataset's `preferred-citation` and lists Paper 2 under `references`. Do not
-swap their authors or conclusions.
+authored by Spring Buds Data Source Inc. (春芽数源), the same corporate author
+as Paper 1; Chinese original 2026-11-06, English translation 2026-11-10, byline
+unified 2026-11-10. It is a **separate work** from Paper 1: `CITATION.cff` keeps
+Paper 1 as the dataset's `preferred-citation` and lists Paper 2 under
+`references`. Do not swap their conclusions.
 
 Machine-readable citation: `CITATION.cff`. **Long-term archiving is complete**:
 the version DOI [`10.5281/zenodo.24077793`](https://doi.org/10.5281/zenodo.24077793)

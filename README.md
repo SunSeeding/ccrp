@@ -30,7 +30,7 @@ Zenodo 归档 DOI：<https://doi.org/10.5281/zenodo.24077793>
 | ICL 控制任务 | 192 次 | 24 题 × 4 条件 × 2 模型，冻结种子 `20261106` |
 | 配套论文 | **2 篇** | Paper 1 中英双版；Paper 2 中文原文 + 英文全译；索引见 `paper/README.md` |
 
-**两篇独立论文**（2026-11-10 新增第二篇）：①《汉字字谜能否成为大语言模型的结构探针？》（本机构署名，裁定「字谜作为探针」的有效性）；②《盲人摸字：通过汉字字谜探查大模型的一维符号代数与二维空间失明》（另一课题组署名，英文全译 `paper/gmn-paper-en.md`）。两者基于同一批 597 题闭环，问题与结论互不替代；数据集内容、实验数字、已发布的 tag / Release / Zenodo 归档均未改动。
+**两篇独立论文**（2026-11-10 新增第二篇）：①《汉字字谜能否成为大语言模型的结构探针？》（本机构署名，裁定「字谜作为探针」的有效性）；②《盲人摸字：通过汉字字谜探查大模型的一维符号代数与二维空间失明》（同为春芽数源 / Spring Buds Data Source Inc. 机构署名，英文全译 `paper/gmn-paper-en.md`）。两者基于同一批 597 题闭环，问题与结论互不替代；数据集内容、实验数字、已发布的 tag / Release / Zenodo 归档均未改动。
 
 **核心结论**（引用请照抄，勿重新估算）：交叉盲测 39.03%（233/597）→ 同题自测 44.22%（264/597），逐题配对 McNemar 精确 *p*=0.0144；2×2 全因子分解给出猜题能力差 *β*=+16.26 pp、题源难度差 *α*=+11.36 pp、自我熟悉净效应 *γ*=+5.22 pp。按制谜方分层看到的方向相反（+21.48 pp / −11.04 pp）是 *β* 翻转符号所致，不是「只有一个模型有自我偏好」。
 
@@ -90,7 +90,7 @@ python -c "import json,collections;print(collections.Counter((r['correct'] for r
 │   ├── riddle-paper-en.md          Paper 1 英文全译
 │   ├── riddle-paper-en.html        Paper 1 英文排版 HTML
 │   ├── riddle-paper-en.pdf         Paper 1 英文 PDF
-│   ├── gmn-paper-zh.pdf            Paper 2 中文原文 PDF（原作者，未声明论文许可）
+│   ├── gmn-paper-zh.pdf            Paper 2 中文原文 PDF（机构署名，未声明论文许可）
 │   ├── gmn-paper-en.md             Paper 2 英文全译（9,802 词 / 9 表 / 式 1–7）
 │   ├── gmn-paper-en.html           Paper 2 英文排版 HTML
 │   └── gmn-paper-en.pdf            Paper 2 英文 PDF（19 页 A4）
@@ -109,7 +109,7 @@ python -c "import json,collections;print(collections.Counter((r['correct'] for r
 | `data/` | **CC BY-NC-SA 4.0** | 含 CC-Riddle 派生内容；再分发须同许可 + 署名 + 标修改 |
 | `scripts/` | **MIT** | 我们原创的工具代码（全文见 `scripts/LICENSE`） |
 | `docs/`、`README*.md`、`THIRD_PARTY.md`、`CHANGELOG.md`、`paper/README.md`、`paper/riddle-paper*` | **CC BY 4.0** | 本项目自有文档与 Paper 1；论文只短引谜面作例证 |
-| `paper/gmn-paper-zh.pdf`、`paper/gmn-paper-en.*` | **原作者未声明许可** | Paper 2 由另一课题组署名，中文原文只标了数据集许可、未标论文许可；两版仅供对照阅读与学术引用，再利用请先取得原作者许可 |
+| `paper/gmn-paper-zh.pdf`、`paper/gmn-paper-en.*` | **未声明论文文本许可** | Paper 2 与 Paper 1 同为春芽数源机构署名；中文原文只标了数据集许可、未标论文许可，仓库不代为补充授权；两版仅供对照阅读与学术引用，再利用请先取得发布方许可 |
 | 第三方材料 | 见 `THIRD_PARTY.md` | 上游署名与 31 条下架记录 |
 
 - **发布本身不违反 NC**：CC BY-NC-SA 4.0 §1 把「非主要为商业利益或金钱报酬」定义为 NonCommercial，并明确无偿数字文件共享属 NonCommercial；NC 约束的是**下游商业使用**。
@@ -149,7 +149,7 @@ v0.1 采用**方案 C：导出时下架，本地研究与既有产物一条不�
 
 上游必署：Fan Xu, Yunxiang Zhang, Xiaojun Wan（北京大学王选计算机研究所文本挖掘与语言计算组），*CC-Riddle: A Question Answering Dataset of Chinese Character Riddles*, arXiv:2206.13778，CC BY-NC-SA 4.0。**本数据集对其做了选取、重排与补充说明**，完整署名与修改声明见 `THIRD_PARTY.md`（§3(a) 要求，再分发请保留）。
 
-**引用第二篇论文**：*Blind Men Touching Characters: Probing Symbolic Algebra vs. 2D Spatial Perception in LLMs via Chinese Character Riddles*（中文原题《盲人摸字……》），作者「计算语言学与大模型认知诊断课题组」，中文原文 2026-11-06、英文全译 2026-11-10。它与 Paper 1 是**两篇独立论文**，`CITATION.cff` 的 `preferred-citation` 仍指向数据集的 Paper 1，`references` 另列 Paper 2；引用时请勿把两篇的作者或结论互相替换。
+**引用第二篇论文**：*Blind Men Touching Characters: Probing Symbolic Algebra vs. 2D Spatial Perception in LLMs via Chinese Character Riddles*（中文原题《盲人摸字……》），作者「春芽数源 / Spring Buds Data Source Inc.」（机构署名），中文原文 2026-11-06、英文全译 2026-11-10。它与 Paper 1 是**两篇独立论文**，`CITATION.cff` 的 `preferred-citation` 仍指向数据集的 Paper 1，`references` 另列 Paper 2；两篇作者相同，但引用时请勿把两篇的结论互相替换。
 
 机器可读引用见 `CITATION.cff`。**长期归档已完成**：版本 DOI [`10.5281/zenodo.24077793`](https://doi.org/10.5281/zenodo.24077793) 固定指向本次 v0.1 归档；概念 DOI [`10.5281/zenodo.24077792`](https://doi.org/10.5281/zenodo.24077792) 指向该记录的所有版本。**引用具体版本请用版本 DOI**。
 

@@ -7,10 +7,11 @@ Paper 1 in `paper/` (`riddle-paper*` — Chinese original and full English
 translation), authored by Spring Buds Data Source Inc.
 
 Does NOT apply to Paper 2 (`gmn-paper-zh.pdf` and `gmn-paper-en.*`): that
-Chinese original is signed by a different research group and states no
-license for the paper text itself. Both editions are included for reference
-and academic citation only; reuse beyond reading requires the original
-author's permission. See `paper/README.md`.
+Chinese original states a dataset licence (CC BY-NC-SA 4.0) but no licence
+for the paper text itself, and the repository does not add one. Paper 2
+shares the same corporate author as Paper 1 (byline unified 2026-11-10).
+Both editions are included for reference and academic citation only; reuse
+beyond reading requires the publisher's permission. See `paper/README.md`.
 
 License: Creative Commons Attribution 4.0 International (CC BY 4.0).
 

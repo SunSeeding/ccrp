@@ -106,7 +106,7 @@ Link policy used throughout the project:
 | `data/` | CC BY-NC-SA 4.0 — `LICENSE-DATA` |
 | `scripts/` | MIT — `scripts/LICENSE` |
 | `docs/`, `README*.md`, `paper/README.md`, `paper/riddle-paper*`, this file | CC BY 4.0 — `LICENSE-DOCS` |
-| `paper/gmn-paper-zh.pdf`, `paper/gmn-paper-en.*` | **Not covered by `LICENSE-DOCS`.** Paper 2 is signed by a different research group and its Chinese original states no licence for the paper text; both editions are included for reference and academic citation only. See `paper/README.md` |
+| `paper/gmn-paper-zh.pdf`, `paper/gmn-paper-en.*` | **Not covered by `LICENSE-DOCS`.** Paper 2 shares the same corporate author as Paper 1; its Chinese original states no licence for the paper text and the repository does not add one. Both editions are included for reference and academic citation only. See `paper/README.md` |
 
 CC BY-NC-SA 4.0 is not an OSI-approved open-source license. Publishing this
 repository free of charge is itself a NonCommercial act under §1 of the

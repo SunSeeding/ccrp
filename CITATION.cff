@@ -51,10 +51,10 @@ preferred-citation:
     paper/riddle-paper{,-en}.md, with typeset .html and .pdf editions.
     A second, independent paper was added on 2026-11-10; it is listed
     under references and must not be confused with this preferred citation.
-# Two independent papers are associated with CCRP DataSet v0.1. Paper 2 is
-# signed by a different research group and its Chinese original states no
-# licence for the paper text itself; see paper/README.md. No DOI or URL is
-# invented for either paper.
+# Two independent papers are associated with CCRP DataSet v0.1; both are
+# corporate-authored by Spring Buds Data Source Inc. (byline unified
+# 2026-11-10). Paper 2's Chinese original states no licence for the paper
+# text itself; see paper/README.md. No DOI or URL is invented for either paper.
 references:
   - type: article
     title: "汉字字谜能否成为大语言模型的结构探针？"
@@ -71,13 +71,15 @@ references:
   - type: article
     title: "Blind Men Touching Characters: Probing Symbolic Algebra vs. 2D Spatial Perception in LLMs via Chinese Character Riddles"
     authors:
-      - name: "Computational Linguistics and LLM Cognitive Diagnostics Research Group"
-        alias: "计算语言学与大模型认知诊断课题组"
+      - name: "Spring Buds Data Source Inc."
+        alias: "春芽数源"
     year: 2026
     note: >-
       Paper 2. Chinese original (2026-11-06) archived as
       paper/gmn-paper-zh.pdf; full English translation (2026-11-10) at
       paper/gmn-paper-en.md with typeset HTML/PDF. Chinese title:
       盲人摸字：通过汉字字谜探查大模型的一维符号代数与二维空间失明.
-      The Chinese original states no licence for the paper text; both editions
-      are provided for reference and academic citation only.
+      The byline on both editions was unified to the corporate author on
+      2026-11-10; no other content changed. The Chinese original states no
+      licence for the paper text; both editions are provided for reference
+      and academic citation only.
