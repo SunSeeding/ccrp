@@ -60,8 +60,8 @@
       "withheld_rows": 4
     }
   },
-  "n_files": 42,
-  "total_bytes": 10476290,
+  "n_files": 47,
+  "total_bytes": 12267173,
   "files": [
     {
       "path": ".gitattributes",
@@ -80,13 +80,13 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 7914,
-      "sha256": "dde488ba32f198e215683cdfb483cc6f16f29ed9ffd65057b12198d139382cf2"
+      "bytes": 10789,
+      "sha256": "c801c91916f50b3bff0c67eee5af0ae3bfb8de032924f20d8cfa1e79eac51d78"
     },
     {
       "path": "CITATION.cff",
-      "bytes": 2050,
-      "sha256": "bd60b536f508c0b0ecf33630d177cd3d6ee614320ee0219f65714d2cb1340522"
+      "bytes": 3849,
+      "sha256": "32c5ab7255ee48364ea88981f91094323c92b2d37f84704af1828f00e5ce9786"
     },
     {
       "path": "data/blind-self.jsonl",
@@ -190,8 +190,8 @@
     },
     {
       "path": "docs/DATASHEET.md",
-      "bytes": 10640,
-      "sha256": "62e30dd55fad012189f8eb8fb43ffe8e1da1e71b6ab4c6c7a6b8b32ea994fd81"
+      "bytes": 11177,
+      "sha256": "397f970e8000375d4baf2030608bf625b8eaf39cc5a6504382471e79a4a89cd2"
     },
     {
       "path": "docs/ZENODO.md",
@@ -210,8 +210,33 @@
     },
     {
       "path": "LICENSE-DOCS",
-      "bytes": 1660,
-      "sha256": "198cb2d2077d397e8ed6b5bb081f38fcd163b14dfe041933e3e69cc177c87da9"
+      "bytes": 2075,
+      "sha256": "0b0eab708575d7e42a4a7b1e8d6f56269c39da96a70e9f02f1025cbf9caf663a"
+    },
+    {
+      "path": "paper/gmn-paper-en.html",
+      "bytes": 81889,
+      "sha256": "98cab19f3364df762974860c584676345af1e67eecfab313a8e64612c34bfbf0"
+    },
+    {
+      "path": "paper/gmn-paper-en.md",
+      "bytes": 68193,
+      "sha256": "7cbba575c91b4902b4bb10c67cd100a574ff67c33e529b0ef1add3639363b1a8"
+    },
+    {
+      "path": "paper/gmn-paper-en.pdf",
+      "bytes": 989950,
+      "sha256": "8ff35dc60242dcdcc46bb7df9ff7bbfb6b03f1012cb6d542c2f5ec17dbc189f8"
+    },
+    {
+      "path": "paper/gmn-paper-zh.pdf",
+      "bytes": 636349,
+      "sha256": "a4133f2b57753262ecee86612b3dfd28b0e0f054493e1cae9d22bbe203eabfc6"
+    },
+    {
+      "path": "paper/README.md",
+      "bytes": 3737,
+      "sha256": "7d421037132eae1fbc45fedb39c253d9ea0c0d20f7ad0cf643afcf624cc08027"
     },
     {
       "path": "paper/riddle-paper-en.html",
@@ -245,18 +270,18 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 13808,
-      "sha256": "a1290881c4e22ee523f83799a2e182380632db721ba6edb053d6ddd26c506c60"
+      "bytes": 16134,
+      "sha256": "b24936b412976c510e7e8dd949bad06c6a9be0cf214afdeff201d9c28354bb8e"
     },
     {
       "path": "README.md",
-      "bytes": 11536,
-      "sha256": "e4aeebda5c46cbd21fcc2d62a033446d97a7c7ddd46824ec4eba413b38ec49b5"
+      "bytes": 13547,
+      "sha256": "6f5a041b9bc71f427eede23cadaac0f668eb1e4f74862d7635cf68ca0f1c53c4"
     },
     {
       "path": "scripts/build_release.py",
-      "bytes": 16159,
-      "sha256": "a40811680a8e2c883518ecac7b04ceaadcf4f0ff59bcaa22273f122c88ccc1cb"
+      "bytes": 16618,
+      "sha256": "83c259f08c0bb8afa62886102efd83cf38f600659ba1afae7fb6d5c93d071221"
     },
     {
       "path": "scripts/LICENSE",
@@ -265,13 +290,13 @@
     },
     {
       "path": "scripts/verify_release.py",
-      "bytes": 6047,
-      "sha256": "e4a50200e5e5aaab283068dae5dd1f8b63efe9e3ace2b0c0a309eb8ef5a4560a"
+      "bytes": 6066,
+      "sha256": "3ab16d9a5bc02554dd0dd40a04a4007d8d950b4e7afbb75e6c5990537f6fb69e"
     },
     {
       "path": "THIRD_PARTY.md",
-      "bytes": 5594,
-      "sha256": "fec2014ded62cb7cd26f9a67c24c2126f7e5085a049d629f6b01b52b1a61e3e0"
+      "bytes": 5918,
+      "sha256": "0dd9d3d6dae6039b10e027b58d5b855067fb5409e8f90536e50069062ee98c0c"
     }
   ]
 }

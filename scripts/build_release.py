@@ -87,6 +87,13 @@ COPY_FILES = {
     "paper/riddle-paper-en.html": "paper/riddle-paper-en.html",
     "paper/riddle-paper.pdf": "paper/riddle-paper.pdf",
     "paper/riddle-paper-en.pdf": "paper/riddle-paper-en.pdf",
+    # Second companion paper (added 2026-11-10): Chinese original PDF plus the
+    # full English translation in Markdown / HTML / PDF. The first paper's six
+    # outputs above are copied byte-for-byte and are never regenerated here.
+    "paper/gmn-paper-zh.pdf": "paper/gmn-paper-zh.pdf",
+    "paper/gmn-paper-en.md": "paper/gmn-paper-en.md",
+    "paper/gmn-paper-en.html": "paper/gmn-paper-en.html",
+    "paper/gmn-paper-en.pdf": "paper/gmn-paper-en.pdf",
     "build_release.py": "scripts/build_release.py",
     "verify_release.py": "scripts/verify_release.py",
 }

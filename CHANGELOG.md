@@ -1,5 +1,18 @@
 # Changelog / 更新记录
 
+## 2026-11-10 — 新增第二篇配套论文（main 文档增补，**未打 tag**）
+
+**数据集内容版本仍为 `0.1`；本次只增补 `paper/` 与文档层，数据、实验数字、已发布 tag / Release 附件、Zenodo 归档与 DOI 全部零改动。**
+
+- **新增论文 2**：《盲人摸字：通过汉字字谜探查大模型的一维符号代数与二维空间失明》/ *Blind Men Touching Characters: Probing Symbolic Algebra vs. 2D Spatial Perception in LLMs via Chinese Character Riddles*，作者「计算语言学与大模型认知诊断课题组」（**与数据集机构署名不同**），中文原文 2026-11-06。
+  - `paper/gmn-paper-zh.pdf`：中文原文 PDF，规范化文件名后逐字节归档，内容零改动。
+  - `paper/gmn-paper-en.md` / `.html` / `.pdf`：**英文全译**，9,802 词 / 9 张表 / 式 (1)–(7) / 17 条参考文献 / 19 页 A4；由工作区本地排版脚本从同一份 Markdown 生成（脚本未随包发布，与 Paper 1 一致；复用 `build_paper.py` 的 CSS 与渲染器，只读；`build_paper.py` 与 Paper 1 的六个产物字节级不变）。
+- 新增 `paper/README.md` 论文索引：两篇论文的作者、语言版本、许可状态与口径差异。中英 `README*`、`LICENSE-DOCS`、`THIRD_PARTY.md`、`docs/DATASHEET.md`、`CITATION.cff`（`preferred-citation` 仍指向 Paper 1，新增 `references` 列 Paper 2）、导出器 `COPY_FILES` 与自检器必需文档清单同步。
+- **许可例外**：中文原文只标注了数据集许可 CC BY-NC-SA 4.0，未声明论文本身许可，且署名是另一课题组；因此 `paper/gmn-paper-zh.pdf` 与 `gmn-paper-en.*` **不适用仓库的 `paper/` CC BY 4.0**，两版仅供对照阅读与学术引用，再利用需原作者许可。`LICENSE-DOCS` 适用范围已收窄为本项目文档 + Paper 1。
+- **翻译口径**：中文谜面例证保留汉字并附英文释义；所有数值、*p* 值、GID、模型代号照抄，不重算不修正；参考文献按中文原版照录（其中若干条为泛化团体署名或 2026 年 arXiv 编号，未核实、未补造 URL / DOI）；论文中 1,050 / 1,023 为构建期口径，公开包为 1,019，差异只在英文全译末尾 *Editorial notes* 与 Paper 1 §3.4 说明，**不改正文数字**。
+- **合规扫描**：两个版本均不含 31 条下架网络 UGC 谜面文本、网页 URL、本机绝对路径与明文凭据；`build_release.py` 的泄露扫描与 `verify_release.py` 自检均 PASS，`manifest.json` 已重算。
+- **未做的事**：未打 `v0.1.2` tag、未发新 Release、未替换任何已发布附件、未重传 Zenodo 文件、未改动版本 DOI `10.5281/zenodo.24077793`。该 DOI 仍固定指向 `CCRP-DataSet-v0.1.1.zip`（3,035,750 B / MD5 `8f367d19cc2560cfbe13f2ab1c80cb05`）；本次新增只存在于 `main` 分支与在线站点的分发副本。
+
 ## v0.1.1 — 2026-11-09（文档补丁 / documentation patch）
 
 **数据集内容与 v0.1.0 完全一致**：所有 `data/` 文件、论文、脚本、实验数字零改动。数据集版本号仍为 **0.1**；`v0.1.1` 只是本仓库的补丁发布号（tag / GitHub Release），符合「已发布版本不改写、修复走新版本」的语义化版本惯例。

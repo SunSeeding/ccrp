@@ -9,7 +9,7 @@ Live site: <https://sunseeding.github.io/ccrp/>
 
 Zenodo archive DOI: <https://doi.org/10.5281/zenodo.24077793>
 
-> **Data license: `data/` is CC BY-NC-SA 4.0 (NonCommercial · Attribution · ShareAlike)**; `scripts/` is MIT, `paper/` and docs are CC BY 4.0. The GitHub sidebar shows `Other` because the platform's detector does not include CC-BY-NC-SA-4.0 (only CC-BY-4.0 / CC-BY-SA-4.0 / CC0-1.0). This does **not** mean the data is commercially usable, MIT, or public domain. See the root `LICENSE` (official CC legal code) and the §5 license map.
+> **Data license: `data/` is CC BY-NC-SA 4.0 (NonCommercial · Attribution · ShareAlike)**; `scripts/` is MIT, our documentation and Paper 1 in `paper/` are CC BY 4.0 (**Paper 2 is an exception — see `paper/README.md`**). The GitHub sidebar shows `Other` because the platform's detector does not include CC-BY-NC-SA-4.0 (only CC-BY-4.0 / CC-BY-SA-4.0 / CC0-1.0). This does **not** mean the data is commercially usable, MIT, or public domain. See the root `LICENSE` (official CC legal code) and the §5 license map.
 
 > A research dataset for studying Chinese character riddles as a **behavioral
 > structural probe** for large language models: 100 high-frequency simplified
@@ -57,7 +57,9 @@ annotation, as above. The three techniques are **graphemic decomposition
 | Passed quality control | 597 | shared by both blind-test conditions |
 | Closed-loop answers | 1,194 | cross blind test 597 + same-item self-test 597, item-level paired |
 | ICL control task | 192 calls | 24 items × 4 conditions × 2 models, frozen seed `20261106` |
-| Papers | 2 | Chinese original + full English translation + Chinese PDF |
+| Companion papers | **2** | Paper 1 (Chinese + English); Paper 2 (Chinese original + full English translation). Index: `paper/README.md` |
+
+**Two independent papers** (the second was added on 2026-11-10): (1) *Can Chinese Character Riddles Serve as Structural Probes for Large Language Models?*, signed by this dataset's publisher, which adjudicates the validity of riddles as a structural probe; (2) *Blind Men Touching Characters: Probing Symbolic Algebra vs. 2D Spatial Perception in LLMs via Chinese Character Riddles*, signed by a different research group, with a full English translation at `paper/gmn-paper-en.md`. Both draw on the same 597-item closed loop, but their questions and conclusions do not supersede one another. Dataset contents, experimental numbers, published tags / Release assets and the Zenodo deposit are unchanged.
 
 **Headline result** (quote verbatim; do not recompute): cross blind test
 39.03% (233/597) → same-item self-test 44.22% (264/597), item-level paired
@@ -123,13 +125,18 @@ public-corpus memorization contamination.
 │   ├── selftest-*.json*            paired statistics, 2×2, conversation hashes
 │   ├── icl-probe-*                 frozen items / exemplars / 192 calls / analysis
 │   └── summary.json                pipeline summary and limitations
-├── paper/                          Chinese + English papers (CC BY 4.0)
-│   ├── riddle-paper.md             Chinese original
-│   ├── riddle-paper.html           typeset Chinese HTML (4 figures)
-│   ├── riddle-paper.pdf            Chinese PDF
-│   ├── riddle-paper-en.md          full English translation
-│   ├── riddle-paper-en.html        typeset English HTML
-│   └── riddle-paper-en.pdf         English PDF
+├── paper/                          two companion papers (licences: paper/README.md)
+│   ├── README.md                   paper index: authorship, editions, licences
+│   ├── riddle-paper.md             Paper 1 Chinese original (CC BY 4.0)
+│   ├── riddle-paper.html           Paper 1 typeset Chinese HTML (4 figures)
+│   ├── riddle-paper.pdf            Paper 1 Chinese PDF
+│   ├── riddle-paper-en.md          Paper 1 full English translation
+│   ├── riddle-paper-en.html        Paper 1 typeset English HTML
+│   ├── riddle-paper-en.pdf         Paper 1 English PDF
+│   ├── gmn-paper-zh.pdf            Paper 2 Chinese original PDF (no paper licence stated)
+│   ├── gmn-paper-en.md             Paper 2 full English translation (9,802 words)
+│   ├── gmn-paper-en.html           Paper 2 typeset English HTML
+│   └── gmn-paper-en.pdf            Paper 2 English PDF (19 A4 pages)
 ├── docs/DATASHEET.md               datasheet
 └── scripts/                        MIT
     ├── build_release.py             export this package from the local research tree
@@ -144,7 +151,8 @@ public-corpus memorization contamination.
 |---|---|---|
 | `data/` | **CC BY-NC-SA 4.0** | contains CC-Riddle-derived material; redistribution requires the same license, attribution and a modification notice |
 | `scripts/` | **MIT** | our original tooling (full text: `scripts/LICENSE`) |
-| `paper/`, `docs/`, `README*.md`, `THIRD_PARTY.md`, `CHANGELOG.md` | **CC BY 4.0** | documentation; the papers quote only short clue examples |
+| `docs/`, `README*.md`, `THIRD_PARTY.md`, `CHANGELOG.md`, `paper/README.md`, `paper/riddle-paper*` | **CC BY 4.0** | our own documentation and Paper 1; the papers quote only short clue examples |
+| `paper/gmn-paper-zh.pdf`, `paper/gmn-paper-en.*` | **no licence stated by the original author** | Paper 2 is signed by a different group and its Chinese original states only a dataset licence. Both editions are provided for reference and academic citation; obtain the original author's permission for reuse beyond reading |
 | Third-party material | see `THIRD_PARTY.md` | upstream attribution + withheld records |
 
 - **Publishing does not violate NonCommercial.** CC BY-NC-SA 4.0 §1 defines
@@ -214,6 +222,15 @@ Chinese Character Riddles*, arXiv:2206.13778, CC BY-NC-SA 4.0. We selected,
 reorganized and augmented their corpus. The full attribution and
 modification notice is in `THIRD_PARTY.md`; retain it when redistributing
 (CC BY-NC-SA 4.0 §3(a)).
+
+**Citing the second paper**: *Blind Men Touching Characters: Probing Symbolic
+Algebra vs. 2D Spatial Perception in LLMs via Chinese Character Riddles*
+(Chinese original 盲人摸字：通过汉字字谜探查大模型的一维符号代数与二维空间失明),
+authored by the Computational Linguistics and LLM Cognitive Diagnostics
+Research Group; Chinese original 2026-11-06, English translation 2026-11-10.
+It is a **separate work** from Paper 1: `CITATION.cff` keeps Paper 1 as the
+dataset's `preferred-citation` and lists Paper 2 under `references`. Do not
+swap their authors or conclusions.
 
 Machine-readable citation: `CITATION.cff`. **Long-term archiving is complete**:
 the version DOI [`10.5281/zenodo.24077793`](https://doi.org/10.5281/zenodo.24077793)

@@ -2,8 +2,15 @@ CCRP DataSet — DOCUMENTATION LICENSE NOTICE
 ===========================================
 
 Applies to: `README.md`, `README.en.md`, `CHANGELOG.md`, `CITATION.cff`,
-`data/README.md`, `data/WITHHELD.md`, `docs/`, and the two papers in
-`paper/` (Chinese original and English translation).
+`data/README.md`, `data/WITHHELD.md`, `docs/`, `paper/README.md`, and
+Paper 1 in `paper/` (`riddle-paper*` — Chinese original and full English
+translation), authored by Spring Buds Data Source Inc.
+
+Does NOT apply to Paper 2 (`gmn-paper-zh.pdf` and `gmn-paper-en.*`): that
+Chinese original is signed by a different research group and states no
+license for the paper text itself. Both editions are included for reference
+and academic citation only; reuse beyond reading requires the original
+author's permission. See `paper/README.md`.
 
 License: Creative Commons Attribution 4.0 International (CC BY 4.0).
 
