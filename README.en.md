@@ -108,7 +108,7 @@ public-corpus memorization contamination.
 ├── THIRD_PARTY.md                  upstream attribution, modification notice, withheld material
 ├── LICENSE                         official CC BY-NC-SA 4.0 legal code + multi-license notice
 ├── LICENSE-DATA                    CC BY-NC-SA 4.0 (data/)
-├── LICENSE-DOCS                    CC BY 4.0 (paper/, docs/, README)
+├── LICENSE-DOCS                    CC BY 4.0 (our docs + Paper 1; Paper 2 excepted)
 ├── manifest.json                   byte sizes + SHA256 + row-count conventions
 ├── data/                           the dataset (CC BY-NC-SA 4.0)
 │   ├── README.md                   field dictionary

@@ -65,7 +65,7 @@ python -c "import json,collections;print(collections.Counter((r['correct'] for r
 ├── THIRD_PARTY.md                  上游署名、修改声明、下架说明
 ├── LICENSE                         CC BY-NC-SA 4.0 官方全文 + 多许可总览
 ├── LICENSE-DATA                    CC BY-NC-SA 4.0（data/）
-├── LICENSE-DOCS                    CC BY 4.0（paper/、docs/、README）
+├── LICENSE-DOCS                    CC BY 4.0（本项目文档 + Paper 1；Paper 2 例外）
 ├── manifest.json                   全文件字节数 + SHA256 + 行数口径
 ├── data/                           数据集本体（CC BY-NC-SA 4.0）
 │   ├── README.md                   字段字典

@@ -61,7 +61,7 @@
     }
   },
   "n_files": 47,
-  "total_bytes": 12267173,
+  "total_bytes": 12267207,
   "files": [
     {
       "path": ".gitattributes",
@@ -270,13 +270,13 @@
     },
     {
       "path": "README.en.md",
-      "bytes": 16134,
-      "sha256": "b24936b412976c510e7e8dd949bad06c6a9be0cf214afdeff201d9c28354bb8e"
+      "bytes": 16149,
+      "sha256": "3a6d296e3d2cbdfd007bedcf7770486e736c91d8bd6f60d6a4e43c9cad51e025"
     },
     {
       "path": "README.md",
-      "bytes": 13547,
-      "sha256": "6f5a041b9bc71f427eede23cadaac0f668eb1e4f74862d7635cf68ca0f1c53c4"
+      "bytes": 13566,
+      "sha256": "45181d41d0662490719fab25760800817be3b602f0ad2a762e6d03babebaed40"
     },
     {
       "path": "scripts/build_release.py",
